@@ -1,6 +1,9 @@
     import React, { Component } from "react";
     import Form from 'react-bootstrap/Form'
     import Button from 'react-bootstrap/Button'
+    import logo  from '../logo.png';
+    import { Checkbox } from '@material-ui/core';
+    import './login.css';
 
     export default class Login extends Component {
       constructor(props) {
@@ -29,23 +32,35 @@
       render() {
         return (
           <div className="Login">
+            <img src = {logo} className="App-logo" alt="logo"></img>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="email" bsSize="large">
-                <Form.Control
+              <div>
+              <Form.Group className="formGroup" controlId="email" bsSize="large">
+                <Form.Control className="formControl"
                   autoFocus
                   type="email"
                   value={this.state.email}
                   onChange={this.handleChange}
+                  placeholder="Enter Email"
                 />
               </Form.Group>
-              <Form.Group controlId="password" bsSize="large">
-                <Form.Control
+              </div>
+              <Form.Group className="formGroup"controlId="password" bsSize="large">
+                <Form.Control className="formControl"
                   value={this.state.password}
                   onChange={this.handleChange}
                   type="password"
+                  placeholder="Enter password"
                 />
-              </Form.Group>
-              <Button
+              </Form.Group><p />
+              <label>
+                <Checkbox 
+                  //  checked={this.state.checked}
+                  //  onChange={this.handleCheckboxChange}
+                />
+                <span >remember me</span>
+              </label><p />
+                <Button
                 block
                 bsSize="large"
                 disabled={!this.validateForm()}
