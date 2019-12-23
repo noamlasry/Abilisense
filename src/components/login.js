@@ -4,6 +4,7 @@
     import logo  from '../logo.png';
     import { Checkbox } from '@material-ui/core';
     import './login.css';
+    import { Link} from "react-router-dom";
 
     export default class Login extends Component {
       constructor(props) {
@@ -28,14 +29,14 @@
       handleSubmit = event => {
         event.preventDefault();
       }
-
+      
       render() {
         return (
           <div className="Login">
             <img src = {logo} className="App-logo" alt="logo"></img>
             <Form onSubmit={this.handleSubmit}>
               <div>
-              <Form.Group className="formGroup" controlId="email" bsSize="large">
+              <Form.Group className="formGroup" controlId="email" >
                 <Form.Control className="formControl"
                   autoFocus
                   type="email"
@@ -45,7 +46,7 @@
                 />
               </Form.Group>
               </div>
-              <Form.Group className="formGroup"controlId="password" bsSize="large">
+              <Form.Group className="formGroup"controlId="password" >
                 <Form.Control className="formControl"
                   value={this.state.password}
                   onChange={this.handleChange}
@@ -60,16 +61,18 @@
                 />
                 <span >remember me</span>
               </label><p />
-                <Button
-                block
-                bsSize="large"
+
+              <Button  
+                // blocked
                 disabled={!this.validateForm()}
                 type="submit"
               >
-                Login
+              <Link to='/mainPage'>Log in</Link>
               </Button>
+
             </Form>
           </div>
+
         );
       }
     }

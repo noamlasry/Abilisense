@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import Login from "./components/login";
 import './App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import MainPage  from "./components/mainPage";
 
 class App extends Component{
-  ntDate = "20/21/2020";
     render(){
        return(
-       <div className="App">
-        <Login></Login>
-      
+      <Router>  
+        <div className="App">
+         <switch>
+          <Route  exact path="/" component={ Login }/>
+          
+          <Route exact path="/mainPage" component={ MainPage }/>
+         </switch>
       </div>
+      </Router>
     )
 };
 }
