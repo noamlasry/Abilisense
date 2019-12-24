@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import './mainPage.css'
-// import MainNav from "./mainNav";
+import './mainPage.css';
+import  LeftNav  from "./leftNav";
+import RightNav from "./rightNav";
+import MiddleNav from "./middleNav";
 
 class MainPage extends Component {
     render(){
         return(
-
-        <div className="main">
-           {/* <MainNav /> */}
-           <h1>main page</h1>
-        </div>
+        <nav>   
+            <LeftNav />
+            <MiddleNav />
+            {/* <div className="main">
+               <h1>main page</h1>
+            </div> */}
+            <RightNav />
+        </nav>
      )
  };
    

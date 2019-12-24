@@ -1,9 +1,6 @@
 .App {
   text-align: center;
-  padding: 12%;
   display: block;
-  background-color: black;
+  background-color: rgb(15, 10, 10);
+  height: 100vh;
 }
-
-
-

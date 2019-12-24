@@ -1,6 +1,10 @@
 .main {
     text-align: center;
-    padding: 12%;
     display: block;
     background-color: blue;
+    float: center;
+    height: 80vh;
+    margin-left: 50vh;
+    margin-right: 50vh;
+    margin-top: 15vh;
   }  

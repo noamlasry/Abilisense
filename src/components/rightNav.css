@@ -1,0 +1,10 @@
+.rightnav{
+    display: block;
+    color: rgb(213, 213, 228);
+    float: right;
+    background-color: rgb(197, 183, 183);
+    height: 94vh;
+    width: 50vh;
+    margin-top: 5vh;
+    margin-right: 5vh;
+}

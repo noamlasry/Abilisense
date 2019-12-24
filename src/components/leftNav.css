@@ -1,0 +1,9 @@
+.leftnav{
+    display: block;
+    color: rgb(213, 213, 228);
+    float: left;
+    background-color: rgb(163, 28, 28);
+    height: 94vh;
+    margin-top: 5vh;
+    width: 50vh;
+}

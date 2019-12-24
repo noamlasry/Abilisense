@@ -1,0 +1,9 @@
+nav{
+    display: block;
+    justify-content: space-around;
+    align-items: center;
+    height: 5vh;
+    background: rgb(91, 91, 148);
+    text-align: left;
+    margin-top: -3.2vh;
+}

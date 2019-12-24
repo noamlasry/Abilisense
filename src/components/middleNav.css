@@ -1,0 +1,9 @@
+.middlenav{
+    display: block;
+    color: rgb(213, 213, 228);
+    float: left;
+    background-color: rgb(23, 31, 145);
+    height: 94vh;
+    margin-top: 5vh;
+    width: 110.5vh;
+}
