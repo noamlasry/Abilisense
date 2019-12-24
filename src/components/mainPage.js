@@ -7,14 +7,11 @@ import MiddleNav from "./middleNav";
 class MainPage extends Component {
     render(){
         return(
-        <nav>   
+        <div>   
             <LeftNav />
             <MiddleNav />
-            {/* <div className="main">
-               <h1>main page</h1>
-            </div> */}
             <RightNav />
-        </nav>
+        </div>
      )
  };
    
