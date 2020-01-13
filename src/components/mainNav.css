@@ -1,9 +1,14 @@
-nav{
-    display: block;
+.nav{
+    display: inline-flex;
     justify-content: space-around;
     align-items: center;
-    height: 10vh;
-    background: rgb(91, 91, 148);
+    height: 10%;
+    background: rgb(13, 13, 231);
     text-align: left;
-    margin-top: -3.2vh;
+    width: 100%;
+    float: left;
+    /* margin-top: -3.2vh; */
+}
+.Nav-logo {
+    width: 8%;
 }

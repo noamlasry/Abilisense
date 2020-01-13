@@ -6,7 +6,7 @@ class MiddleNav extends Component {
         return(
 
         <div className="middlenav">
-           <h1>middle Nav</h1>
+            <h1>audio cropping</h1>
         </div>
      )
  };

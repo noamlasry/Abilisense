@@ -6,7 +6,7 @@ class LeftNav extends Component {
         return(
 
         <div className="leftnav">
-           <h1>Left Nav</h1>
+           <h1>invalid audio</h1>
         </div>
      )
  };

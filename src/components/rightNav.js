@@ -6,7 +6,7 @@ class RightNav extends Component {
         return(
 
         <div className="rightnav">
-           <h1>Right Nav</h1>
+           <h1>valid categories </h1>
         </div>
      )
  };
