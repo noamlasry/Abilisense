@@ -46,7 +46,7 @@
                 />
               </Form.Group>
               </div>
-              <Form.Group className="formGroup"controlId="password" >
+              <Form.Group className="formGroup" controlId="password" >
                 <Form.Control className="formControl"
                   value={this.state.password}
                   onChange={this.handleChange}

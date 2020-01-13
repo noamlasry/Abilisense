@@ -1,7 +1,5 @@
 .App {
   text-align: center;
-  display: block;
-  margin: auto;
-  background-color: rgb(15, 10, 10);
+  background-color: gray;
   height: 100vh;
 }

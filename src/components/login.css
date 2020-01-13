@@ -1,9 +1,9 @@
 .Login{
-    background-color: white;
+    background-color: rgb(68, 59, 59);
     padding: 1%;
     float: bottom;
-    margin: auto;
-    max-width: 320px;
+    margin: 5% 40%;
+    max-width: 20%;
 }
 .formGroup{
     text-align: left;
@@ -17,6 +17,6 @@
     width: 75%;
     float: center;
     border: 1x solid;
-    padding: 8px;
+    padding: 12px;
     background-color: rgb(220, 210, 230);
 }
