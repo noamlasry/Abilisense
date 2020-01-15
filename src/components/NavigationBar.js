@@ -5,7 +5,7 @@ import logo  from '../logo.png';
 import './NavigationBar.css';
 
 const Styles = styled.div`
-  .navbar { background-color: #222; }
+  .navbar { background-color: #222; height: 10vh}
   a, .navbar-nav, .navbar-light .nav-link {
     color: #9FFFCB;
     &:hover { color: white; }
