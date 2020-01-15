@@ -3,20 +3,23 @@ import Login from "./components/login";
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainPage  from "./components/mainPage";
-import MainNav from './components/mainNav';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { NavigationBar } from './components/NavigationBar';
 
 class App extends Component{
     render(){
        return(
+       
       <Router>  
         <div className="App">
-          <MainNav />
+          <NavigationBar />
          <switch>
           <Route  exact path="/" component={ Login }/>
           <Route exact path="/mainPage" component={ MainPage }/>
          </switch>
       </div>
       </Router>
+     
     )
 };
 }

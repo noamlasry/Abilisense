@@ -9,7 +9,6 @@ class MainNav extends Component{
                 <img src = {logo} className="Nav-logo" alt="logo"></img>
                 <h1>Hi user</h1>
                 <h2>subscribe</h2>
-              
             </div>
             
         )

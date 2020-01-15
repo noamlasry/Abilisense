@@ -1,15 +1,13 @@
 .Login{
-    background-color: rgb(219, 23, 23);
+    background-color: rgb(68, 59, 59);
     padding: 1%;
-  
-    
-    margin: auto;
-    max-width: 320px;
+    float: bottom;
+    margin: 5% 40%;
+    max-width: 20%;
 }
 .formGroup{
     text-align: left;
     display: inline;
-    
 }
 .App-logo {
     width: 100%;
