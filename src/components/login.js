@@ -67,7 +67,7 @@
                 disabled={!this.validateForm()}
                 type="submit"
               >
-              <Link to='/mainPage'>Log in</Link>
+              <Link to='/mainPage' className='login-button'>Log in</Link>
               </Button>
 
             </Form>
