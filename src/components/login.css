@@ -20,6 +20,12 @@
     padding: 12px;
     background-color: rgb(220, 210, 230);
 }
-.login-button{
+#button{
+    color: black;
     background-color: white;
+}
+#Link{
+    color: black;
+    background-color: black;
+    text-emphasis-color: black;
 }
