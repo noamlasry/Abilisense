@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Login from "./components/login";
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route ,Switch} from "react-router-dom";
 import MainPage  from "./components/mainPage";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { NavigationBar } from './components/NavigationBar';
@@ -13,10 +13,10 @@ class App extends Component{
       <Router>  
         <div className="App">
           <NavigationBar />
-         <switch>
+         <Switch>
           <Route  exact path="/" component={ Login }/>
           <Route exact path="/mainPage" component={ MainPage }/>
-         </switch>
+         </Switch>
       </div>
       </Router>
      

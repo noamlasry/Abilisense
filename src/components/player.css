@@ -1,0 +1,10 @@
+.player{
+    width: 100%;
+    background-color: white;
+    height: 50px;
+    margin: 15px 0;
+}
+.fas fa-fast-backward{
+    width: 100%;
+color: black;
+}
