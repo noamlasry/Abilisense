@@ -67,7 +67,7 @@
                 //disabled={!this.validateForm()}
                 //type="submit"
               >
-              <Button type="button" class="btn btn-light">Log in</Button>
+              <Button type="button" className="btn btn-secondary">Log in</Button>
               </Link>
 
             </Form>

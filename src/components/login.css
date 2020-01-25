@@ -25,6 +25,10 @@
     background-color: rgb(74, 30, 117);
 }
 
+#button{
+    color: black;
+    background-color: white;
+}
 #span{
     font-weight: 900;
 }
