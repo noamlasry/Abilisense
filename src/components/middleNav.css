@@ -1,8 +1,16 @@
 .middlenav{
-    display: block;
     color: rgb(213, 213, 228);
     float: left;
     background-color: rgb(23, 31, 145);
     height: 90vh;
     width: 50%;
+}
+.form{
+    display: inline-table;
+}
+.btn-primary{
+    width: 100%;
+}
+.btn-danger{
+    margin-top: 10%;
 }
