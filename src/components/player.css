@@ -1,10 +1,12 @@
 .player{
     width: 100%;
-    background-color: white;
-    height: 100px;
+    background-color: rgb(190, 42, 42);
+    height: 30hv;
     margin: 15px 0;
+    
 }
-.fas fa-fast-backward{
-    width: 100%;
-color: black;
+
+.mediaBtns{
+    justify-content: center;
+    align-self: center;
 }
