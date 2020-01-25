@@ -10,14 +10,18 @@ class MediaPlayer  extends Component{
        return(
         
        <div className="player">
-          <h3>progress bar</h3>
+          <h3>
+           <div className="progress">
+              <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </h3>
           <Row className="mediaBtns" expand="lg">
-            <h3> <TiMediaPlayReverseOutline /></h3>
-            <h3> <TiMediaRewind /></h3>
-            <h3> <TiMediaPauseOutline /></h3>
-            <h3> <FaRegPlayCircle /></h3>
-            <h3> <TiMediaFastForward /></h3>
-            <h3> <TiMediaPlayOutline /></h3>
+            <h3><button> <TiMediaPlayReverseOutline /></button></h3>
+            <h3><button>  <TiMediaRewind /></button></h3>
+            <h3><button>  <TiMediaPauseOutline /></button></h3>
+            <h3><button>  <FaRegPlayCircle /></button></h3>
+            <h3><button>  <TiMediaFastForward /></button></h3>
+            <h3><button>  <TiMediaPlayOutline /></button></h3>
           </Row>
        </div>
     )

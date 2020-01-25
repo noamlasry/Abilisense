@@ -48,8 +48,8 @@ class MiddleNav extends Component {
                 />
                 </Col>
               </Form.Group>
-                <button type="submit" className="btn btn-primary">submit</button><p />
-                <button type="delete" className="btn btn-danger">Delete track</button>
+                <button type="submit" className="btn btn-light">Submit</button><p />
+                <button type="delete" className="btn btn-secondary">Delete track</button>
             </Form>
         </div>
       )

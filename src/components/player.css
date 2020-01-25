@@ -1,12 +1,22 @@
 .player{
     width: 100%;
-    background-color: rgb(190, 42, 42);
+    background-color: white;
     height: 30hv;
-    margin: 15px 0;
+    /* margin: 15px 0; */  border: 1px solid black;
+
     
 }
 
 .mediaBtns{
     justify-content: center;
     align-self: center;
+}
+.progress-bar{
+    width: 66%;
+    height: 20px;
+    justify-content: center;
+    height: 20px;
+}
+.progress{
+    margin: 20px 15px;
 }
