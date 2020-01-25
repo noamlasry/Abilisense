@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import './player.css';
 
-class Player extends Component{
+class MediaPlayer  extends Component{
     render(){
        return(
+        
        <div className="player">
-           <i className="far fa-stop-circle"></i>
-           <i className="fas fa-fast-backward"></i>
-           <i className="far fa-stop-circle"></i>
+           <h1>image of mplayer</h1>
        </div>
     )
 };
 }
 
-export default Player;
+export default MediaPlayer ;

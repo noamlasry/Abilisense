@@ -59,7 +59,7 @@
                   //  checked={this.state.checked}
                   //  onChange={this.handleCheckboxChange}
                 />
-                <span >remember me</span>
+                <span>remember me</span>
               </label><p />
 
               <Link to='/mainPage'  

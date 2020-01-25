@@ -27,6 +27,7 @@ export const NavigationBar = () => (
     <Navbar expand="lg">
     <img src = {logo} className="Nav-logo" alt="logo"></img>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+      <Nav.Link href="/">Hi, userName</Nav.Link>
       <Form className="form-center">
         <FormControl type="text" placeholder="Search" className="" />
       </Form>
