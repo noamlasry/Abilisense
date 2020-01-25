@@ -12,7 +12,9 @@
 .App-logo {
     width: 100%;
 }
-
+.losIgInButton{
+    background-color: white;
+}
 .formControl{
     width: 75%;
     float: center;
@@ -22,14 +24,8 @@
 
     background-color: rgb(74, 30, 117);
 }
-#button{
-    color: black;
-}
+
 #span{
     font-weight: 900;
 }
-#Link{
-    color: black;
-    background-color: black;
-    text-emphasis-color: black;
-}
+

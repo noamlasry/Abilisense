@@ -62,12 +62,12 @@
                 <span>remember me</span>
               </label><p />
 
-              <Link to='/mainPage'  
+              <Link to='/mainPage' 
                 //blocked
                 //disabled={!this.validateForm()}
                 //type="submit"
               >
-              <Button>Log in</Button>
+              <Button type="button" class="btn btn-light">Log in</Button>
               </Link>
 
             </Form>
