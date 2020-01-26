@@ -5,6 +5,7 @@
     import { Checkbox } from '@material-ui/core';
     import './login.css';
     import { Link} from "react-router-dom";
+ 
 
     export default class Login extends Component {
       constructor(props) {
@@ -67,7 +68,8 @@
                 //disabled={!this.validateForm()}
                 //type="submit"
               >
-              <Button type="button" className="btn btn-secondary">Log in</Button>
+               <Button variant="outline-secondary" className="btn-light">Log In</Button>
+             
               </Link>
 
             </Form>

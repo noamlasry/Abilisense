@@ -1,7 +1,7 @@
 .middlenav{
     color: rgb(213, 213, 228);
     float: left;
-    background-color: gray;
+    background-color: #F1F1F1;
     height: 90vh;
     width: 50%;
 }
@@ -13,4 +13,11 @@
 }
 .btn-light{
     width: 100%;
+    margin-top: 2%;
+   
+    
+}
+
+.label{
+    color: black;
 }

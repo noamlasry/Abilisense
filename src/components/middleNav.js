@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import './middleNav.css';
 import Player from "./player";
 import {Col, Row, Form} from "react-bootstrap";
+import { Button} from 'react-bootstrap';
 
 class MiddleNav extends Component {
     render(){
       
       return(
         <div className="middlenav">
-            <h1>audio player</h1>
+            <h1 className="label">Audio Editor</h1>
             <Player />
             <Form className="form" onSubmit={this.handleSubmit}>
               <Form.Group as={Row} className="formGroup" controlId="cropFrom" >
-                <Form.Label className="label" column sm={5}>Crop from:</Form.Label>
+                <Form.Label className="label" column sm={5}>Crop From:</Form.Label>
                 <Col  sm={4}>
                 <Form.Control className="formControl"
                   autoFocus
@@ -22,7 +23,7 @@ class MiddleNav extends Component {
                 </Col>
               </Form.Group>
               <Form.Group as={Row}className="formGroup" controlId="cropTo" >
-              <Form.Label className="label" column sm={5}>crop to:</Form.Label>
+              <Form.Label className="label" column sm={5}>Crop To:</Form.Label>
               <Col sm={4}>
                 <Form.Control className="formControl"
                   type="cropTo"
@@ -31,7 +32,7 @@ class MiddleNav extends Component {
                 </Col>
               </Form.Group>
               <Form.Group as={Row} className="formGroup" controlId="category" >
-              <Form.Label className="label" column sm={5}>category:</Form.Label>
+              <Form.Label className="label" column sm={5}>Category:</Form.Label>
               <Col sm={5}>
                 <Form.Control className="formControl"
                   type="category"
@@ -40,7 +41,7 @@ class MiddleNav extends Component {
                 </Col>
               </Form.Group>
               <Form.Group as={Row} className="formGroup" controlId="sub-category" >
-              <Form.Label className="label" column sm={5}>sub-category:</Form.Label>
+              <Form.Label className="label" column sm={5}>Sub-Category:</Form.Label>
               <Col sm={5}>
                 <Form.Control className="formControl"
                   type="sub-category"
@@ -48,8 +49,9 @@ class MiddleNav extends Component {
                 />
                 </Col>
               </Form.Group>
-                <button type="submit" className="btn btn-light">Submit</button><p />
-                <button type="delete" className="btn btn-secondary">Delete track</button>
+              <Button variant="outline-primary" className="btn-light">Submit</Button>
+              <Button variant="outline-primary" className="btn-light">Delete track</Button>
+                
             </Form>
         </div>
       )

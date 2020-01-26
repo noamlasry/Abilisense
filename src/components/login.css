@@ -1,6 +1,8 @@
 .Login{
-    background-color: gray;
+    background-color: whitesmoke;
     padding: 1%;
+    border: black;
+    border-style: solid;
     float: bottom;
     margin: 5% 40%;
     max-width: 20%;
