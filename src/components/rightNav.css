@@ -8,6 +8,7 @@
 }
 
 .my-dropdown{
+    width: 100%;
     border-color: yellow;
     background-color: violet;
     margin-top: 17.5%;
