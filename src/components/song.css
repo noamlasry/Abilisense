@@ -6,10 +6,11 @@
     float: left;
     color: black;
 }
-/* #table {
+#table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-  } */
+    margin-top: 15px;
+  }
   
 #td,th {
     border: 1px solid #dddddd;
