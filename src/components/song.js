@@ -10,7 +10,10 @@ class Song extends Component {
       { id: 1, title: "Live is Life - Opus", type:"avi"},
       { id: 2, title: "The Cars - Drive", type:"awv" },
       { id: 2, title: "Dennis Lloyd - Unfaithful", type:"mp3" },
-      { id: 2, title: "Booting Up", type:"m4a" }
+      { id: 2, title: "Booting Up", type:"m4a" },
+      { id: 1, title: "the way i am", type:"svg"},
+      { id: 1, title: "moonriver", type:"avi"},
+      { id: 1, title: "american idiot", type:"svg"}
       ]
   };
     render() {
