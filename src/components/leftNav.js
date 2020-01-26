@@ -7,6 +7,7 @@ class LeftNav extends Component {
     render(){
         return(
             <div className="leftnav">
+                
                 <Song />
             </div>
         )

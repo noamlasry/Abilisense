@@ -18,7 +18,7 @@ class Song extends Component {
           return (
             <div>
 
-            <table>
+            <table className="my-table">
               <tr>
                
                <th>Title</th>

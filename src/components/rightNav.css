@@ -6,3 +6,9 @@
     height: 90vh;
     width: 25%;
 }
+
+.my-dropdown{
+    border-color: yellow;
+    background-color: violet;
+    margin-top: 17.5%;
+}
