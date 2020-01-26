@@ -11,5 +11,12 @@
     width: 100%;
     border-color: yellow;
     background-color: violet;
-    margin-top: 17.5%;
+}
+.drop{
+    width: 100%;
+    margin-top: 5%;
+    border: black;
+}
+.headline{
+    color: black;
 }
