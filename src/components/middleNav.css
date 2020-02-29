@@ -4,20 +4,27 @@
     background-color: #F1F1F1;
     height: 90vh;
     width: 50%;
+    border: 1px solid ;
 }
-.form{
-    display: inline-table;
-}
-.btn-secondary{
-    margin-top: 10%;
-}
-.btn-light{
+.btnTool{
     width: 100%;
-    margin-top: 2%;
-   
-    
 }
-
-.label{
+.btn{
+    margin: 20px;
+}
+h5, h2{
     color: black;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.btnQuality{
+    width: 50%;
+    align-items: center;
+    margin: auto;
+}
+.btnSub{
+    width: 40%;
+    padding-top: 30px;
+    align-content: center;
+    margin: auto;
 }

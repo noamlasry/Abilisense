@@ -5,26 +5,14 @@
     font-size: 20px;
     float: left;
     color: black;
+    border: initial;
 }
-/* #table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-  } */
-  
-#td,th {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    font-weight: 900;
-    color: black;
-    width: 30vh;
-  }
-  
-.tds{
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-    font-weight: 400;
-    color: black;
-    width: 30vh; 
- }
- 
+ul{
+  display: block;
+  list-style-type: none;
+  color: black;
+  font-weight: bold;
+}
+li{
+  text-align: left;
+}
