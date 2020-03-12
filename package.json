@@ -27,6 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "aws s3 cp --recrusive ./build s3://abili-bucket.com",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
