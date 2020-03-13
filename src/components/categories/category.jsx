@@ -1,10 +1,26 @@
 import React, { Component } from "react";
-import Table from 'react-bootstrap/Table';
-
+import { MDBContainer } from "mdbreact";
+import "./category.css";
 class Category extends Component {
   state = {
     categories: [
       { id: 1, name: "Home"},
+      { id: 2, name: "Car"},
+      { id: 3, name: "OutSide"},
+      { id: 4, name: "Emergency"},
+      { id: 5, name: "Household"},
+      { id: 6, name: "test" },
+      { id: 7, name: "test"},
+      { id: 8, name: "test"},
+      { id: 9, name: "test"}, { id: 1, name: "Home"},
+      { id: 2, name: "Car"},
+      { id: 3, name: "OutSide"},
+      { id: 4, name: "Emergency"},
+      { id: 5, name: "Household"},
+      { id: 6, name: "test" },
+      { id: 7, name: "test"},
+      { id: 8, name: "test"},
+      { id: 9, name: "test"}, { id: 1, name: "Home"},
       { id: 2, name: "Car"},
       { id: 3, name: "OutSide"},
       { id: 4, name: "Emergency"},
@@ -17,21 +33,20 @@ class Category extends Component {
       ]
   };
     render() {
+      const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
+
           return (
             <div>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Categories</th>
-                </tr>
-              </thead>
-              <tbody>
+              <MDBContainer>
+                <div className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
+                <ol className="ol" >
                 {this.state.categories.map(category =>
-                  <tr key={category.id}>
-                    <td>{category.name}</td>
-                  </tr>)}
-              </tbody>
-            </Table>
+                  <li className="li" key={category.id}>
+                    {category.name}
+                  </li>)}
+                </ol>
+                </div>
+              </MDBContainer>
             </div>
           );
         };
