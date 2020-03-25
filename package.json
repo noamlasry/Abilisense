@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@azure/storage-blob": "^12.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
@@ -11,18 +12,22 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "audio-editor": "0.0.0",
+    "azure-storage": "^2.10.3",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "iconify": "^1.2.0",
+    "mdbreact": "^4.25.3",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-dropdown-button": "^1.0.11",
     "react-icons": "^3.8.0",
     "react-media-player": "^0.7.9",
+    "react-responsive-music-player": "^0.4.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.0",
+    "waveform-playlist": "^3.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,4 +54,5 @@
     "@iconify/icons-mdi": "^1.0.56",
     "@iconify/react": "^1.1.1"
   }
+  
 }

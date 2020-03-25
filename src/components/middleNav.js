@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './middleNav.css';
-import Player from "./player";
 import {ButtonToolbar, Button} from "react-bootstrap";
+import MediaPlayer from "./mediaPlayer";
 
 class MiddleNav extends Component {
     render(){
@@ -9,7 +9,7 @@ class MiddleNav extends Component {
       return(
         <div className="middlenav">
             <h2 className="label">Audio Editor</h2>
-            <Player />
+            <MediaPlayer />
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
