@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Progress from '../Progress';
+import Progress from './Progress';
 import './MusicPlayer.scss';
 
 const formatTime = time => {
