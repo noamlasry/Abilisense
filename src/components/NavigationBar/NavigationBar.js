@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
-import logo  from '../logo.png';
+import logo  from '../../logo.png';
 import './NavigationBar.css';
 
 const Styles = styled.div`

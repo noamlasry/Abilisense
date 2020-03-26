@@ -1,7 +1,7 @@
     import React, { Component } from "react";
     import Form from 'react-bootstrap/Form'
     import Button from 'react-bootstrap/Button'
-    import logo  from '../logo.png';
+    import logo  from '../../logo.png';
     import { Checkbox } from '@material-ui/core';
     import './login.css';
     import { Link} from "react-router-dom";

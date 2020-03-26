@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './rightNav.css';
-import Song from "./song";
+import Song from "../song/song";
 
 class RightNav extends Component {
     render(){

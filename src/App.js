@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Login from "./components/login";
+import Login from "./components/login/login";
 import './App.css';
 import { BrowserRouter as Router, Route ,Switch} from "react-router-dom";
-import MainPage  from "./components/mainPage";
+import MainPage  from "./components/mainPage/mainPage";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { NavigationBar } from './components/NavigationBar';
+import { NavigationBar } from './components/NavigationBar/NavigationBar';
 
 class App extends Component{
     render(){

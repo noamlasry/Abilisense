@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './middleNav.css';
 import {ButtonToolbar, Button} from "react-bootstrap";
-import MusicPlayer from "./mediaPlayer/MusicPlayer";
+import MusicPlayer from "../mediaPlayer/MusicPlayer";
 
 
 
