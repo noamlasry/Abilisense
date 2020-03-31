@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from "react";
 import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
 import logo  from '../../logo.png';
-import './NavigationBar.css';
+import './navigationbar.css';
+import fire from '../login/config/fire';
+
 
 const Styles = styled.div`
   .navbar { background-color: #222; height: 10vh}
@@ -22,8 +24,17 @@ const Styles = styled.div`
   }
 `;
 
-export const NavigationBar = () => (
-  <Styles>
+class Navigationbar  extends Component {
+
+  logout() {
+    fire.auth().signOut();
+  }
+
+
+    render(){
+        return(
+        <div>   
+           <Styles>
     <Navbar expand="lg">
     <img src = {logo} className="Nav-logo" alt="logo"></img>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -34,9 +45,15 @@ export const NavigationBar = () => (
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-          <Nav.Item><Nav.Link href="/about">About</Nav.Link></Nav.Item>
+          <Nav.Item><Nav.Link onClick = {this.logout}>LogOut</Nav.Link></Nav.Item>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   </Styles>
-)
+        </div>
+     )
+ };
+   
+}
+
+export default Navigationbar ;

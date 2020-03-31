@@ -1,22 +1,46 @@
 import React, { Component } from 'react';
 import Login from "./components/login/login";
 import './App.css';
-import { BrowserRouter as Router, Route ,Switch} from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import MainPage  from "./components/mainPage/mainPage";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { NavigationBar } from './components/NavigationBar/NavigationBar';
+import fire from './components/login/config/fire'
+import Navigationbar from './components/navigationbar/navigationbar'
 
 class App extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    };
+
+    this.authListener = this.authListener.bind(this);
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    })
+  }
+
+
+
     render(){
        return(
        
       <Router>  
         <div className="App">
-          <NavigationBar />
-         <Switch>
-          <Route  exact path="/" component={ Login }/>
-          <Route exact path="/mainPage" component={ MainPage }/>
-         </Switch>
+          <Navigationbar />
+          { this.state.user ? ( <MainPage /> ) : ( <Login /> ) }
       </div>
       </Router>
      
