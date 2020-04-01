@@ -4,6 +4,7 @@
     import logo  from '../../logo.png';
     import { Checkbox } from '@material-ui/core';
     import './login.css';
+  
 
     import fire from './config/fire';
  
@@ -19,12 +20,16 @@
   
         const email = document.querySelector('#email').value;
         const password = document.querySelector('#password').value;
+        this.setState({refreshIcon:!this.state.refreshIcon});
         fire.auth().signInWithEmailAndPassword(email, password)
           .then((u) => {
             console.log('Successfully Logged In');
+            
+            console.log('refreshIcon: '+this.props.refreshIcon);
           })
           .catch((err) => {
-            
+            this.setState({refreshIcon:false});
+            console.log('refreshIcon: '+this.props.refreshIcon);
             console.log('Error: ' + err.toString());
             this.setState({userMassge:"Invalid user name or paasword"});
           })
@@ -37,7 +42,8 @@
         this.state = {
           email: "",
           password: "",
-          userMassge: ""
+          userMassge: "",
+          refreshIcon: false
         };
         this.login = this.login.bind(this);
       }
@@ -92,7 +98,10 @@
                 <span>remember me</span>
               </label><p />
                <Button onClick={this.login} variant="outline-secondary" className="btn-light">Log In</Button> 
-               <div className="error-massage">{this.state.userMassge}</div>
+              <div>
+              { this.state.refreshIcon ? (  <i className="w3-jumbo w3-spin fa fa-refresh" ></i> ) : ( <div className="error-massage">{this.state.userMassge}</div> ) }
+
+              </div>
             </Form>
           </div>
 
