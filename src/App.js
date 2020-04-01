@@ -13,23 +13,12 @@ class App extends Component{
     super(props);
     this.state = {
       user: null,
-      go:"h"
     };
     console.log("constactor");
     this.authListener = this.authListener.bind(this);
     
   }
-  componentWillMount(){
-  //  this.authListener();
-    console.log("componentWillMount()");
-  }
-
-  componentDidMount() {
-    this.authListener();
-    this.setState({go:this.setState.user})
-    console.log("componentDidMount()");
-    
-  }
+  
 
   authListener() {
     console.log("authListener() ");
