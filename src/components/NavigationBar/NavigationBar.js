@@ -35,25 +35,28 @@ const Navigationbar = (props) => {
 
 
   return (
-    <div>   
+   <div>   
                
     <Styles>
-<Navbar expand="lg">
-<img src = {logo} className="Nav-logo" alt="logo"></img>
-<Navbar.Toggle aria-controls="basic-navbar-nav"/>
- <Nav.Link >Hello User->{props.title}</Nav.Link>
-<Form className="form-center">
- <FormControl type="text" placeholder="Search" className="" />
-</Form>
-<Navbar.Collapse id="basic-navbar-nav">
- <Nav className="ml-auto">
-   <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-   <Nav.Item><Nav.Link onClick = {logout}>LogOut</Nav.Link></Nav.Item>
- </Nav>
-</Navbar.Collapse>
-</Navbar>
-</Styles>
- </div>
+      <Navbar expand="lg">
+      <img src = {logo} className="Nav-logo" alt="logo"></img>
+      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+ 
+        <Nav.Link >Hello:</Nav.Link>
+        <Nav.Item><Nav.Link ><div className = "userName-text">{props.title}</div></Nav.Link></Nav.Item>
+
+        <Form className="form-center">
+          <FormControl type="text" placeholder="Search" className="" />
+        </Form>
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
+          <Nav.Item><Nav.Link onClick = {logout}>LogOut</Nav.Link></Nav.Item>
+       </Nav>
+      </Navbar.Collapse>
+     </Navbar>
+   </Styles>
+  </div>
   )
 }
 
