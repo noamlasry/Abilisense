@@ -43,7 +43,7 @@ const Navigationbar = (props) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
  
         <Nav.Link >Hello:</Nav.Link>
-        <Nav.Item><Nav.Link ><div className = "userName-text">{props.title}</div></Nav.Link></Nav.Item>
+        <Nav.Item><Nav.Link ><div className = "userName-text">{props.userName}</div></Nav.Link></Nav.Item>
 
         <Form className="form-center">
           <FormControl type="text" placeholder="Search" className="" />

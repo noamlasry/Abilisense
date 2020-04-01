@@ -9,20 +9,17 @@ import fire from './components/login/config/fire'
 class App extends Component{
 
    
-  constructor(props) {
+  constructor(props) 
+  {
     super(props);
-    this.state = {
+    this.state =
+    {
       user: null,
     };
-    console.log("constactor");
     this.authListener = this.authListener.bind(this);
   }
-
-    componentDidMount() {
-      this.authListener();
-    }
+    componentDidMount() {this.authListener(); }
   
-
   authListener() 
   {
     console.log("authListener() ");
@@ -54,7 +51,7 @@ class App extends Component{
       console.log("render ");
        return(
         <div className="App"  >
-          { this.state.user ? ( <MainPage title={this.state.user}/> ) : ( <Login /> ) }
+          { this.state.user ? ( <MainPage userName={this.state.user}/> ) : ( <Login /> ) }
         </div>
     )
 };

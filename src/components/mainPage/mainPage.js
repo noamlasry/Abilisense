@@ -13,7 +13,7 @@ const MainPage = (props) => {
 
     return(
         <div>
-           <Navigationbar title={props.title} />
+           <Navigationbar userName={props.userName} />
             <LeftNav />
             <MiddleNav />
             <RightNav />

@@ -26,7 +26,7 @@
           .catch((err) => {
             
             console.log('Error: ' + err.toString());
-            
+            this.setState({userMassge:"Invalid user name or paasword"});
           })
       }
      
@@ -39,6 +39,7 @@
           password: "",
           userMassge: ""
         };
+        this.login = this.login.bind(this);
       }
 
       validateForm() {
@@ -91,7 +92,7 @@
                 <span>remember me</span>
               </label><p />
                <Button onClick={this.login} variant="outline-secondary" className="btn-light">Log In</Button> 
-               <div>{this.state.userMassge}</div>
+               <div className="error-massage">{this.state.userMassge}</div>
             </Form>
           </div>
 
