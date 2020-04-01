@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import Login from "./components/login/login";
 import './App.css';
-import { BrowserRouter as Router} from "react-router-dom";
 import MainPage  from "./components/mainPage/mainPage";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import fire from './components/login/config/fire'
-import Navigationbar from './components/navigationbar/navigationbar'
+
 
 class App extends Component{
+
 
   constructor(props) {
     super(props);
     this.state = {
       user: null,
+      go:"jhjh"
     };
 
     this.authListener = this.authListener.bind(this);
@@ -35,14 +36,17 @@ class App extends Component{
 
 
     render(){
+      
+     
        return(
-       
-      <Router>  
-        <div className="App">
-          <Navigationbar />
-          { this.state.user ? ( <MainPage /> ) : ( <Login /> ) }
+      
+   
+        <div className="App"   >
+          
+          { this.state.user ? ( <MainPage   title="f" /> ) : ( <Login /> ) }
+          
       </div>
-      </Router>
+     
      
     )
 };

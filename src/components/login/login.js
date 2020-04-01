@@ -4,11 +4,16 @@
     import logo  from '../../logo.png';
     import { Checkbox } from '@material-ui/core';
     import './login.css';
-    
+
     import fire from './config/fire';
  
 
     export default class Login extends Component {
+
+      childFunction=(e)=>{
+        e.preventDefault();
+        this.props.functionCallFromParent("Hello From Child1");
+    }
 
       login() {
   
@@ -51,8 +56,10 @@
       }
       
       render() {
+       
         return (
           <div className="Login">
+           
             <img src = {logo} className="App-logo" alt="logo"></img>
             <Form onSubmit={this.handleSubmit}>
               <div>

@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React  from "react";
 import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
 import logo  from '../../logo.png';
 import './navigationbar.css';
 import fire from '../login/config/fire';
+
+
 
 
 const Styles = styled.div`
@@ -24,36 +26,35 @@ const Styles = styled.div`
   }
 `;
 
-class Navigationbar  extends Component {
 
-  logout() {
+const Navigationbar = (props) => {
+
+  function logout() {
     fire.auth().signOut();
   }
 
 
-    render(){
-        return(
-        <div>   
-           <Styles>
-    <Navbar expand="lg">
-    <img src = {logo} className="Nav-logo" alt="logo"></img>
-      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Nav.Link href="/">Hello User</Nav.Link>
-      <Form className="form-center">
-        <FormControl type="text" placeholder="Search" className="" />
-      </Form>
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-          <Nav.Item><Nav.Link onClick = {this.logout}>LogOut</Nav.Link></Nav.Item>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  </Styles>
-        </div>
-     )
- };
-   
+  return (
+    <div>   
+               
+    <Styles>
+<Navbar expand="lg">
+<img src = {logo} className="Nav-logo" alt="logo"></img>
+<Navbar.Toggle aria-controls="basic-navbar-nav"/>
+ <Nav.Link >Hello User->{props.title}</Nav.Link>
+<Form className="form-center">
+ <FormControl type="text" placeholder="Search" className="" />
+</Form>
+<Navbar.Collapse id="basic-navbar-nav">
+ <Nav className="ml-auto">
+   <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
+   <Nav.Item><Nav.Link onClick = {logout}>LogOut</Nav.Link></Nav.Item>
+ </Nav>
+</Navbar.Collapse>
+</Navbar>
+</Styles>
+ </div>
+  )
 }
 
-export default Navigationbar ;
+export default Navigationbar;
