@@ -16,11 +16,15 @@ class App extends Component{
     };
     console.log("constactor");
     this.authListener = this.authListener.bind(this);
-    
   }
+
+    componentDidMount() {
+      this.authListener();
+    }
   
 
-  authListener() {
+  authListener() 
+  {
     console.log("authListener() ");
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
