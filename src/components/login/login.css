@@ -6,6 +6,7 @@
     float: bottom;
     margin: 5% 40%;
     max-width: 20%;
+    position: absolute;
 }
 .formGroup{
     text-align: left;

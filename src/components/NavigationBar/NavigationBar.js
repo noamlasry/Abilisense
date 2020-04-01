@@ -2,7 +2,7 @@ import React  from "react";
 import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
 import logo  from '../../logo.png';
-import './navigationbar.css';
+import './NavigationBar.css';
 import fire from '../login/config/fire';
 
 

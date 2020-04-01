@@ -3,7 +3,7 @@ import './mainPage.css';
 import  LeftNav  from "../leftNav/leftNav";
 import RightNav from "../rightNav/rightNav";
 import MiddleNav from "../middleNav/middleNav";
-import Navigationbar from '../navigationbar/navigationbar'
+import Navigationbar from '../NavigationBar/NavigationBar'
 
 
 
