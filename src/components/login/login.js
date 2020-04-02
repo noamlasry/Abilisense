@@ -22,14 +22,9 @@
         const password = document.querySelector('#password').value;
         this.setState({refreshIcon:!this.state.refreshIcon});
         fire.auth().signInWithEmailAndPassword(email, password)
-          .then((u) => {
-            console.log('Successfully Logged In');
-            
-            console.log('refreshIcon: '+this.props.refreshIcon);
-          })
+          .then((u) => { console.log('Successfully Logged In'); })
           .catch((err) => {
             this.setState({refreshIcon:false});
-            console.log('refreshIcon: '+this.props.refreshIcon);
             console.log('Error: ' + err.toString());
             this.setState({userMassge:"Invalid user name or paasword"});
           })
