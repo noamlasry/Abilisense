@@ -5,9 +5,6 @@ import logo  from '../../logo.png';
 import './NavigationBar.css';
 import fire from '../login/config/fire';
 
-
-
-
 const Styles = styled.div`
   .navbar { background-color: #222; height: 10vh}
   a, .navbar-nav, .navbar-light .nav-link {
@@ -26,34 +23,28 @@ const Styles = styled.div`
   }
 `;
 
-
-const Navigationbar = (props) => {
-
-  function logout() {
-    fire.auth().signOut();
-  }
-
+const Navigationbar = (props) => {function logout() {fire.auth().signOut(); }
 
   return (
    <div>   
                
     <Styles>
       <Navbar expand="lg">
-      <img src = {logo} className="Nav-logo" alt="logo"></img>
-      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+        <img src = {logo} className="Nav-logo" alt="logo"></img>
+        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
  
-        <Nav.Link >Hello:</Nav.Link>
-        <Nav.Item><Nav.Link ><div className = "userName-text">{props.userName}</div></Nav.Link></Nav.Item>
+          <Nav.Link >Hello:</Nav.Link>
+          <Nav.Item><Nav.Link ><div className = "userName-text">{props.userName}</div></Nav.Link></Nav.Item>
 
-        <Form className="form-center">
-          <FormControl type="text" placeholder="Search" className="" />
-        </Form>
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-          <Nav.Item><Nav.Link onClick = {logout}>LogOut</Nav.Link></Nav.Item>
-       </Nav>
-      </Navbar.Collapse>
+          <Form className="form-center">
+            <FormControl type="text" placeholder="Search" className="" />
+          </Form>
+          <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+         
+           <Nav.Item><Nav.Link onClick = {logout}>LogOut</Nav.Link></Nav.Item>
+          </Nav>
+       </Navbar.Collapse>
      </Navbar>
    </Styles>
   </div>

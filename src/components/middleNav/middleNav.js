@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import './middleNav.css';
 import {ButtonToolbar, Button} from "react-bootstrap";
-// eslint-disable-next-line
-import Player from "../mediaPlayer/player";
 import MusicPlayer from "../mediaPlayer/MusicPlayer"
 import playlist from '../mediaPlayer/playlist';
 
 // ======== download file from s3 AWS ===========================================//
+
 
 //=====================================================================================//
 
