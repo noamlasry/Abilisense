@@ -11,7 +11,6 @@ Amplify.configure(awsconfig);
 
 class App extends Component{
 
-   
   constructor(props) 
   {
     super(props);
