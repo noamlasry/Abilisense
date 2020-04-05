@@ -1,0 +1,15 @@
+{
+	"auth": {
+		"project79976553": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"storage": {
+		"amplifyresource": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

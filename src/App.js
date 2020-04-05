@@ -5,6 +5,9 @@ import MainPage  from "./components/mainPage/mainPage";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import fire from './components/login/config/fire'
 
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
 
 class App extends Component{
 
