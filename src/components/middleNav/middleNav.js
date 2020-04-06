@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import './middleNav.css';
 import {ButtonToolbar, Button} from "react-bootstrap";
-import MusicPlayer from "../mediaPlayer/MusicPlayer"
-import playlist from '../mediaPlayer/playlist';
+// import MusicPlayer from "../mediaPlayer/MusicPlayer"
+// import playlist from '../mediaPlayer/playlist';
 
 // ======== download file from s3 AWS ===========================================//
 
@@ -15,7 +15,7 @@ class MiddleNav extends Component {
       return(
         <div className="middlenav">
             <h2 className="label">Audio Editor</h2>
-            <MusicPlayer playlist={playlist} />
+            {/* <MusicPlayer playlist={playlist} /> */}
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
