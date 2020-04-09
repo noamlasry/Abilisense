@@ -38,7 +38,7 @@
     "react-icons": "^3.8.0",
     "react-media-player": "^0.7.9",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "3.4.1",
     "s3": "^4.4.0",
     "s3-bucket-toolkit": "0.0.17",
     "s3-client": "^4.4.2",
