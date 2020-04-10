@@ -1,0 +1,65 @@
+from pydub import AudioSegment
+import sys
+import datetime
+from datetime import datetime, timedelta
+
+
+if len(sys.argv) >= 2:
+   startTime = sys.argv[1]
+   endTime = sys.argv[2]
+
+def get_sec(time_str_start,time_str_end):
+    start_to_end = []
+    h_from, m_from, s_from = time_str_start.split(':')
+    h_to, m_to, s_to = time_str_end.split(':')
+    startTimeInSeconds = int(h_from) * 3600 + int(m_from) * 60 + int(s_from)
+    endTimeInSeconds = int(h_to) * 3600 + int(m_to) * 60 + int(s_to)
+    start_to_end.append(startTimeInSeconds)
+    start_to_end.append(endTimeInSeconds)
+    return start_to_end
+    
+seconds_array = get_sec(startTime,endTime)    
+
+
+def GetTime():
+    time_array = []
+    sec_from_start = timedelta(seconds=int(seconds_array[0]))
+    sec_from_end = timedelta(seconds=int(seconds_array[1]))
+    start = datetime(1,1,1) + sec_from_start
+    end = datetime(1,1,1) + sec_from_end
+    time_array.append(start.minute)
+    time_array.append(start.second)
+    time_array.append(end.minute)
+    time_array.append(end.second)
+    return time_array
+       
+    
+timeArray = GetTime()
+
+startMin = timeArray[0]
+startSec = timeArray[1]
+
+endMin = timeArray[2]
+endSec = timeArray[3]
+
+print(" START MIN:SEC")
+print("%d:%d" % ( startMin, startSec)) 
+
+print(" END MIN:SEC")
+print("%d:%d" % ( endMin, endSec)) 
+
+
+
+
+
+#startTime = startMin*60*1000+startSec*1000
+#endTime = endMin*60*1000+endSec*1000
+
+#song = AudioSegment.from_mp3("audio.mp3")
+
+#extract = song[startTime:endTime]
+
+
+#extract.export("ww.mp3", format="mp3")
+
+
