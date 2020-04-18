@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import './leftNav.css';
-import { MDBContainer } from "mdbreact";
-import { Storage } from "@aws-amplify/storage";
+// import { MDBContainer } from "mdbreact";
+// import { Storage } from "@aws-amplify/storage";
 // import { S3Image } from 'aws-amplify-react';
 
 class LeftNav extends Component {
-    state = {
-        files: [],
-      }
-      async componentDidMount() {
-        const files = await Storage.list('')
-        console.log('files: ', files)
-        this.setState({ files })
-      }
+    // state = {
+    //     files: [],
+    //   }
+    //   async componentDidMount() {
+    //     const files = await Storage.list('')
+    //     console.log('files: ', files)
+    //     this.setState({ files })
+    //   }
     
     
     render(){
-        const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
+        // const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
         return(
             <div className="leftnav">
                 <h3 className="h3" >Categories</h3>
-            <MDBContainer>
+            {/* <MDBContainer>
                 <div className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
                 <ol className="ol" >
                 {this.state.files.map((f,i) =>
@@ -29,7 +29,7 @@ class LeftNav extends Component {
                   </li>)}
                 </ol>
                 </div>
-              </MDBContainer>
+              </MDBContainer> */}
             </div>
         )
  };
