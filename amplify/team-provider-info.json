@@ -1,0 +1,26 @@
+{
+    "vscode": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-abilisense-vscode-201135-authRole",
+            "UnauthRoleArn": "arn:aws:iam::019489204667:role/amplify-abilisense-vscode-201135-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::019489204667:role/amplify-abilisense-vscode-201135-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-abilisense-vscode-201135-deployment",
+            "UnauthRoleName": "amplify-abilisense-vscode-201135-unauthRole",
+            "StackName": "amplify-abilisense-vscode-201135",
+            "StackId": "arn:aws:cloudformation:eu-west-1:019489204667:stack/amplify-abilisense-vscode-201135/ab69e4b0-8197-11ea-b66d-0ad4772b7a1e",
+            "AmplifyAppId": "d98ki4f7dmtfy"
+        },
+        "categories": {
+            "auth": {
+                "abilisenseddaaf994": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d98ki4f7dmtfy",
+                    "type": "manual"
+                }
+            }
+        }
+    }
+}
