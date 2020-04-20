@@ -14,7 +14,7 @@ class MiddleNav extends Component {
       
       return(
         <div className="middlenav">
-            <h2 className="label">===========================</h2>
+            <h2 className="label">------------------------------------------</h2>
             <MusicPlayer playlist={playlist} />
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
