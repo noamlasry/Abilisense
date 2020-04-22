@@ -1,22 +1,23 @@
 {
-    "auth": {
-        "abilisenseddaaf994": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": []
-        }
-    },
-    "storage": {
-        "abilisensestorage": {
-            "service": "S3",
-            "providerPlugin": "awscloudformation"
-        }
-    },
-    "hosting": {
-        "amplifyhosting": {
-            "service": "amplifyhosting",
-            "providerPlugin": "awscloudformation",
-            "type": "manual"
-        }
-    }
+	"hosting": {
+		"amplifyhosting": {
+			"service": "amplifyhosting",
+			"providerPlugin": "awscloudformation",
+			"type": "manual"
+		}
+	},
+	"auth": {
+		"abilisense1a7f6f64": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	},
+	"storage": {
+		"abilibucket": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
 }

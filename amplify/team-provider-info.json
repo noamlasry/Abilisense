@@ -1,25 +1,25 @@
 {
     "vscode": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-abilisense-vscode-201135-authRole",
-            "UnauthRoleArn": "arn:aws:iam::019489204667:role/amplify-abilisense-vscode-201135-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::019489204667:role/amplify-abilisense-vscode-201135-authRole",
+            "AuthRoleName": "amplify-abilisense-vscode-170216-authRole",
+            "UnauthRoleArn": "arn:aws:iam::019489204667:role/amplify-abilisense-vscode-170216-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::019489204667:role/amplify-abilisense-vscode-170216-authRole",
             "Region": "eu-west-1",
-            "DeploymentBucketName": "amplify-abilisense-vscode-201135-deployment",
-            "UnauthRoleName": "amplify-abilisense-vscode-201135-unauthRole",
-            "StackName": "amplify-abilisense-vscode-201135",
-            "StackId": "arn:aws:cloudformation:eu-west-1:019489204667:stack/amplify-abilisense-vscode-201135/ab69e4b0-8197-11ea-b66d-0ad4772b7a1e",
-            "AmplifyAppId": "d98ki4f7dmtfy"
+            "DeploymentBucketName": "amplify-abilisense-vscode-170216-deployment",
+            "UnauthRoleName": "amplify-abilisense-vscode-170216-unauthRole",
+            "StackName": "amplify-abilisense-vscode-170216",
+            "StackId": "arn:aws:cloudformation:eu-west-1:019489204667:stack/amplify-abilisense-vscode-170216/b7c5ce70-83d8-11ea-9c93-0aa024806772",
+            "AmplifyAppId": "d1ytnb00xi5m2p"
         },
         "categories": {
-            "auth": {
-                "abilisenseddaaf994": {}
-            },
             "hosting": {
                 "amplifyhosting": {
-                    "appId": "d98ki4f7dmtfy",
+                    "appId": "d1ytnb00xi5m2p",
                     "type": "manual"
                 }
+            },
+            "auth": {
+                "abilisense1a7f6f64": {}
             }
         }
     }
