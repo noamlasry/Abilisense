@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "abilisense1a7f6f64_identitypool_1a7f6f64",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "abilis1a7f6f64",
-    "userPoolName": "abilisense1a7f6f64_userpool_1a7f6f64",
+    "identityPoolName": "abilisense0abe467e_identitypool_0abe467e",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "abilis0abe467e",
+    "userPoolName": "abilisense0abe467e_userpool_0abe467e",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "abilis1a7f6f64_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "abilis0abe467e_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "abilisense1a7f6f64",
+    "resourceName": "abilisense0abe467e",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

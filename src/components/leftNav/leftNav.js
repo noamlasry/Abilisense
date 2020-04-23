@@ -6,6 +6,7 @@ import { Storage } from "@aws-amplify/storage";
 
 class LeftNav extends Component {
     state = {
+      
         files: [],
       }
       async componentDidMount() {

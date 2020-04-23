@@ -1,13 +1,6 @@
 {
-	"hosting": {
-		"amplifyhosting": {
-			"service": "amplifyhosting",
-			"providerPlugin": "awscloudformation",
-			"type": "manual"
-		}
-	},
 	"auth": {
-		"abilisense1a7f6f64": {
+		"abilisense0abe467e": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
@@ -15,7 +8,7 @@
 		}
 	},
 	"storage": {
-		"abilibucket": {
+		"s31c97d02a": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
