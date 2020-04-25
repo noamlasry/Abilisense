@@ -20,7 +20,7 @@ class App extends Component{
   
   authListener() 
   {
-    console.log("authListener() ");
+   
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
        let userName =  this.getUserName(user.email);
@@ -46,7 +46,6 @@ class App extends Component{
   
     render(){
       
-      console.log("render ");
        return(
         <div className="App"  >
           { this.state.user ? ( <MainPage userName={this.state.user}/> ) : ( <Login /> ) }

@@ -14,7 +14,7 @@ const formatTime = time => {
   return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
 };
 
-const processArtistName = artistList => artistList.join(' / ');
+
 
 const getPlayModeClass = playMode => {
   if (playMode === 'loop') return 'refresh';
@@ -27,9 +27,7 @@ export default class MusicPlayer extends Component {
     playlist: PropTypes.arrayOf(
       PropTypes.shape({
         url: PropTypes.string,
-        cover: PropTypes.string,
         title: PropTypes.string,
-        artist: PropTypes.arrayOf(PropTypes.string)
       })
     ).isRequired,
     mode: PropTypes.oneOf(['horizontal', 'vertical']),
@@ -177,7 +175,7 @@ export default class MusicPlayer extends Component {
         <div className="player-control">
           <div className="music-info">
             <h2 className="title">{activeMusic.title}</h2>
-            <h3 className="artist">{processArtistName(activeMusic.artist)}</h3>
+            
           </div>
           <div className="time-and-volume">
             <div className="time-remaining">-{formatTime(leftTime)}</div>
