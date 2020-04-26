@@ -5,15 +5,11 @@ import MusicPlayer from "../mediaPlayer/MusicPlayer"
 import { Storage } from "@aws-amplify/storage";
 
 
+
 class MiddleNav extends Component {
   state = {     
     files: [],
-    list:[
-      {
-        url:'',
-        title:'start', 
-      }
-    ]
+    lists:[ { }  ]
 
   }
   async componentDidMount() {
@@ -21,21 +17,22 @@ class MiddleNav extends Component {
     this.setState({ files })
     
    let i;
-   for(i =0; i<3; i++)
+   for(i =0; i<files.length; i++)
    {
      const audioUrl = await Storage.get(files[i].key);
      const objectKey = files[i].key;
-     this.state.list.push({url:audioUrl,title:objectKey});
+     this.state.lists.push({url:audioUrl,title:objectKey});
    }
-
+     
+      this.state.lists.shift();
   }
-
+ 
     render(){
       
       return(
         <div className="middlenav">
             <h2 className="label">Audio Player </h2>
-            <MusicPlayer playlist={ this.state.list} />
+            <MusicPlayer playlist={ this.state.lists} />
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
