@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import './leftNav.css';
 import { Storage } from "@aws-amplify/storage";
 import {Accordion,Card,Button} from 'react-bootstrap';
+import { MDBContainer } from "mdbreact";
 
 class LeftNav extends Component {
 
   constructor(props) 
   {
     super(props);
-  
     this.findSubCategory = this.findSubCategory.bind(this);
-   
-
   }
-
-    state = {
-      
+    state = { 
         files:[],
         valid: [],
         unvalid:[],
@@ -45,9 +41,13 @@ class LeftNav extends Component {
       
 
     render(){
-  
+      const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
         return(
-            <Accordion className="leftnav">
+         <div className="leftnav">
+          <h3 className="h3" >Categories</h3>
+          <br></br>
+           <MDBContainer className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
+            <Accordion >
              <Card>
                <Card.Header>
                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -71,6 +71,8 @@ class LeftNav extends Component {
                    </Accordion.Collapse>)}
              </Card>
            </Accordion>
+          </MDBContainer>
+         </div> 
         )
  };
    
