@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import './leftNav.css';
-import { MDBContainer } from "mdbreact";
 import { Storage } from "@aws-amplify/storage";
-
+import {Accordion,Card,Button} from 'react-bootstrap';
 
 class LeftNav extends Component {
 
@@ -10,45 +9,85 @@ class LeftNav extends Component {
   {
     super(props);
   
-    this.mouseOver = this.mouseOver.bind(this);
-    this.mouseOut = this.mouseOut.bind(this);
+    this.findSubCategory = this.findSubCategory.bind(this);
+    this.validAndUnvalid = this.validAndUnvalid.bind(this);
+
   }
 
     state = {
       
-        files: [],
+        files:[],
+        valid: [],
+        unvalid:[],
+        folder:[],
         textColor:'black'
       }
+
       async componentDidMount() {
+        
         const files = await Storage.list('')
         this.setState({ files })
+        this.findSubCategory();
+      }
+ 
+      validAndUnvalid()
+      {
+
       }
       
-      mouseOver() {
-        this.setState({textColor:"red"});
+      findSubCategory() {
+        var i;
+        var folder = [];
+        for(i = 0; i<this.state.files.length; i++)
+        {
+         
+          var item = this.state.files[i].key;
+          var keyNameEnd = item.slice(-1);
+          var KeyName = item.slice(0,item.length-1);
+          if(keyNameEnd === '/')
+            folder.push(this.state.files[i]);
+          
+            
+         
+        }
+        this.setState({folder})
       }
       
-      mouseOut() {
-        this.setState({textColor:'black'});
-      }
-    
+
     render(){
-        const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
+  
         return(
-            <div className="leftnav">
-                <h3 className="h3" >Categories</h3>
-            <MDBContainer>
-                <div className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
-                <ol className="ol" >
-                  
-                {this.state.files.map((f,i) =>
-                  <li style={{ color: this.state.textColor }} className="li" key={i} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-                   {f.key}
-                  </li>)}
-                </ol>
-                </div>
-              </MDBContainer>
-            </div>
+          <div className="leftnav">
+            <Accordion>
+  <Card>
+    <Card.Header>
+      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+        Valid
+      </Accordion.Toggle>
+    </Card.Header>
+       {this.state.folder.map((f,i) =>
+                 <div className="li" key={i}>
+                    <Accordion.Collapse eventKey="0">
+                    <Card.Body> {f.key.slice(0,f.key.length-1)}</Card.Body>
+                    </Accordion.Collapse>
+                </div>)}
+  </Card>
+  <Card>
+    <Card.Header>
+      <Accordion.Toggle as={Button} variant="link" eventKey="1">
+        Unvalid
+      </Accordion.Toggle>
+    </Card.Header>
+    {this.state.folder.map((f,i) =>
+                 <div className="li" key={i}>
+                    <Accordion.Collapse eventKey="1">
+                    <Card.Body> {f.key.slice(0,f.key.length-1)}</Card.Body>
+                    </Accordion.Collapse>
+                </div>)}
+  </Card>
+</Accordion>
+
+          </div>
         )
  };
    
