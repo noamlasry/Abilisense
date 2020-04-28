@@ -48,28 +48,18 @@ class LeftNav extends Component {
           <br></br>
            <MDBContainer className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
             <Accordion >
+            {this.state.folder.map((f,i) =>
              <Card>
                <Card.Header>
-                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                 Valid
+                 <Accordion.Toggle as={Button} variant="link" eventKey={i}>
+                 {f.key.slice(0,f.key.length-1)}
                  </Accordion.Toggle>
                </Card.Header>
-                    {this.state.folder.map((f,i) =>
-                    <Accordion.Collapse eventKey="0" className="li" key={i}>
+                    {this.state.folder.map((f,k) =>
+                    <Accordion.Collapse eventKey={i} className="li" key={k}>
                     <Card.Body> {f.key.slice(0,f.key.length-1)}</Card.Body>
                     </Accordion.Collapse>)}
-             </Card>
-             <Card>
-               <Card.Header>
-                 <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                 Unvalid
-                 </Accordion.Toggle>
-               </Card.Header>
-                   {this.state.folder.map((f,i) =>
-                   <Accordion.Collapse eventKey="1" className="li" key={i}>
-                   <Card.Body> {f.key.slice(0,f.key.length-1)}</Card.Body>
-                   </Accordion.Collapse>)}
-             </Card>
+             </Card>)}
            </Accordion>
           </MDBContainer>
          </div> 
