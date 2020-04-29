@@ -10,12 +10,12 @@ class LeftNav extends Component {
   {
     super(props);
     this.findSubCategory = this.findSubCategory.bind(this);
+    this.getSubcategory = this.getSubcategory.bind(this);
   }
     state = { 
         files:[],
-        valid: [],
-        unvalid:[],
         folder:[],
+        subCategory:[],
         textColor:'black'
       }
 
@@ -26,9 +26,10 @@ class LeftNav extends Component {
       }
  
  
-      findSubCategory() {
+      async findSubCategory() {
         var i;
         var folder = [];
+        var subCategory = [[]];
         for(i = 0; i<this.state.files.length; i++)
         {
           var item = this.state.files[i].key;
@@ -36,8 +37,39 @@ class LeftNav extends Component {
           if(keyNameEnd === '/')
             folder.push(this.state.files[i]);
         }
-        this.setState({folder})
+        this.setState({folder});
+
+        for(i = 0; i<this.state.folder.length; i++)
+        {
+          subCategory[i] = await Storage.list(folder[i].key);  
+  
+        }
+        this.setState({subCategory});
+    
+    //    console.log(this.state.subCategory);
+     
       }
+
+      getSubcategory(props)
+      {
+        const array = this.state.subCategory[props.index];
+        console.log("subcategory");
+        console.log(array);
+        if(array != null)
+        {
+          var temp = array.map((f,k) =>
+          <Accordion.Collapse eventKey={props.index} className="li" key={k}>
+          <Card.Body>{f.key.slice(0,f.key.length-1)} </Card.Body>
+          </Accordion.Collapse>);
+        }
+        else
+         temp = '';
+     
+        return (
+          temp
+        );
+      }
+      
       
 
     render(){
@@ -45,20 +77,20 @@ class LeftNav extends Component {
         return(
          <div className="leftnav">
           <h3 className="h3" >Categories</h3>
+         
           <br></br>
            <MDBContainer className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
             <Accordion >
             {this.state.folder.map((f,i) =>
-             <Card>
+             <Card key={i}>
                <Card.Header>
                  <Accordion.Toggle as={Button} variant="link" eventKey={i}>
                  {f.key.slice(0,f.key.length-1)}
                  </Accordion.Toggle>
                </Card.Header>
-                    {this.state.folder.map((f,k) =>
-                    <Accordion.Collapse eventKey={i} className="li" key={k}>
-                    <Card.Body> {f.key.slice(0,f.key.length-1)}</Card.Body>
-                    </Accordion.Collapse>)}
+
+                 <this.getSubcategory index = {i} />   
+                   
              </Card>)}
            </Accordion>
           </MDBContainer>
