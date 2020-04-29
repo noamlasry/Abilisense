@@ -46,28 +46,33 @@ class LeftNav extends Component {
         }
         this.setState({subCategory});
     
-    //    console.log(this.state.subCategory);
      
       }
 
       getSubcategory(props)
       {
         const array = this.state.subCategory[props.index];
-        console.log("subcategory");
-        console.log(array);
+        var newArray = [], index = 0, i = 0;
+  
         if(array != null)
         {
-          var temp = array.map((f,k) =>
-          <Accordion.Collapse eventKey={props.index} className="li" key={k}>
-          <Card.Body>{f.key.slice(0,f.key.length-1)} </Card.Body>
+          for(i = 1; i<array.length; i++)
+          {
+            var slash = array[i].key.indexOf('/')+1;
+            var keyName = array[i].key;
+            newArray.push(keyName.substring(slash,keyName.length));
+          }
+         
+          var divElement = newArray.map(f => 
+          <Accordion.Collapse eventKey={props.index} className="li" key={++index}>
+          <Card.Body>{f} </Card.Body>
           </Accordion.Collapse>);
         }
         else
-         temp = '';
+        divElement = '';
      
-        return (
-          temp
-        );
+        return divElement;
+        
       }
       
       
