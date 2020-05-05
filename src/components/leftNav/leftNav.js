@@ -39,7 +39,7 @@ class LeftNav extends Component {
              <Card key='1'>
                <Card.Header>
                  <Accordion.Toggle as={Button} variant="link" eventKey='1'>
-                k
+                remove category temporary to avoid aws request
                  </Accordion.Toggle>
                </Card.Header>
 
