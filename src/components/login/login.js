@@ -2,7 +2,6 @@
     import Form from 'react-bootstrap/Form'
     import Button from 'react-bootstrap/Button'
     import logo  from '../../logo.png';
-    import { Checkbox } from '@material-ui/core';
     import './login.css';
     import fire from './config/fire';
  
@@ -68,8 +67,8 @@
                 />
               </Form.Group><p />
               <label>
-                <Checkbox />
-                <span>remember me</span>
+              
+              
               </label><p />
                <Button onClick={this.login} variant="outline-secondary" className="btn-light">Log In</Button> 
               <div>
