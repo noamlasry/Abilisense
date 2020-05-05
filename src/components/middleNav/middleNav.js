@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import './middleNav.css';
 import {ButtonToolbar, Button} from "react-bootstrap";
-import MusicPlayer from "../mediaPlayer/MusicPlayer"
 import { Storage } from "@aws-amplify/storage";
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 
 
 class MiddleNav extends Component {
   state = {     
     files: [],
-    lists:[ { }  ]
+    lists:[ { }  ],
+    temp:[{}]
+
 
   }
   async componentDidMount() {
@@ -25,6 +28,10 @@ class MiddleNav extends Component {
    }
      
       this.state.lists.shift();
+      this.state.lists.shift();
+
+      console.log(this.state.lists);
+     
   }
  
     render(){
@@ -32,7 +39,12 @@ class MiddleNav extends Component {
       return(
         <div className="middlenav">
             <h2 className="label">Audio Player</h2>
-            <MusicPlayer playlist={ this.state.lists} />
+            <AudioPlayer
+    autoPlay
+    src="https://www.youtube.com/watch?v=Oioo0IdoEls"
+    onPlay={e => console.log("onPlay")}
+    // other props here
+  />
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
