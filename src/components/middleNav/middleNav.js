@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import './middleNav.css';
 import {ButtonToolbar, Button} from "react-bootstrap";
 import MusicPlayer from "../mediaPlayer/MusicPlayer";
-
 import 'react-h5-audio-player/lib/styles.css';
 import axios from 'axios';
+import playlist from '../mediaPlayer/playlist';
 
 
 
@@ -51,7 +51,7 @@ class MiddleNav extends Component {
       return(
         <div className="middlenav">
             <h2 className="label">Audio Player</h2>
-            <MusicPlayer playlist={ this.state.lists}  autoPlay={true}/>
+            <MusicPlayer playlist={ playlist}  autoPlay={true}/>
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>

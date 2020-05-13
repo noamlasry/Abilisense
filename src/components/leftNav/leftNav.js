@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import './leftNav.css';
 import {Accordion,Card,Button} from 'react-bootstrap';
 import { MDBContainer } from "mdbreact";
+import playlist from '../mediaPlayer/playlist';
 
 
 
@@ -17,35 +18,33 @@ class LeftNav extends Component {
         subPlayList:[{}],
         showComponent:false
       }
-
-
- 
    
-
-     
-    
+      handleClickItem = (e) => {
+        console.log(e);
+      };
       
 
     render(){
       const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
         return(
          <div className="leftnav">
-          <h3 className="h3" >Categories</h3>
+          <h3 onClick={() => this.handleClickItem(2)} className="h3" >Categories</h3>
          
           <br></br>
            <MDBContainer className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
             <Accordion >
             
-             <Card key='1'>
+            {playlist.map((f,i) =>
+             <Card key={i}>
                <Card.Header>
-                 <Accordion.Toggle as={Button} variant="link" eventKey='1'>
-                remove category temporary to avoid aws request
+                 <Accordion.Toggle as={Button} variant="link" eventKey={i} onClick={() => this.handleClickItem(i)}>
+                 {f.title}
                  </Accordion.Toggle>
                </Card.Header>
 
-                 
+               
                    
-             </Card>
+             </Card>)}
            </Accordion>
           </MDBContainer>
          
