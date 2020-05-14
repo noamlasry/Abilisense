@@ -2,30 +2,22 @@ import React, { Component }  from "react";
 import './mainPage.css';
 import  LeftNav  from "../leftNav/leftNav";
 import RightNav from "../rightNav/rightNav";
-import MiddleNav from "../middleNav/middleNav";
 import Navigationbar from '../NavigationBar/NavigationBar'
 import {ButtonToolbar, Button} from "react-bootstrap";
 import MusicPlayer from "../mediaPlayer/MusicPlayer";
 import 'react-h5-audio-player/lib/styles.css';
-import axios from 'axios';
 import playlist from '../mediaPlayer/playlist';
-
-
-
 
 
 class MainPage extends Component {
 
-    constructor(props){
-        super(props);
-    }
+    
     state = {
-      title:'placeholder title'
+      index:null
     }
   
-    changeTheWorld = (newTitle) => {
-      console.log("clicked");
-        this.setState({title:newTitle});
+    setMusicIndex = (newIndex) => {
+        this.setState({index:newIndex});
     }
 
  
@@ -34,11 +26,11 @@ class MainPage extends Component {
         <div>
            <Navigationbar userName={this.props.userName} />
 
-           <LeftNav doWhatever={ this.changeTheWorld.bind(this)} title={this.props.title}/>
+           <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} index={this.props.index}/>
 
             <div className="middlenav">
             <h2 className="label">Audio Player</h2>
-            <MusicPlayer playlist={ playlist}   title={this.state.title}/>
+            <MusicPlayer playlist={ playlist}   index={this.state.index}/>
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>

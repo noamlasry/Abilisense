@@ -64,9 +64,10 @@ export default class MusicPlayer extends Component {
     this.audioContainer = React.createRef();
   }
  componentWillReceiveProps(nextProps){
-   console.log(nextProps.title);
-   this.setState({activeMusicIndex:nextProps.title});
-   this.handleToggle();
+   console.log(nextProps.index);
+   this.setState({activeMusicIndex:nextProps.index});
+ // this.handleToggle();
+  this.playMusic(nextProps.index);
  }
 
 

@@ -16,15 +16,9 @@ class LeftNav extends Component {
         subCategory:[],
         subPlayList:[{}],
         showComponent:false,
-        i:0
+        
       }
    
-      handleClickItem = (e) => {
-        console.log(e);
-      
-    
-      };
-      
 
     render(){
       const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
@@ -42,7 +36,7 @@ class LeftNav extends Component {
             {playlist.map((f,i) =>
              <Card key={i}>
                <Card.Header>
-                 <Accordion.Toggle as={Button} variant="link" eventKey={i} onClick={() => this.props.doWhatever(i)} >
+                 <Accordion.Toggle as={Button} variant="link" eventKey={i} onClick={() => this.props.passMusicIndex(i)} >
                  {f.title}
                  </Accordion.Toggle>
                </Card.Header>
