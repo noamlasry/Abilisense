@@ -58,6 +58,10 @@ export default class MusicPlayer extends Component {
       playMode: 'loop',
       progress: 0,
       volume: 1,
+      styles: {
+        top: 0,
+        left: 50
+      }
     
     };
     this.modeList = ['loop', 'random', 'repeat'];
@@ -66,7 +70,6 @@ export default class MusicPlayer extends Component {
  componentWillReceiveProps(nextProps){
    console.log(nextProps.index);
    this.setState({activeMusicIndex:nextProps.index});
- // this.handleToggle();
   this.playMusic(nextProps.index);
  }
 
@@ -210,6 +213,8 @@ export default class MusicPlayer extends Component {
               style={btnStyle}
               onClick={this.handleChangePlayMode}
             />
+            <div>
+            <div className="left">
             <button type="button" className="fa fa-step-backward" style={btnStyle} onClick={this.handlePrev} />
             <button
               type="button"
@@ -218,9 +223,11 @@ export default class MusicPlayer extends Component {
               onClick={this.handleToggle}
             />
             <button type="button" className="fa fa-step-forward" style={btnStyle} onClick={this.handleNext} />
+            </div>
+            </div>
           </div>
         </div>
-        <div className="player-cover" style={{ backgroundImage: `url(${activeMusic.cover})` }} />
+       
       </div>
 
     );
