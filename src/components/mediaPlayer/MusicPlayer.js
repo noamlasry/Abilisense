@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Progress from './Progress';
 import './MusicPlayer.scss';
 
+
 const formatTime = time => {
   /* eslint no-restricted-globals: off */
   if (isNaN(time) || time === 0) {
@@ -49,24 +50,34 @@ export default class MusicPlayer extends Component {
 
   constructor(props) {
     super(props);
+  
     this.state = {
       activeMusicIndex: 0,
       leftTime: 0,
       play: props.autoplay || false,
       playMode: 'loop',
       progress: 0,
-      volume: 1
+      volume: 1,
+    
     };
     this.modeList = ['loop', 'random', 'repeat'];
     this.audioContainer = React.createRef();
   }
+ componentWillReceiveProps(nextProps){
+   console.log(nextProps.title);
+   this.setState({activeMusicIndex:nextProps.title});
+   this.handleToggle();
+ }
+
 
   componentDidMount() {
+   
     this.audioContainer.current.addEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.addEventListener('ended', this.end);
   }
 
   componentWillUnmount() {
+    console.log("hey");
     this.audioContainer.current.removeEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.removeEventListener('ended', this.end);
   }
@@ -165,10 +176,14 @@ export default class MusicPlayer extends Component {
     const btnStyle = { color: btnColor };
 
     return (
+      
+      
       <div
         className={classNames('player', { vertical: mode === 'vertical' })}
         style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}
       >
+        
+      
         <audio autoPlay={play} preload="auto" ref={this.audioContainer} src={activeMusic.url}>
           <track kind="captions" />
         </audio>
@@ -206,6 +221,7 @@ export default class MusicPlayer extends Component {
         </div>
         <div className="player-cover" style={{ backgroundImage: `url(${activeMusic.cover})` }} />
       </div>
+
     );
   }
 }

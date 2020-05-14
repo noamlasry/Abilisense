@@ -18,6 +18,10 @@ class App extends Component{
   }
     componentDidMount() {this.authListener(); }
   
+    changeTheWorld = (newTitle) => {
+      this.setState({title:newTitle});
+  }
+
   authListener() 
   {
    
@@ -48,7 +52,7 @@ class App extends Component{
       
        return(
         <div className="App"  >
-          { this.state.user ? ( <MainPage userName={this.state.user}/> ) : ( <Login /> ) }
+          { this.state.user ? ( <MainPage userName={this.state.user} /> ) : ( <Login /> ) }
         </div>
     )
 };

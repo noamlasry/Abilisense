@@ -6,7 +6,6 @@ import playlist from '../mediaPlayer/playlist';
 
 
 
-
 class LeftNav extends Component {
 
  
@@ -16,19 +15,25 @@ class LeftNav extends Component {
         folder:[],
         subCategory:[],
         subPlayList:[{}],
-        showComponent:false
+        showComponent:false,
+        i:0
       }
    
       handleClickItem = (e) => {
         console.log(e);
+      
+    
       };
       
 
     render(){
       const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
         return(
+         
+            
          <div className="leftnav">
-          <h3 onClick={() => this.handleClickItem(2)} className="h3" >Categories</h3>
+          <h3 className="h3" >Categories</h3>
+
          
           <br></br>
            <MDBContainer className="scrollbar scrollbar-primary"  style={scrollContainerStyle}>
@@ -37,7 +42,7 @@ class LeftNav extends Component {
             {playlist.map((f,i) =>
              <Card key={i}>
                <Card.Header>
-                 <Accordion.Toggle as={Button} variant="link" eventKey={i} onClick={() => this.handleClickItem(i)}>
+                 <Accordion.Toggle as={Button} variant="link" eventKey={i} onClick={() => this.props.doWhatever(i)} >
                  {f.title}
                  </Accordion.Toggle>
                </Card.Header>
@@ -49,6 +54,7 @@ class LeftNav extends Component {
           </MDBContainer>
          
          </div> 
+        
         )
  };
    
