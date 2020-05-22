@@ -7,7 +7,8 @@ import {ButtonToolbar, Button} from "react-bootstrap";
 import MusicPlayer from "../mediaPlayer/MusicPlayer";
 import 'react-h5-audio-player/lib/styles.css';
 import playlist from '../mediaPlayer/playlist';
-
+import axios from 'axios';
+import Annotator from "../annotator/annotator";
 
 class MainPage extends Component {
 
@@ -18,6 +19,17 @@ class MainPage extends Component {
   
     setMusicIndex = (newIndex) => {
         this.setState({index:newIndex});
+    }
+
+    componentDidMount(){
+      axios.get('https://api.github.com/users/mapbox')
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+      });
     }
 
  
@@ -31,6 +43,7 @@ class MainPage extends Component {
             <div className="middlenav">
             <h2 className="label">Audio Player</h2>
             <MusicPlayer playlist={ playlist}   index={this.state.index}/>
+            <Annotator />
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
