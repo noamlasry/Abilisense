@@ -20,19 +20,24 @@ class MainPage extends Component {
   
     setMusicIndex = (newIndex) => {
         this.setState({index:newIndex});
-  
+      
     }
-
+   
     componentDidMount(){
       axios.get('https://api.github.com/users/mapbox')
       .then((response) => {
      
       });
     }
+    getNextIndex = (nextIndex) => {
+    this.setState({index:nextIndex});
+  
+  };
+
 
  
     render(){
-    
+   
     return(
         <div>
            <Navigationbar userName={this.props.userName} />
@@ -41,8 +46,8 @@ class MainPage extends Component {
 
             <div className="middlenav">
             <h2 className="label">Audio Player</h2>
-            <MusicPlayer playlist={ playlist}   index={this.state.index}/>
-            <Annotator src={playlist[this.state.index].url}/>
+            <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.getNextIndex.bind(this)} />
+            <Annotator src={playlist[this.state.index].url}  index={this.state.index}/>
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>

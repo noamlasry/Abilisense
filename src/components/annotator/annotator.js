@@ -5,9 +5,18 @@ import { getAudioBuffer, getContext } from './utils';
 import { color } from '../../styles/theme';
 
 
+
+
 const WaveformWrapper = styled.div`
   height: 300px;
   width: 100%;
+`;
+const Wrapper = styled.div`
+  background: #000000
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0.8em;
 `;
 
 class Annotator extends React.PureComponent {
@@ -35,8 +44,6 @@ class Annotator extends React.PureComponent {
 
   componentWillReceiveProps(nextProps){
     this.setState({src:nextProps.src});
-    console.log(nextProps.src);
-    console.log(this.state.src);
     this.getFile(nextProps.src);
 
   };
@@ -91,10 +98,10 @@ class Annotator extends React.PureComponent {
   };
 
   render() {
-    return (
-      <div>
-       
     
+    return (
+   
+    <Wrapper>
         <WaveformWrapper>
       
           <Waveform
@@ -110,7 +117,8 @@ class Annotator extends React.PureComponent {
             width={this.state.width}
           />
         </WaveformWrapper>
-      </div>
+        </Wrapper>
+     
     );
   }
 }

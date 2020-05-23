@@ -21,6 +21,7 @@ class LeftNav extends Component {
    
 
     render(){
+    
       const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
         return(
          

@@ -5,6 +5,7 @@ import Progress from './Progress';
 import './MusicPlayer.scss';
 
 
+
 const formatTime = time => {
   /* eslint no-restricted-globals: off */
   if (isNaN(time) || time === 0) {
@@ -52,6 +53,7 @@ export default class MusicPlayer extends Component {
     super(props);
   
     this.state = {
+      temp:'rr',
       activeMusicIndex: 0,
       leftTime: 0,
       play: props.autoplay || false,
@@ -137,8 +139,12 @@ export default class MusicPlayer extends Component {
   };
 
   handleNext = () => {
+  
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
+    if(activeMusicIndex < playlist.length-1)
+      this.props.updateIndex(activeMusicIndex+1);
+    
     if (playMode === 'repeat') {
       this.playMusic(activeMusicIndex);
     } else if (playMode === 'loop') {
@@ -171,6 +177,7 @@ export default class MusicPlayer extends Component {
   };
 
   render() {
+    
     const { playlist, mode, width, progressColor, btnColor, style } = this.props;
     const { play, progress, leftTime, volume, activeMusicIndex, playMode } = this.state;
     const activeMusic = playlist[activeMusicIndex];
@@ -214,6 +221,7 @@ export default class MusicPlayer extends Component {
             <div>
             <div className="left">
             <button type="button" className="fa fa-step-backward" style={btnStyle} onClick={this.handlePrev} />
+            
             <button
               type="button"
               className={`fa fa-${play ? 'pause' : 'play'}`}
