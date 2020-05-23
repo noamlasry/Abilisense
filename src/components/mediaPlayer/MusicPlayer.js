@@ -68,7 +68,6 @@ export default class MusicPlayer extends Component {
     this.audioContainer = React.createRef();
   }
  componentWillReceiveProps(nextProps){
-   console.log(nextProps.index);
    this.setState({activeMusicIndex:nextProps.index});
   this.playMusic(nextProps.index);
  }
@@ -81,7 +80,6 @@ export default class MusicPlayer extends Component {
   }
 
   componentWillUnmount() {
-    console.log("hey");
     this.audioContainer.current.removeEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.removeEventListener('ended', this.end);
   }

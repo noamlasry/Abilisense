@@ -14,26 +14,25 @@ class MainPage extends Component {
 
     
     state = {
-      index:null
+      index:0,
+      src:''
     }
   
     setMusicIndex = (newIndex) => {
         this.setState({index:newIndex});
+  
     }
 
     componentDidMount(){
       axios.get('https://api.github.com/users/mapbox')
       .then((response) => {
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
+     
       });
     }
 
  
     render(){
+    
     return(
         <div>
            <Navigationbar userName={this.props.userName} />
@@ -43,7 +42,7 @@ class MainPage extends Component {
             <div className="middlenav">
             <h2 className="label">Audio Player</h2>
             <MusicPlayer playlist={ playlist}   index={this.state.index}/>
-            <Annotator />
+            <Annotator src={playlist[this.state.index].url}/>
               <ButtonToolbar className="btnTool">
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
