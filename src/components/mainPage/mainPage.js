@@ -11,8 +11,6 @@ import axios from 'axios';
 import Annotator from "../annotator/annotator";
 
 class MainPage extends Component {
-
-    
     state = {
       index:0,
       src:''
@@ -55,14 +53,16 @@ class MainPage extends Component {
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
               </ButtonToolbar>
-              <h5>Quality:</h5>
             <div className="btnQuality">
-              <ButtonToolbar >
-              
-                <Button variant="outline-dark" >Good</Button>
-                <Button variant="outline-dark">Bad</Button>
-                <Button className="lg" variant="outline-success" >Submit</Button>
-                <Button size="lg" variant="outline-danger">cancel</Button>
+              <ButtonToolbar className="btnTool">>
+              <h5>Quality:</h5>
+
+                <Button className="btn-small" variant="outline-dark" >Good</Button>
+                <Button className="btn-small" variant="outline-dark">Bad</Button>
+                </ButtonToolbar>
+                <ButtonToolbar className="btnTool">
+                <Button className="btn-small1" variant="outline-success" >Submit</Button>
+                <Button className="btn-small1" variant="outline-danger">cancel</Button>
               </ButtonToolbar>
             </div>
         </div>
