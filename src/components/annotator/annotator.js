@@ -4,19 +4,9 @@ import Waveform from './Waveform';
 import { getAudioBuffer, getContext } from './utils';
 import { color } from '../../styles/theme';
 
-
-
-
 const WaveformWrapper = styled.div`
-  height: 300px;
+  height: 20%;
   width: 100%;
-`;
-const Wrapper = styled.div`
-  background: #000000
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0.8em;
 `;
 
 class Annotator extends React.PureComponent {
@@ -34,7 +24,7 @@ class Annotator extends React.PureComponent {
     showPosition: true,
     waveStyle: {
       animate: true,
-      color: color.primary,
+      color:'#1ac3e7',
       plot: 'bar',
       pointWidth: 1
     },
@@ -101,7 +91,7 @@ class Annotator extends React.PureComponent {
     
     return (
    
-    <Wrapper>
+    <div>
         <WaveformWrapper>
       
           <Waveform
@@ -117,7 +107,7 @@ class Annotator extends React.PureComponent {
             width={this.state.width}
           />
         </WaveformWrapper>
-        </Wrapper>
+        </div>
      
     );
   }

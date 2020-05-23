@@ -55,22 +55,16 @@ class MainPage extends Component {
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
                 <Button className="btn" variant="outline-primary">Audio tag</Button>
               </ButtonToolbar>
-              <ButtonToolbar>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-              </ButtonToolbar>
-              <ButtonToolbar className="btnQuality">
-                <h5>Quality:</h5>
+              <h5>Quality:</h5>
+            <div className="btnQuality">
+              <ButtonToolbar >
+              
                 <Button variant="outline-dark" >Good</Button>
                 <Button variant="outline-dark">Bad</Button>
-              </ButtonToolbar>
-              <ButtonToolbar className="btnSub">
-                <Button size="lg" variant="outline-success" >Submit</Button>
+                <Button className="lg" variant="outline-success" >Submit</Button>
                 <Button size="lg" variant="outline-danger">cancel</Button>
               </ButtonToolbar>
+            </div>
         </div>
             <RightNav />
          </div>
