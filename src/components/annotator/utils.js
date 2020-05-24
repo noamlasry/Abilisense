@@ -32,7 +32,7 @@ const animateLine = (canvas, ctx, bounds, style, maxAmp, step, index = 0) => {
       }
       ctx.stroke();
       animateLine(canvas, ctx, bounds, style, maxAmp, step, index + step);
-    }, 1);
+    }, 200);
   }
 };
 /**

@@ -53,7 +53,7 @@ class Wrapper extends React.Component {
           width
         });
       }
-    }, 200);
+    }, 0);
     this.setState({
       resizing
     });
