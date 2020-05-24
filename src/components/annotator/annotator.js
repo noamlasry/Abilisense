@@ -48,7 +48,7 @@ class Annotator extends React.PureComponent {
   }
 
   getFile = async (path = 'audio/test.mp3') => {
-    const buffer = await getAudioBuffer('https://abilisenseebf537d031214af9abc387887f8a8c81200419-vscode.s3-eu-west-1.amazonaws.com/public/Glass+Shatteres/audio.mp3', this.state.context);
+    const buffer = await getAudioBuffer(path, this.state.context);
     this.setState({ buffer });
   };
   componentDidMount(){
