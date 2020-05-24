@@ -21,10 +21,10 @@ class MainPage extends Component {
       
     }
    
-    componentDidMount(){
-      axios.get('https://api.github.com/users/mapbox')
+    audioTagHadler(){
+      axios.get('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/jsonfiles')
       .then((response) => {
-     
+        console.log(response)
       });
     }
     getNextIndex = (nextIndex) => {
@@ -47,17 +47,17 @@ class MainPage extends Component {
             <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.getNextIndex.bind(this)} />
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/>
               <ButtonToolbar className="btnTool">
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
-                <Button className="btn" variant="outline-primary">Audio tag</Button>
+                <Button onClick={this.audioTagHadler} className="btn3" variant="outline-primary">Audio tag</Button>
+                <Button className="btn3" variant="outline-primary">Audio tag</Button>
+                <Button className="btn3" variant="outline-primary">Audio tag</Button>
+                <Button className="btn3" variant="outline-primary">Audio tag</Button>
+                <Button className="btn3" variant="outline-primary">Audio tag</Button>
               </ButtonToolbar>
             <div className="btnQuality">
               <ButtonToolbar className="btnTool">>
               <h5>Quality:</h5>
 
-                <Button className="btn-small" variant="outline-dark" >Good</Button>
+                <Button className="btn-small" variant="outline-dark">Good</Button>
                 <Button className="btn-small" variant="outline-dark">Bad</Button>
                 </ButtonToolbar>
                 <ButtonToolbar className="btnTool">

@@ -31,10 +31,14 @@
 #button{
     color: black;
     background-color: white;
+    width: 50px;
 }
 #span{
     font-weight: 900;
 }
 .error-massage{
     color: red;
+}
+.btn2{
+    width: 50%;
 }
