@@ -13,7 +13,19 @@ import Annotator from "../annotator/annotator";
 class MainPage extends Component {
     state = {
       index:0,
-      src:''
+      x:5,
+      src:'',
+      temp: "M 0 0 L 200 100",
+   
+    }
+    componentWillReceiveProps(){
+      
+    }
+    componentWillMount(){
+      var x = 30;
+      var temp = "M "+x+" 0 L "+x+" 100";
+      console.log(temp);
+      this.setState({temp})
     }
   
     setMusicIndex = (newIndex) => {
@@ -31,21 +43,43 @@ class MainPage extends Component {
     this.setState({index:nextIndex});
   
   };
+  changeBGColor = () => {
+    var cols = document.getElementsByClassName('vl');
+    var i;
+    for(i = 0; i < cols.length; i++) {
+      cols[i].style.backgroundColor = 'blue';
+    }
+  }
 
 
  
     render(){
-   
+   console.log(this.state.temp);
     return(
         <div>
+         
+             
+         
            <Navigationbar userName={this.props.userName} />
 
            <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} index={this.props.index}/>
 
             <div className="middlenav">
             <h2 className="label">Audio Player</h2>
+           
             <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.getNextIndex.bind(this)} />
-            <Annotator src={playlist[this.state.index].url}  index={this.state.index}/>
+                 
+                
+            <div id="container">
+            
+              <svg id="navi">
+               <path stroke="black" d={this.state.temp} />
+            </svg>
+           
+                     
+              <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
+            </div>
+          
               <ButtonToolbar className="btnTool">
                 <Button onClick={this.audioTagHadler} className="btn3" variant="outline-primary">Audio tag</Button>
                 <Button className="btn3" variant="outline-primary">Audio tag</Button>

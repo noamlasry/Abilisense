@@ -93,6 +93,7 @@ class Annotator extends React.PureComponent {
    
     <div>
         <WaveformWrapper>
+          
       
           <Waveform
          

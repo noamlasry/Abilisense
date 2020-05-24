@@ -44,6 +44,7 @@ export default class Progress extends Component {
   };
 
   render() {
+    console.log("1");
     const { percent, strokeColor, strokeWidth } = this.props;
     return (
       <div
