@@ -70,7 +70,7 @@
               
               
               </label><p />
-               <Button onClick={this.login} variant="outline-secondary" className="btn-light">Log In</Button> 
+               <Button onClick={this.login} variant="outline-secondary" className="btn-light">Log In</Button >
               <div>
               { this.state.refreshIcon ? (  <i className="w3-jumbo w3-spin fa fa-refresh" ></i> ) : ( <div className="error-massage">{this.state.userMassge}</div> ) }
               </div>
