@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Progress from './Progress';
 import './MusicPlayer.scss';
+import { keyframes } from "styled-components";
+import Canvas from '../mediaPlayer/Canvas/Canvas';
+
 
 
 
@@ -53,7 +56,8 @@ export default class MusicPlayer extends Component {
     super(props);
   
     this.state = {
-      temp:'rr',
+      x:0,
+      temp: "M 5 0 L 5 100",
       activeMusicIndex: 0,
       leftTime: 0,
       play: props.autoplay || false,
@@ -185,10 +189,10 @@ export default class MusicPlayer extends Component {
       this.audioContainer.current.play();
     });
   };
-
+  
 
   render() {
-  
+   
     const { playlist, mode, width, progressColor, btnColor, style } = this.props;
     const { play, progress, leftTime, volume, activeMusicIndex, playMode } = this.state;
     const activeMusic = playlist[activeMusicIndex];
@@ -197,7 +201,9 @@ export default class MusicPlayer extends Component {
 
     return (
       
-      
+              
+          
+  
       <div
         className={classNames('player', { vertical: mode === 'vertical' })}
         style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}
@@ -243,10 +249,12 @@ export default class MusicPlayer extends Component {
             </div>
             </div>
           </div>
+         
         </div>
-       
+      
       </div>
 
+ 
     );
   }
 }

@@ -4,6 +4,7 @@ import Waveform from './Waveform';
 import { getAudioBuffer, getContext } from './utils';
 import { color } from '../../styles/theme';
 
+
 const WaveformWrapper = styled.div`
   height: 20%;
   width: 100%;
@@ -92,8 +93,9 @@ class Annotator extends React.PureComponent {
     return (
    
     <div>
+     
         <WaveformWrapper>
-          
+     
       
           <Waveform
          

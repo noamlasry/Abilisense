@@ -71,3 +71,18 @@ h5, h2{
   #infoi {
     z-index: 10;
   }
+  #temp{
+    width: 2px;
+    height: 70px;
+    background: black;
+    position: relative;
+    animation: mymove 100s;
+    animation-play-state: play;
+  
+    
+     @keyframes mymove {
+       from {left: 0px;}
+       to {left: 400px;}
+     }
+   
+  }

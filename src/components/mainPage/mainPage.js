@@ -9,6 +9,8 @@ import 'react-h5-audio-player/lib/styles.css';
 import playlist from '../mediaPlayer/playlist';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
+import { keyframes } from "styled-components";
+import Canvas from '../mediaPlayer/Canvas/Canvas';
 
 class MainPage extends Component {
    
@@ -50,9 +52,12 @@ class MainPage extends Component {
   }
 
   tempFoo2 = () => {
-
+     //   this.setState({x:this.state.x+2});
+      //  var temp2 = "M "+this.state.x+ "0 L "+this.state.x+ " 100";
+     //   console.log(temp2);
+        
   }
-
+ 
  
     render(){
     
@@ -72,13 +77,16 @@ class MainPage extends Component {
                  
                 
             <div id="container">
-            
-              <svg id="navi">
-               <path stroke="black" d={this.state.temp} />
-            </svg>
+           
+            <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
+           <Canvas/>
+              <div id="navi">
+               <div id="temp"></div>
+            </div>
            
                      
-              <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
+              
+             
             </div>
           
               <ButtonToolbar className="btnTool">
