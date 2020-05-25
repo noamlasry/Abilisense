@@ -17,8 +17,12 @@ export default class Progress extends Component {
 
   constructor() {
     super();
+    this.state ={
+      progressParamater:0
+    };
     this.progressContainer = React.createRef();
   }
+ 
 
   onClick = ({ clientX }) => {
     const { onClick } = this.props;
@@ -43,10 +47,12 @@ export default class Progress extends Component {
     }
   };
 
+
   render() {
-    console.log("1");
+   
     const { percent, strokeColor, strokeWidth } = this.props;
     return (
+      
       <div
         ref={this.progressContainer}
         role="progressbar"
@@ -55,8 +61,9 @@ export default class Progress extends Component {
         style={{ height: `${strokeWidth}px` }}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
+       
       >
-        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: strokeColor }} />
+        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: strokeColor }}/>
       </div>
     );
   }

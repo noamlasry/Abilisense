@@ -72,6 +72,7 @@ export default class MusicPlayer extends Component {
  componentWillReceiveProps(nextProps){
    this.setState({activeMusicIndex:nextProps.index});
   this.playMusic(nextProps.index);
+   
  }
 
 
@@ -80,8 +81,14 @@ export default class MusicPlayer extends Component {
     this.audioContainer.current.addEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.addEventListener('ended', this.end);
   }
+ componentDidUpdate()
+ {
+      this.props.tempFoo("dd");
+ }
 
   componentWillUnmount() {
+   
+    this.props.tempFoo("hey");
     this.audioContainer.current.removeEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.removeEventListener('ended', this.end);
   }
@@ -90,6 +97,7 @@ export default class MusicPlayer extends Component {
     const { duration, currentTime } = this.audioContainer.current;
     const progress = currentTime / duration || 0;
     this.setState({ progress, leftTime: duration - currentTime });
+    
   };
 
   end = () => {
@@ -121,6 +129,8 @@ export default class MusicPlayer extends Component {
   handlePrev = () => {
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
+    if(activeMusicIndex < playlist.length-1)
+      this.props.updateIndex(activeMusicIndex-1);
     if (playMode === 'repeat') {
       this.playMusic(activeMusicIndex);
     } else if (playMode === 'loop') {
@@ -139,7 +149,7 @@ export default class MusicPlayer extends Component {
   };
 
   handleNext = () => {
-  
+ 
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
     if(activeMusicIndex < playlist.length-1)
@@ -176,8 +186,9 @@ export default class MusicPlayer extends Component {
     });
   };
 
+
   render() {
-    
+  
     const { playlist, mode, width, progressColor, btnColor, style } = this.props;
     const { play, progress, leftTime, volume, activeMusicIndex, playMode } = this.state;
     const activeMusic = playlist[activeMusicIndex];

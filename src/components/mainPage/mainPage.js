@@ -11,22 +11,20 @@ import axios from 'axios';
 import Annotator from "../annotator/annotator";
 
 class MainPage extends Component {
-    state = {
-      index:0,
-      x:5,
-      src:'',
-      temp: "M 0 0 L 200 100",
    
-    }
-    componentWillReceiveProps(){
+    constructor(props) {
+      super(props);
+    
+      this.state = {
+        index:0,
+        x:5,
+        src:'',
+        temp: "M 5 0 L 5 100",
+     
+      }
       
-    }
-    componentWillMount(){
-      var x = 30;
-      var temp = "M "+x+" 0 L "+x+" 100";
-      console.log(temp);
-      this.setState({temp})
-    }
+      };
+  
   
     setMusicIndex = (newIndex) => {
         this.setState({index:newIndex});
@@ -51,10 +49,13 @@ class MainPage extends Component {
     }
   }
 
+  tempFoo2 = () => {
+
+  }
 
  
     render(){
-   console.log(this.state.temp);
+    
     return(
         <div>
          
@@ -67,7 +68,7 @@ class MainPage extends Component {
             <div className="middlenav">
             <h2 className="label">Audio Player</h2>
            
-            <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.getNextIndex.bind(this)} />
+            <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.getNextIndex.bind(this)} tempFoo={this.tempFoo2.bind(this)}/>
                  
                 
             <div id="container">
