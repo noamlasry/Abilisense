@@ -11,7 +11,7 @@ export default class Progress extends Component {
 
   static defaultProps = {
     percent: 0,
-    strokeColor: '#ffffff',
+    strokeColor: '#A9F08C',
     strokeWidth: 70
   };
 
@@ -48,13 +48,17 @@ export default class Progress extends Component {
     }
   };
 
-
+ handleClick = () => {
+   console.log("dd");
+  document.getElementById("myDIV").style.opacity = "0.1";
+ };
   render() {
    
-    const { percent, strokeColor, strokeWidth } = this.props;
+    const { percent, strokeWidth } = this.props;
     
     return (
-      
+      <div>
+         
       <div
         ref={this.progressContainer}
         role="progressbar"
@@ -63,12 +67,12 @@ export default class Progress extends Component {
         style={{ height: `${strokeWidth}px` }}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
-       
+        id="myDIV"
       >
-        <div className="progress-inner" style={{ left: `${percent * 100}%`,width:'10px',position: 'absolute', backgroundColor: 'black' }}/>
-      
+        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'blue' }}/>
+    
       </div>
-      
+      </div>
     );
   }
 }
