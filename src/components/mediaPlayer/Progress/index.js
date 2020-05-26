@@ -12,7 +12,7 @@ export default class Progress extends Component {
   static defaultProps = {
     percent: 0,
     strokeColor: '#A9F08C',
-    strokeWidth: 70
+    strokeWidth: 107
   };
 
   constructor() {
@@ -69,7 +69,7 @@ export default class Progress extends Component {
         onKeyDown={this.onKeyDown}
         id="myDIV"
       >
-        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'blue' }}/>
+        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'black' }}/>
     
       </div>
       </div>
