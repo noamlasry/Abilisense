@@ -1,0 +1,26 @@
+.box {
+    width: 2px;
+    height:60%;
+    background: black;
+    position: absolute;
+    animation: mymove 100s;
+    animation-play-state: paused;
+    left: 40%;
+    top:37%;
+  
+  
+  }
+  
+  .animation {
+    animation: mymove 100s forwards;
+  }
+  
+  @keyframes mymove {
+    from {
+      left: 25%;
+    }
+    to {
+      left: 400px;
+    }
+  }
+  

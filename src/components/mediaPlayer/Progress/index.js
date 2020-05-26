@@ -11,8 +11,8 @@ export default class Progress extends Component {
 
   static defaultProps = {
     percent: 0,
-    strokeColor: '#9b9b9b',
-    strokeWidth: 2
+    strokeColor: '#ffffff',
+    strokeWidth: 70
   };
 
   constructor() {
@@ -27,6 +27,7 @@ export default class Progress extends Component {
   onClick = ({ clientX }) => {
     const { onClick } = this.props;
     const progressRef = this.progressContainer.current;
+ 
     const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
     onClick(progress);
   };
@@ -51,6 +52,7 @@ export default class Progress extends Component {
   render() {
    
     const { percent, strokeColor, strokeWidth } = this.props;
+    
     return (
       
       <div
@@ -63,8 +65,10 @@ export default class Progress extends Component {
         onKeyDown={this.onKeyDown}
        
       >
-        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: strokeColor }}/>
+        <div className="progress-inner" style={{ left: `${percent * 100}%`,width:'10px',position: 'absolute', backgroundColor: 'black' }}/>
+      
       </div>
+      
     );
   }
 }

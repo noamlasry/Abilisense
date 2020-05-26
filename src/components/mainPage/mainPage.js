@@ -9,8 +9,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import playlist from '../mediaPlayer/playlist';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
-import { keyframes } from "styled-components";
-import Canvas from '../mediaPlayer/Canvas/Canvas';
+
 
 class MainPage extends Component {
    
@@ -18,6 +17,7 @@ class MainPage extends Component {
       super(props);
     
       this.state = {
+       
         index:0,
         x:5,
         src:'',
@@ -26,6 +26,7 @@ class MainPage extends Component {
       }
       
       };
+    
   
   
     setMusicIndex = (newIndex) => {
@@ -51,43 +52,26 @@ class MainPage extends Component {
     }
   }
 
-  tempFoo2 = () => {
-     //   this.setState({x:this.state.x+2});
-      //  var temp2 = "M "+this.state.x+ "0 L "+this.state.x+ " 100";
-     //   console.log(temp2);
-        
-  }
- 
+
  
     render(){
     
     return(
         <div>
-         
-             
-         
+          
+      
            <Navigationbar userName={this.props.userName} />
 
            <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} index={this.props.index}/>
 
             <div className="middlenav">
             <h2 className="label">Audio Player</h2>
-           
-            <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.getNextIndex.bind(this)} tempFoo={this.tempFoo2.bind(this)}/>
+        
+            <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.setMusicIndex.bind(this)}/>
                  
-                
-            <div id="container">
-           
+          
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
-           <Canvas/>
-              <div id="navi">
-               <div id="temp"></div>
-            </div>
-           
-                     
-              
-             
-            </div>
+          
           
               <ButtonToolbar className="btnTool">
                 <Button onClick={this.audioTagHadler} className="btn3" variant="outline-primary">Audio tag</Button>

@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Progress from './Progress';
 import './MusicPlayer.scss';
-import { keyframes } from "styled-components";
-import Canvas from '../mediaPlayer/Canvas/Canvas';
-
-
-
+import "./styles.css";
 
 const formatTime = time => {
   /* eslint no-restricted-globals: off */
@@ -56,6 +52,9 @@ export default class MusicPlayer extends Component {
     super(props);
   
     this.state = {
+      classNames: "",
+      animationFinished: false,
+      showAnimationStartLabel: false,
       x:0,
       temp: "M 5 0 L 5 100",
       activeMusicIndex: 0,
@@ -73,6 +72,28 @@ export default class MusicPlayer extends Component {
     this.modeList = ['loop', 'random', 'repeat'];
     this.audioContainer = React.createRef();
   }
+
+  startStopAnimation = () => {
+      
+        const { classNames } = this.state;
+    
+        this.setState({ classNames: classNames ? "" : "animation" });
+      };
+    
+      onAnimationStart = () => {
+        this.setState({
+          animationFinished: false,
+          showAnimationStartLabel: true
+        });
+      };
+    
+      onAnimationEnd = () => {
+        this.setState({
+          animationFinished: true,
+          showAnimationStartLabel: false
+        });
+      };
+
  componentWillReceiveProps(nextProps){
    this.setState({activeMusicIndex:nextProps.index});
   this.playMusic(nextProps.index);
@@ -85,14 +106,9 @@ export default class MusicPlayer extends Component {
     this.audioContainer.current.addEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.addEventListener('ended', this.end);
   }
- componentDidUpdate()
- {
-      this.props.tempFoo("dd");
- }
-
+ 
   componentWillUnmount() {
    
-    this.props.tempFoo("hey");
     this.audioContainer.current.removeEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.removeEventListener('ended', this.end);
   }
@@ -121,6 +137,7 @@ export default class MusicPlayer extends Component {
   };
 
   handleToggle = () => {
+    this.startStopAnimation();
     const { play } = this.state;
     if (play) {
       this.audioContainer.current.pause();
@@ -131,6 +148,7 @@ export default class MusicPlayer extends Component {
   };
 
   handlePrev = () => {
+    this.startStopAnimation();
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
     if(activeMusicIndex < playlist.length-1)
@@ -153,7 +171,8 @@ export default class MusicPlayer extends Component {
   };
 
   handleNext = () => {
- 
+    this.setState({animationFinished:true});
+    this.startStopAnimation();
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
     if(activeMusicIndex < playlist.length-1)
@@ -184,6 +203,7 @@ export default class MusicPlayer extends Component {
   };
 
   playMusic = index => {
+ 
     this.setState({ activeMusicIndex: index, leftTime: 0, play: true, progress: 0 }, () => {
       this.audioContainer.current.currentTime = 0;
       this.audioContainer.current.play();
@@ -201,14 +221,8 @@ export default class MusicPlayer extends Component {
 
     return (
       
-              
-          
-  
-      <div
-        className={classNames('player', { vertical: mode === 'vertical' })}
-        style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}
-      >
-        
+      <div className={classNames('player', { vertical: mode === 'vertical' })}style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}>
+         
       
         <audio autoPlay={play} preload="auto" ref={this.audioContainer} src={activeMusic.url}>
           <track kind="captions" />
