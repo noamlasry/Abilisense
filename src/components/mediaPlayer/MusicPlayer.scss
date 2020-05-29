@@ -24,7 +24,7 @@ $player-cover-size: 240px !default;
 .player {
   max-width: 800px;
   display: flex;
-
+ 
   .player-control {
     flex: 1;
 
@@ -73,9 +73,11 @@ $player-cover-size: 240px !default;
         }
 
         .volume-bar {
+        
           width: $player-volume-width;
           opacity: 0;
           transition: opacity 0.5s linear;
+        
         }
 
         &:hover {
@@ -150,4 +152,33 @@ $player-cover-size: 240px !default;
   position: absolute;
   left: 44%;
   
+}
+.middle{
+ 
+  top: 30%;
+  left: -20%;
+}
+.volume-continer{
+  position: absolute;
+  top:36.5%;
+  height: 60%;
+  left: 38%;
+  width: 40%;
+  
+}
+
+.progress-volume{
+  position: absolute;
+  top:-25%;
+  height: 10%;
+  left: -20%;
+  width: 40%;
+}
+
+.volume-icon{
+  position: absolute;
+  top:-17%;
+  height: 30%;
+  left: -22%;
+  width: 40%;
 }

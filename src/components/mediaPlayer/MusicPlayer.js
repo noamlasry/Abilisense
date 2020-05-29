@@ -151,8 +151,13 @@ export default class MusicPlayer extends Component {
     this.startStopAnimation();
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
-    if(activeMusicIndex < playlist.length-1)
-      this.props.updateIndex(activeMusicIndex-1);
+
+   
+    if(activeMusicIndex === 0)
+      this.props.updateIndex(activeMusicIndex);
+    else
+    this.props.updateIndex(activeMusicIndex-1);  
+
     if (playMode === 'repeat') {
       this.playMusic(activeMusicIndex);
     } else if (playMode === 'loop') {
@@ -220,10 +225,13 @@ export default class MusicPlayer extends Component {
     const btnStyle = { color: btnColor };
 
     return (
+
+     
       
-      <div className={classNames('player', { vertical: mode === 'vertical' })}style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}>
+      <div id="backdrop" className={classNames('player', { vertical: mode === 'vertical' })}style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}>
+     
+    
          
-      
         <audio autoPlay={play} preload="auto" ref={this.audioContainer} src={activeMusic.url}>
           <track kind="captions" />
         </audio>
@@ -234,21 +242,27 @@ export default class MusicPlayer extends Component {
           </div>
           <div className="time-and-volume">
             <div className="time-remaining">-{formatTime(leftTime)}</div>
-            <div className="volume-control">
+            <div className="volume-continer">
+              <div className="volume-icon">
               <i className="volume-icon fa fa-volume-up" />
-              <div className="volume-bar">
+              </div>
+              <div className="progress-volume">
                 <Progress percent={volume} onClick={this.handleAdjustVolume} />
               </div>
             </div>
           </div>
+      
           <Progress percent={progress} strokeColor={progressColor} onClick={this.handleAdjustProgress} />
+        
           <div className="controls">
+         
             <button
               type="button"
               className={`fa fa-${playModeClass}`}
               style={btnStyle}
               onClick={this.handleChangePlayMode}
             />
+          
             <div>
             <div className="left">
             <button type="button" className="fa fa-step-backward" style={btnStyle} onClick={this.handlePrev} />
@@ -260,15 +274,20 @@ export default class MusicPlayer extends Component {
               onClick={this.handleToggle}
             />
             <button type="button" className="fa fa-step-forward" style={btnStyle} onClick={this.handleNext} />
+          
             </div>
-            </div>
-          </div>
          
+            </div>
+          
+          </div>
+       
+      
+       
         </div>
       
       </div>
 
- 
+    
     );
   }
 }
