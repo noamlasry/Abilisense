@@ -1,17 +1,17 @@
 .progress {
-    width: 48%;
-  
-    position: absolute;
-    top:36.5%;
-    background-color: #ece8e8;
-    outline: none;
-    opacity: 0.2;
-    cursor: pointer;
-    
-  
-    .progress-inner {
-      height: 100%;
-    
-      
-    }
+  width: 50%;
+
+ position: absolute;
+  top:36.5%;
+  opacity: 0.2;
+  background-color: #a39a9a;
+  outline: none;
+  cursor: pointer;
+
+  .progress-inner {
+   
+    height: 100%;
+    position: relative;
+   
   }
+}

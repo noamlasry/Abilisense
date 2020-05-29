@@ -1,5 +1,5 @@
 import React  from "react";
-import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
 import logo  from '../../logo.png';
 import './NavigationBar.css';
@@ -36,9 +36,7 @@ const Navigationbar = (props) => {function logout() {fire.auth().signOut(); }
           <Nav.Link >Hello:</Nav.Link>
           <Nav.Item><Nav.Link ><div className = "userName-text">{props.userName}</div></Nav.Link></Nav.Item>
 
-          <Form className="form-center">
-            <FormControl type="text" placeholder="Search" className="" />
-          </Form>
+  
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
          

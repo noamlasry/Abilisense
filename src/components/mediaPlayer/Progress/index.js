@@ -11,8 +11,8 @@ export default class Progress extends Component {
 
   static defaultProps = {
     percent: 0,
-    strokeColor: '#A9F08C',
-    strokeWidth: 107
+    strokeColor: '#9b9b9b',
+    strokeWidth: 18.5
   };
 
   constructor() {
@@ -25,14 +25,19 @@ export default class Progress extends Component {
  
 
   onClick = ({ clientX }) => {
-    const { onClick } = this.props;
-    const progressRef = this.progressContainer.current;
  
-    const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
-    onClick(progress);
+     
+      const { onClick } = this.props;
+     
+      const progressRef = this.progressContainer.current;
+      const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
+      onClick(progress);
+   
+   
   };
 
   onKeyDown = ({ keyCode }) => {
+ 
     const { percent, onClick } = this.props;
     switch (keyCode) {
       case 37:
@@ -48,31 +53,26 @@ export default class Progress extends Component {
     }
   };
 
- handleClick = () => {
-   console.log("dd");
-  document.getElementById("myDIV").style.opacity = "0.1";
- };
+
   render() {
    
     const { percent, strokeWidth } = this.props;
-    
     return (
-      <div>
-         
+    
       <div
         ref={this.progressContainer}
         role="progressbar"
         tabIndex="-1"
         className="progress"
-        style={{ height: `${strokeWidth}px` }}
+        style={{ height: `${strokeWidth}%` }}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
-        id="myDIV"
+       
       >
         <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'black' }}/>
-    
+      
       </div>
-      </div>
+     
     );
   }
 }
