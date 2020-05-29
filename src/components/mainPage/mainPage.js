@@ -37,9 +37,12 @@ class MainPage extends Component {
     audioTagHadler(){
       axios.get('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/jsonfiles')
       .then((response) => {
-        console.log(response)
+        console.log(response.data)
       });
     }
+
+
+
     getNextIndex = (nextIndex) => {
     this.setState({index:nextIndex});
   
@@ -81,7 +84,7 @@ class MainPage extends Component {
                 <Button className="btn3" variant="outline-primary">Audio tag</Button>
               </ButtonToolbar>
             <div className="btnQuality">
-              <ButtonToolbar className="btnTool">>
+              <ButtonToolbar className="btnTool">
               <h5>Quality:</h5>
 
                 <Button className="btn-small" variant="outline-dark">Good</Button>
