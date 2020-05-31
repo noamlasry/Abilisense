@@ -95,7 +95,6 @@ class MainPage extends Component {
                  
           
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
-=======
         
         
           
