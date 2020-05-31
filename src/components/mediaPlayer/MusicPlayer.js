@@ -230,7 +230,7 @@ export default class MusicPlayer extends Component {
       
       <div id="backdrop" className={classNames('player', { vertical: mode === 'vertical' })}style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}>
      
-    
+   
          
         <audio autoPlay={play} preload="auto" ref={this.audioContainer} src={activeMusic.url}>
           <track kind="captions" />

@@ -9,7 +9,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import playlist from '../mediaPlayer/playlist';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
-
+import Draggable from 'react-draggable'
 
 class MainPage extends Component {
    
@@ -17,14 +17,18 @@ class MainPage extends Component {
       super(props);
     
       this.state = {
-       
+        x: 0, y: 0 ,
         index:0,
-        x:5,
         src:'',
+<<<<<<< HEAD
         temp: "M 5 0 L 5 100",
         cropFrom: "",
         cropTo: "",
         category: "",
+=======
+     
+     
+>>>>>>> 5bcf88aec955d04ff299589d5c491861b1f4ffad
       }
       
       };
@@ -62,26 +66,46 @@ class MainPage extends Component {
     }
   }
 
+  handleDrag = (e) => {
+    console.log(e);
+    console.log(e.screenX,e.screenY);
+  //  console.log(" drag   x: "+e.clientX+" y: "+e.clientY);
+  };
+  handleStart = (e) =>{
 
+  //  console.log("start   x: "+e.clientX+" y: "+e.clientY);
+  };
+  handleStop = (e) =>{
+  //  console.log("stop   x: "+e.clientX+" y: "+e.clientY);
+  };
  
     render(){
-    
-    return(
-        <div>
-          
       
-           <Navigationbar userName={this.props.userName} />
+    return(
+      
+        <div>
+   
 
+           <Navigationbar userName={this.props.userName} />
+        
+  
+ 
            <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} index={this.props.index}/>
 
             <div className="middlenav">
-            <h2 className="label">Audio Player</h2>
+            <h2 className="label" >Audio Player</h2>
         
          
             <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.setMusicIndex.bind(this)}/>
                  
+<<<<<<< HEAD
           
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
+=======
+        
+            <Annotator src={playlist[this.state.index].url}  index={this.state.index} /> 
+        
+>>>>>>> 5bcf88aec955d04ff299589d5c491861b1f4ffad
           
               <ButtonToolbar className="btnTool">
               <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>

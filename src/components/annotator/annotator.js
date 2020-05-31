@@ -13,6 +13,7 @@ const WaveformWrapper = styled.div`
 class Annotator extends React.PureComponent {
   state = {
     src:'',
+   
     buffer: null,
     context: null,
     height: 150,
@@ -88,15 +89,20 @@ class Annotator extends React.PureComponent {
     });
   };
 
+  mouseDown = (e) =>{
+    console.log("eee"+e);
+   // this.setState({ x: e.screenX, y: e.screenY });
+  };
+
   render() {
-    
+  
     return (
    
-    <div>
+    <div   >
+  
+        <WaveformWrapper >
      
-        <WaveformWrapper>
-     
-      
+       
           <Waveform
          
             buffer={this.state.buffer}
@@ -110,6 +116,7 @@ class Annotator extends React.PureComponent {
             width={this.state.width}
           />
         </WaveformWrapper>
+      
         </div>
      
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
+import Draggable from 'react-draggable'
 
 export default class Progress extends Component {
   static propTypes = {
@@ -25,12 +26,13 @@ export default class Progress extends Component {
  
 
   onClick = ({ clientX }) => {
- 
+    console.log(clientX);
      
       const { onClick } = this.props;
      
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
+      console.log(progress);
       onClick(progress);
    
    
@@ -55,10 +57,11 @@ export default class Progress extends Component {
 
 
   render() {
-   
+   console.log(this.progressContainer.progress);
     const { percent, strokeWidth } = this.props;
     return (
-    
+      <div>
+        
       <div
         ref={this.progressContainer}
         role="progressbar"
@@ -67,12 +70,14 @@ export default class Progress extends Component {
         style={{ height: `${strokeWidth}%` }}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
-       
+        draggable={true}
       >
+        
         <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'black' }}/>
       
       </div>
-     
+    
+     </div>
     );
   }
 }
