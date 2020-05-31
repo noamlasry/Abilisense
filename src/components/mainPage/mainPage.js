@@ -20,16 +20,11 @@ class MainPage extends Component {
         x: 0, y: 0 ,
         index:0,
         src:'',
-<<<<<<< HEAD
         temp: "M 5 0 L 5 100",
         cropFrom: "",
         cropTo: "",
         category: "",
-=======
-     
-     
->>>>>>> 5bcf88aec955d04ff299589d5c491861b1f4ffad
-      }
+            }
       
       };
     
@@ -98,14 +93,11 @@ class MainPage extends Component {
          
             <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.setMusicIndex.bind(this)}/>
                  
-<<<<<<< HEAD
           
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
 =======
         
-            <Annotator src={playlist[this.state.index].url}  index={this.state.index} /> 
         
->>>>>>> 5bcf88aec955d04ff299589d5c491861b1f4ffad
           
               <ButtonToolbar className="btnTool">
               <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
