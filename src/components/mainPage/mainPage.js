@@ -22,7 +22,9 @@ class MainPage extends Component {
         x:5,
         src:'',
         temp: "M 5 0 L 5 100",
-     
+        cropFrom: "",
+        cropTo: "",
+        category: "",
       }
       
       };
@@ -34,14 +36,19 @@ class MainPage extends Component {
       
     }
    
-    audioTagHadler(){
+   
+    audioTagHadler = () =>{
       axios.post('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/postrequest')
       .then((response) => {
         console.log(response)
       });
     }
-
-
+    sendToApi(){
+      const cropFrom = document.querySelector('#cropFrom').value;
+      const cropTo = document.querySelector('#cropTo').value;
+      const category = document.querySelector('#category').value;
+    }
+    
 
     getNextIndex = (nextIndex) => {
     this.setState({index:nextIndex});
@@ -76,14 +83,10 @@ class MainPage extends Component {
           
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
           
-          
               <ButtonToolbar className="btnTool">
-              <Button className="btn3" onClick={this.audioTagHadler} variant="outline-primary">Audio tag</Button>
-              <Button className="btn3" variant="outline-primary">Audio tag</Button>
-              <Button className="btn3" variant="outline-primary">Audio tag</Button>
-              <Button className="btn3" variant="outline-primary">Audio tag</Button>
-              <Button className="btn3" variant="outline-primary">Audio tag</Button>
+              <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
               </ButtonToolbar>
+              
             <div className="btnQuality">
               <ButtonToolbar className="btnTool">
               <h5>Quality:</h5> 
@@ -93,7 +96,7 @@ class MainPage extends Component {
                 </ButtonToolbar>
                 <ButtonToolbar className="btnTool">
                 <Button className="btn4" onClick={this.audioTagHadler} variant="outline-success">Submit</Button>
-                <Button className="btn4" variant="outline-danger">cancel</Button>
+                <Button className="btn4" variant="outline-danger" type="submit">cancel</Button>
               </ButtonToolbar>
             </div>
         </div>

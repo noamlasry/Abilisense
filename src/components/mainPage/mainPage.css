@@ -23,8 +23,11 @@
 
 }
 .btn3{
-width: 17%;
-margin: auto;
+width: 50%;
+margin-top: 10%;
+position: relative;
+margin-left: 25%;
+margin-right: 25%;
 }
 .btn-small{
     width: 20%;
