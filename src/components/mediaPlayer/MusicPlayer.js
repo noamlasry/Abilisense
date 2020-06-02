@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Progress from './Progress';
 import './MusicPlayer.scss';
 import "./styles.css";
+import VolumeProgressBar from '../mediaPlayer/Progress/volumeProgressBar'
 
 const formatTime = time => {
   /* eslint no-restricted-globals: off */
@@ -56,7 +57,6 @@ export default class MusicPlayer extends Component {
       animationFinished: false,
       showAnimationStartLabel: false,
       x:0,
-      temp: "M 5 0 L 5 100",
       activeMusicIndex: 0,
       leftTime: 0,
       play: props.autoplay || false,
@@ -247,7 +247,8 @@ export default class MusicPlayer extends Component {
               <i className="volume-icon fa fa-volume-up" />
               </div>
               <div className="progress-volume">
-                <Progress percent={volume} onClick={this.handleAdjustVolume} />
+              <VolumeProgressBar percent={volume} onClick={this.handleAdjustVolume} />
+           
               </div>
             </div>
           </div>
