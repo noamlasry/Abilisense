@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
-import Draggable from 'react-draggable'
 import ClickNHold from 'react-click-n-hold';
 
 
@@ -16,7 +15,6 @@ export default class Progress extends Component {
     percent: 0,
     strokeColor: '#9b9b9b',
     strokeWidth: 18.5,
-
     
   };
 
@@ -25,7 +23,9 @@ export default class Progress extends Component {
     this.state ={
       progressParamater:0,
       dragArea: false,
-      progressWidth:0
+      progressWidth:0,
+      clickAppend:false,
+   
     };
     this.progressContainer = React.createRef();
   }
@@ -36,6 +36,7 @@ export default class Progress extends Component {
       const { onClick } = this.props; 
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
+      console.log("progress: "+progress);
       onClick(progress);
   };
 
@@ -61,18 +62,20 @@ export default class Progress extends Component {
    //====================================
    handleDrag = (e) =>
    {
-     console.log(e);
-     console.log(e.movementX);
+     
      if(this.state.dragArea)
      {
       if(e.movementX > 0)
-       this.setState({progressWidth:this.state.progressWidth+0.5},console.log("progressWidth: "+this.state.progressWidth));
+       this.setState({progressWidth:this.state.progressWidth+0.8},console.log(""));
       else if(e.movementX < 0)
-       this.setState({progressWidth:this.state.progressWidth-0.5},console.log(""));
+       this.setState({progressWidth:this.state.progressWidth-0.8},console.log(""));
      }
    };
    start = (e) =>{
+    this.setState({progressWidth:0});
+    this.setState({clickAppend:true});
     this.setState({dragArea:true});
+    this.setState({progreesBarPosition:e.screenX});
     console.log('START:'); 
     console.log(e);
 	} 
@@ -84,16 +87,26 @@ export default class Progress extends Component {
         this.setState({dragArea:false});     
 	} 
     
-	clickNHold(e){
+	clickNHold = (e) =>{
+   
     console.log('CLICK AND HOLD:');  
     console.log(e);
 	} 
    //=====================================
  
   render() {  
+    var progreesBarPosition;
     const { percent, strokeWidth } = this.props;
-    const {progressWidth} = this.state;
-   
+    var {progressWidth,clickAppend} = this.state;
+    
+    if(clickAppend)
+    {
+      this.setState({clickAppend:false});
+      progreesBarPosition = percent;
+    
+    
+    }
+  
     return (
       <div>
         
@@ -116,11 +129,11 @@ export default class Progress extends Component {
           <div 
            className="progress-inner" 
        
-           style={{ left: `${percent * 100}%`, backgroundColor: 'black',position:'absolute' ,width:'10px'}}/>
+           style={{ left: `${percent * 100}%`, backgroundColor: '#422523',position:'absolute' ,width:'10px',opacity:1}}/>
                 <div 
            className="progress-inner" 
        
-           style={{ left: `${percent * 100}%`, backgroundColor: 'blue',position:'absolute' ,width:`${progressWidth}%`}}/>
+           style={{ left: `${progreesBarPosition*100}%`, backgroundColor: 'black',position:'absolute' ,width:`${progressWidth}%`,opacity:0.7}}/>
       
        </div>
        </div>
