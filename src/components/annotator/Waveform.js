@@ -48,16 +48,26 @@ class Waveform extends React.Component {
       props.width
     );
   };
+  handleStartDrag = (e) =>{
+    console.log(e);
+  };
+  temp2 = (e) =>{
+    console.log(e)
+  };
 
   render() {
     return (
       <canvas
+     
         ref={canvas => (this.canvas = canvas)}
         style={{
           height: '100%',
-          width: '100%'
+          width: '100%',
+          
+          
         }}
       />
+    
     );
   }
 }

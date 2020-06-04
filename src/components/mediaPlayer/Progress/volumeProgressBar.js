@@ -26,20 +26,20 @@ export default class Progress extends Component {
  
 
   onClick = ({ clientX }) => {
-    console.log(clientX);
+   
      
       const { onClick } = this.props;
      
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
-      console.log(progress);
+     
       onClick(progress);
    
    
   };
 
   onKeyDown = ({ keyCode }) => {
- 
+    console.log(keyCode);
     const { percent, onClick } = this.props;
     switch (keyCode) {
       case 37:
@@ -57,7 +57,7 @@ export default class Progress extends Component {
 
 
   render() {
-   console.log(this.progressContainer.progress);
+ 
     const { percent, strokeWidth } = this.props;
     return (
       <div>
@@ -73,7 +73,7 @@ export default class Progress extends Component {
         draggable={true}
       >
         
-        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'black' }}/>
+        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'blue' }}/>
       
       </div>
     
