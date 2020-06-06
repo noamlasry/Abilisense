@@ -36,6 +36,7 @@ export default class Progress extends Component {
 
 
   onClick = ({ clientX }) => {
+
       const { onClick } = this.props; 
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
@@ -61,7 +62,7 @@ export default class Progress extends Component {
 
    handleDrag = (e) =>
    {
-     
+    
      if(this.state.dragArea)
      {
 
@@ -73,6 +74,7 @@ export default class Progress extends Component {
      }
    };
    start = (e) =>{
+
     this.setState({startDrag:e.screenX});
     this.setState({progressWidth:0});
     this.setState({clickAppend:true});
@@ -80,19 +82,35 @@ export default class Progress extends Component {
     this.setState({progreesBarPosition:e.screenX});
 	} 
     
-	end = ()=>{this.setState({dragArea:false});} 
+  end = ()=>{this.setState({dragArea:false});}
+  
+  componentWillReceiveProps()
+  {
+    var {clickAppend} = this.state;
+    const { percent } = this.props;
+    if(percent === 0)
+     this.setState({progressWidth:0});
     
+     let elem = document.querySelector('#progress');
+     let rect = elem.getBoundingClientRect();
+     
+     
+     if(rect.x > this.state.startDrag+this.state.progressWidth)
+     {
+       
+     }
+     if(clickAppend)
+     {
+       this.setState({clickAppend:false});
+       this.setState({progreesBarPosition:percent}); 
+     }
+  }
+
   render() {  
   
     const { percent, strokeWidth } = this.props;
-    var {progressWidth,clickAppend} = this.state;
+    var {progressWidth} = this.state;
  
-    if(clickAppend)
-    {
-      this.setState({clickAppend:false});
-      this.setState({progreesBarPosition:percent}); 
-    }
-  
     return (
       <div>
     
@@ -110,7 +128,7 @@ export default class Progress extends Component {
             <div 
               className="progress-inner" 
               id="progress"
-              style={{ left: `${percent * 100}%`, backgroundColor: 'black',position:'absolute' ,width:'5px',opacity:1}}/>
+              style={{ left: `${percent * 100}%`, backgroundColor: 'black',position:'absolute' ,width:'2px',opacity:1}}/>
             <div 
             
               className="progress-inner" 
