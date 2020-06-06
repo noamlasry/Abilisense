@@ -36,9 +36,16 @@ class MainPage extends Component {
       
     }
    
-   
+    
     audioTagHadler = () =>{
-      axios.post('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/postrequest')
+    const data = {
+      cropFrom: this.state.cropFrom,
+      cropTo: this.state.cropTo,
+      category: this.state.category,
+      key: this.state.key,
+      lastCrop: this.state.lastCrop,
+    };
+      axios.post('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/postrequest',{data})
       .then((response) => {
         console.log(response)
       });
