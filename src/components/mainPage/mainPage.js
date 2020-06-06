@@ -10,31 +10,43 @@ import playlist from '../mediaPlayer/playlist';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
 
-
 class MainPage extends Component {
    
     constructor(props) 
     {
       super(props);
     
-      this.state =
-      {
-        x: 0, y: 0 ,
+      this.state = {
+        x: 0,
+        y: 0 ,
         index:0,
         src:'',
-        cropFrom: "",
-        cropTo: "",
-        category: "",
-       }
+        temp: "M 5 0 L 5 100",
+        cropFrom: "00:10",
+        cropTo: "00:25",
+        category: "baby",
+        key: "something",
+        lastCrop: false,
+      }  
     };
-     
+    
+  
+  
     setMusicIndex = (newIndex) => {
         this.setState({index:newIndex});
       
     }
    
+    
     audioTagHadler = () =>{
-      axios.post('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/postrequest')
+    const data = {
+      cropFrom: this.state.cropFrom,
+      cropTo: this.state.cropTo,
+      category: this.state.category,
+      key: this.state.key,
+      lastCrop: this.state.lastCrop,
+    };
+      axios.post('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/postrequest',{data})
       .then((response) => {
         console.log(response)
       });
