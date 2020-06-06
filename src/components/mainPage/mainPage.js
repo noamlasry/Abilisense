@@ -9,7 +9,6 @@ import 'react-h5-audio-player/lib/styles.css';
 import playlist from '../mediaPlayer/playlist';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
-import Draggable from 'react-draggable'
 
 class MainPage extends Component {
    
@@ -17,16 +16,18 @@ class MainPage extends Component {
       super(props);
     
       this.state = {
-        x: 0, y: 0 ,
+        x: 0,
+        y: 0 ,
         index:0,
         src:'',
         temp: "M 5 0 L 5 100",
-        cropFrom: "",
-        cropTo: "",
-        category: "",
-            }
-      
-      };
+        cropFrom: "00:10",
+        cropTo: "00:25",
+        category: "baby",
+        key: "something",
+        lastCrop: false,
+      }  
+    };
     
   
   
@@ -42,11 +43,12 @@ class MainPage extends Component {
         console.log(response)
       });
     }
-    sendToApi(){
-      const cropFrom = document.querySelector('#cropFrom').value;
-      const cropTo = document.querySelector('#cropTo').value;
-      const category = document.querySelector('#category').value;
-    }
+    // sendToApi(){
+    //   const cropFrom = document.querySelector('#cropFrom').value;
+    //   const cropTo = document.querySelector('#cropTo').value;
+    //   const category = document.querySelector('#category').value;
+    //   const key = document.querySelector('#key').value;
+    // }
     
 
     getNextIndex = (nextIndex) => {

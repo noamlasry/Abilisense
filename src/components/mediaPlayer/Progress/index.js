@@ -25,23 +25,22 @@ export default class Progress extends Component {
       dragArea: false,
       progressWidth:0,
       clickAppend:false,
-   
+      temp : 0,
+      temp1 : 0,
+      progreesBarPosition:0,
     };
     this.progressContainer = React.createRef();
   }
  
 
   onClick = ({ clientX }) => {
-    console.log(clientX);
       const { onClick } = this.props; 
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
-      console.log("progress: "+progress);
       onClick(progress);
   };
 
   onKeyDown = ({ keyCode }) => {
-    console.log(keyCode);
     const { percent, onClick } = this.props;
     switch (keyCode) {
       case 37:
@@ -65,6 +64,11 @@ export default class Progress extends Component {
      
      if(this.state.dragArea)
      {
+       console.log(e.screenX);
+       this.temp1 = e.screenX - this.temp;
+       
+
+       this.temp = e.screenX;
       if(e.movementX > 0)
        this.setState({progressWidth:this.state.progressWidth+0.8},console.log(""));
       else if(e.movementX < 0)
@@ -76,21 +80,16 @@ export default class Progress extends Component {
     this.setState({clickAppend:true});
     this.setState({dragArea:true});
     this.setState({progreesBarPosition:e.screenX});
-    console.log('START:'); 
-    console.log(e);
+    
 	} 
     
 	end = (e, enough)=>{
-		console.log('END');
-        console.log(enough ? 'Click released after enough time': 'Click released too soon:');   
-        console.log(e);    
+		  
         this.setState({dragArea:false});     
 	} 
     
 	clickNHold = (e) =>{
    
-    console.log('CLICK AND HOLD:');  
-    console.log(e);
 	} 
    //=====================================
  
@@ -102,7 +101,7 @@ export default class Progress extends Component {
     if(clickAppend)
     {
       this.setState({clickAppend:false});
-      progreesBarPosition = percent;
+      this.setState({progreesBarPosition:percent});
     
     
     }

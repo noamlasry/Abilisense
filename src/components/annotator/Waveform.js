@@ -63,7 +63,6 @@ class Waveform extends React.Component {
         style={{
           height: '100%',
           width: '100%',
-       
           
           
           
@@ -78,7 +77,7 @@ Waveform.defaultProps = {
   height: 300,
   waveStyle: {
     animate: true,
-    color: '#000',
+    color: '#fff',
     plot: 'bar',
     pointWidth: 1
   },
