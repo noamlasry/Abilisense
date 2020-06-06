@@ -2,17 +2,15 @@
   width: 50%;
 
   position: absolute;
-  top:31%;
-  opacity: 0.5;
+  top:36.5%;
+  opacity: 0.7;
   background-color: #a39a9a;
   outline: none;
   cursor: pointer;
 
   .progress-inner{
-   
-    height: 100%;
-    
-    opacity:0.5;
-    background-color: blue;
+    height: 100%;   
+    opacity: 0.4;
+  
   }
 }

@@ -69,12 +69,7 @@ export default class Progress extends Component {
       let rect = elem.getBoundingClientRect();
       var offset = e.screenX - rect.x;
    
-      if(e.movementX > 0)
-        this.setState({progressWidth:offset});
-      
-      else if(e.movementX < 0)
-        this.setState({progressWidth:offset});
-      
+      this.setState({progressWidth:offset});
      }
    };
    start = (e) =>{
@@ -115,10 +110,11 @@ export default class Progress extends Component {
             <div 
               className="progress-inner" 
               id="progress"
-              style={{ left: `${percent * 100}%`, backgroundColor: 'red',position:'absolute' ,width:'10px',opacity:1}}/>
+              style={{ left: `${percent * 100}%`, backgroundColor: 'black',position:'absolute' ,width:'5px',opacity:1}}/>
             <div 
+            
               className="progress-inner" 
-              style={{ left: `${this.state.progreesBarPosition*100}%`, backgroundColor: 'black',position:'absolute' ,width:`${progressWidth}px`,opacity:0.7}}/>
+              style={{ left: `${this.state.progreesBarPosition*100}%`, backgroundColor: 'blue',position:'absolute' ,width:`${progressWidth}px`,opacity:0.2, cursor: 'ew-resize'}}/>
           </div>
        </div>
       </ClickNHold>

@@ -17,11 +17,8 @@ class MainPage extends Component {
       super(props);
     
       this.state = {
-        x: 0,
-        y: 0 ,
         index:0,
         src:'',
-        temp: "M 5 0 L 5 100",
         cropFrom: "00:10",
         cropTo: "00:25",
         category: "baby",
