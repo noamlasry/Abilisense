@@ -57,19 +57,19 @@ class Waveform extends React.Component {
 
   render() {
     return (
-      <canvas
      
+      <canvas
+        
         ref={canvas => (this.canvas = canvas)}
         style={{
           height: '100%',
           width: '100%',
-       
-          
+      
           
           
         }}
       />
-    
+   
     );
   }
 }
@@ -79,6 +79,7 @@ Waveform.defaultProps = {
   waveStyle: {
     animate: true,
     color: '#000',
+   
     plot: 'bar',
     pointWidth: 1
   },

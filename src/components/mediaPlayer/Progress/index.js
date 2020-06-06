@@ -4,6 +4,7 @@ import './index.scss';
 import ClickNHold from 'react-click-n-hold';
 
 
+
 export default class Progress extends Component {
   static propTypes = {
     percent: PropTypes.number,
@@ -13,7 +14,7 @@ export default class Progress extends Component {
 
   static defaultProps = {
     percent: 0,
-    strokeColor: '#9b9b9b',
+    strokeColor: '##081C24',
     strokeWidth: 18.5,
     
   };
@@ -25,23 +26,23 @@ export default class Progress extends Component {
       dragArea: false,
       progressWidth:0,
       clickAppend:false,
+      startDrag:0,
+      progreesBarPosition:0
    
     };
     this.progressContainer = React.createRef();
   }
  
 
+
   onClick = ({ clientX }) => {
-    console.log(clientX);
       const { onClick } = this.props; 
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
-      console.log("progress: "+progress);
       onClick(progress);
   };
 
   onKeyDown = ({ keyCode }) => {
-    console.log(keyCode);
     const { percent, onClick } = this.props;
     switch (keyCode) {
       case 37:
@@ -58,86 +59,69 @@ export default class Progress extends Component {
   };
   shouldComponentUpdate(){return true;}
 
-
-   //====================================
    handleDrag = (e) =>
    {
      
      if(this.state.dragArea)
      {
+
+      let elem = document.querySelector('#progress');
+      let rect = elem.getBoundingClientRect();
+      var offset = e.screenX - rect.x;
+   
       if(e.movementX > 0)
-       this.setState({progressWidth:this.state.progressWidth+0.8},console.log(""));
+        this.setState({progressWidth:offset});
+      
       else if(e.movementX < 0)
-       this.setState({progressWidth:this.state.progressWidth-0.8},console.log(""));
+        this.setState({progressWidth:offset});
+      
      }
    };
    start = (e) =>{
+    this.setState({startDrag:e.screenX});
     this.setState({progressWidth:0});
     this.setState({clickAppend:true});
     this.setState({dragArea:true});
     this.setState({progreesBarPosition:e.screenX});
-    console.log('START:'); 
-    console.log(e);
 	} 
     
-	end = (e, enough)=>{
-		console.log('END');
-        console.log(enough ? 'Click released after enough time': 'Click released too soon:');   
-        console.log(e);    
-        this.setState({dragArea:false});     
-	} 
+	end = ()=>{this.setState({dragArea:false});} 
     
-	clickNHold = (e) =>{
-   
-    console.log('CLICK AND HOLD:');  
-    console.log(e);
-	} 
-   //=====================================
- 
   render() {  
-    var progreesBarPosition;
+  
     const { percent, strokeWidth } = this.props;
     var {progressWidth,clickAppend} = this.state;
-    
+ 
     if(clickAppend)
     {
       this.setState({clickAppend:false});
-      progreesBarPosition = percent;
-    
-    
+      this.setState({progreesBarPosition:percent}); 
     }
   
     return (
       <div>
-        
-			 
-      
-  
-     <ClickNHold
     
-     time={2} // Time to keep pressing. Default is 2
-     onStart={this.start} // Start callback
-     onClickNHold={this.clickNHold} //Timeout callback
-     onEnd={this.end} > 
-     
-       <div>
-       <div
-          onPointerMove={this.handleDrag}
-          ref={this.progressContainer} role="progressbar" tabIndex="-1" className="progress"
-          style={{ height: `${strokeWidth}%` }} onMouseDown ={this.onClick} onKeyDown={this.onKeyDown} >
+      <ClickNHold
+    
+           time={2} // Time to keep pressing. Default is 2
+           onStart={this.start} // Start callback
+           onEnd={this.end} >      
+        <div>
+          <div
+            onPointerMove={this.handleDrag}
+            ref={this.progressContainer} role="progressbar" tabIndex="-1" className="progress"
+            style={{ height: `${strokeWidth}%` }} onMouseDown ={this.onClick} onKeyDown={this.onKeyDown} >
         
-          <div 
-           className="progress-inner" 
-       
-           style={{ left: `${percent * 100}%`, backgroundColor: '#422523',position:'absolute' ,width:'10px',opacity:1}}/>
-                <div 
-           className="progress-inner" 
-       
-           style={{ left: `${progreesBarPosition*100}%`, backgroundColor: 'black',position:'absolute' ,width:`${progressWidth}%`,opacity:0.7}}/>
-      
+            <div 
+              className="progress-inner" 
+              id="progress"
+              style={{ left: `${percent * 100}%`, backgroundColor: 'red',position:'absolute' ,width:'10px',opacity:1}}/>
+            <div 
+              className="progress-inner" 
+              style={{ left: `${this.state.progreesBarPosition*100}%`, backgroundColor: 'black',position:'absolute' ,width:`${progressWidth}px`,opacity:0.7}}/>
+          </div>
        </div>
-       </div>
-      	</ClickNHold>
+      </ClickNHold>
 
  </div>
     );

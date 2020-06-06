@@ -26,7 +26,7 @@ class Annotator extends React.PureComponent {
     showPosition: true,
     waveStyle: {
       animate: true,
-      color:'#1ac3e7',
+      color:'#081C24',
       plot: 'bar',
       pointWidth: 1
     },
