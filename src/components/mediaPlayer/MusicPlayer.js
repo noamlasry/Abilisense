@@ -7,16 +7,23 @@ import "./styles.css";
 import VolumeProgressBar from '../mediaPlayer/Progress/volumeProgressBar'
 
 const formatTime = time => {
+  
+         
+ 
   /* eslint no-restricted-globals: off */
   if (isNaN(time) || time === 0) {
     return '';
   }
   const mins = Math.floor(time / 60);
+
   const secs = (time % 60).toFixed();
+
+
+  
+  
+  
   return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
 };
-
-
 
 const getPlayModeClass = playMode => {
   if (playMode === 'loop') return 'refresh';
@@ -53,6 +60,7 @@ export default class MusicPlayer extends Component {
     super(props);
   
     this.state = {
+      count:0,
       classNames: "",
       animationFinished: false,
       showAnimationStartLabel: false,
@@ -73,13 +81,7 @@ export default class MusicPlayer extends Component {
     this.audioContainer = React.createRef();
   }
 
-  startStopAnimation = () => {
-      
-        const { classNames } = this.state;
-    
-        this.setState({ classNames: classNames ? "" : "animation" });
-      };
-    
+
       onAnimationStart = () => {
         this.setState({
           animationFinished: false,
@@ -124,10 +126,13 @@ export default class MusicPlayer extends Component {
     this.handleNext();
   };
 
-  handleAdjustProgress = value => {
+  handleAdjustProgress = (value,pauseOrPlay) => {
     const currentTime = this.audioContainer.current.duration * value;
     this.audioContainer.current.currentTime = currentTime;
-    this.setState({ play: true, progress: value }, () => this.audioContainer.current.play());
+    if(pauseOrPlay)
+     this.setState({ play: false, progress: value }, () => this.audioContainer.current.pause());
+     else
+     this.setState({ play: true, progress: value }, () => this.audioContainer.current.play());
   };
 
   handleAdjustVolume = value => {
@@ -137,7 +142,7 @@ export default class MusicPlayer extends Component {
   };
 
   handleToggle = () => {
-    this.startStopAnimation();
+  
     const { play } = this.state;
     if (play) {
       this.audioContainer.current.pause();
@@ -148,7 +153,7 @@ export default class MusicPlayer extends Component {
   };
 
   handlePrev = () => {
-    this.startStopAnimation();
+
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
 
@@ -177,7 +182,7 @@ export default class MusicPlayer extends Component {
 
   handleNext = () => {
     this.setState({animationFinished:true});
-    this.startStopAnimation();
+
     const { playlist } = this.props;
     const { playMode, activeMusicIndex } = this.state;
     if(activeMusicIndex < playlist.length-1)
@@ -214,7 +219,13 @@ export default class MusicPlayer extends Component {
       this.audioContainer.current.play();
     });
   };
+  handleProgreesData = (e) =>{
+
+    this.handleAdjustProgress(e,true);
+ 
+  }
   
+ 
 
   render() {
    
@@ -226,8 +237,8 @@ export default class MusicPlayer extends Component {
 
     return (
 
-     
-      
+     <div>
+       
       <div id="backdrop" className={classNames('player', { vertical: mode === 'vertical' })}style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}>
      
    
@@ -253,7 +264,7 @@ export default class MusicPlayer extends Component {
             </div>
           </div>
       
-          <Progress percent={progress} strokeColor={progressColor} onClick={this.handleAdjustProgress} />
+          <Progress sendProgressData={this.handleProgreesData.bind(this)} percent={progress} strokeColor={progressColor} onClick={this.handleAdjustProgress}  />
         
           <div className="controls">
          
@@ -287,7 +298,7 @@ export default class MusicPlayer extends Component {
         </div>
       
       </div>
-
+   </div>
     
     );
   }

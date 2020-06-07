@@ -67,13 +67,13 @@ export default class Progress extends Component {
         role="progressbar"
         tabIndex="-1"
         className="progress"
-        style={{ height: `${strokeWidth}%` }}
+        style={{ height: `${strokeWidth}%`,cursor: 'pointer'}}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
         draggable={true}
       >
         
-        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'blue' }}/>
+        <div className="progress-inner" style={{ width: `${percent * 100}%`, backgroundColor: 'blue',cursor: 'pointer' }}/>
       
       </div>
     

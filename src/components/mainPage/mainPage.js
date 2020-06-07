@@ -71,7 +71,8 @@ class MainPage extends Component {
             <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.setMusicIndex.bind(this)}/>
                           
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
-                 
+            
+
               <ButtonToolbar className="btnTool">
               <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
               </ButtonToolbar>

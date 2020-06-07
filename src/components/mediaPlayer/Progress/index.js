@@ -27,7 +27,8 @@ export default class Progress extends Component {
       progressWidth:0,
       clickAppend:false,
       startDrag:0,
-      progreesBarPosition:0
+      progreesBarPosition:0,
+      startDragAreaProgreesPosition:0
    
     };
     this.progressContainer = React.createRef();
@@ -36,10 +37,12 @@ export default class Progress extends Component {
 
 
   onClick = ({ clientX }) => {
-
+    
       const { onClick } = this.props; 
+      
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
+      this.setState({startDragAreaProgreesPosition:progress});
       onClick(progress);
   };
 
@@ -86,6 +89,7 @@ export default class Progress extends Component {
   
   componentWillReceiveProps()
   {
+    const {startDrag,progressWidth,startDragAreaProgreesPosition} = this.state;
     var {clickAppend} = this.state;
     const { percent } = this.props;
     if(percent === 0)
@@ -93,17 +97,20 @@ export default class Progress extends Component {
     
      let elem = document.querySelector('#progress');
      let rect = elem.getBoundingClientRect();
-     
-     
-     if(rect.x > this.state.startDrag+this.state.progressWidth)
-     {
-       
-     }
+
+     if(rect.x > startDrag+progressWidth && rect.x < startDrag+progressWidth+1 && progressWidth > 0 )
+       this.props.sendProgressData(startDragAreaProgreesPosition);
+    
      if(clickAppend)
      {
        this.setState({clickAppend:false});
        this.setState({progreesBarPosition:percent}); 
      }
+  }
+  temp = () =>{
+    const {startDragAreaProgreesPosition} = this.state;
+    console.log(startDragAreaProgreesPosition)
+    this.props.sendProgressData(startDragAreaProgreesPosition);
   }
 
   render() {  
@@ -113,7 +120,7 @@ export default class Progress extends Component {
  
     return (
       <div>
-    
+  
       <ClickNHold
     
            time={2} // Time to keep pressing. Default is 2
