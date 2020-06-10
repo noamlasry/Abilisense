@@ -58,8 +58,6 @@ class Annotator extends React.PureComponent {
   }
 
   handleFile = event => {
-   
-   
     this.getFile(this.state.src);
   };
 
@@ -77,22 +75,6 @@ class Annotator extends React.PureComponent {
     }
   };
 
-  start = () => {
-    this.setState({
-      run: true
-    });
-  };
-
-  stop = () => {
-    this.setState({
-      run: false
-    });
-  };
-
-  mouseDown = (e) =>{
-    console.log("eee"+e);
-   // this.setState({ x: e.screenX, y: e.screenY });
-  };
 
   render() {
   

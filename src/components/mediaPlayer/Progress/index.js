@@ -27,6 +27,9 @@ export default class Progress extends Component {
       progressWidth:0,
       clickAppend:false,
       startDrag:0,
+      cropFrom:'00:00:00',
+      cropTo:'00:00:00',
+      totalCropInsec:'00:00:00',
       progreesBarPosition:0,
       startDragAreaProgreesPosition:0
    
@@ -37,12 +40,13 @@ export default class Progress extends Component {
 
 
   onClick = ({ clientX }) => {
-    
-      const { onClick } = this.props; 
-      
+  
+      const { onClick ,audioTotalTime} = this.props;    
+      console.log(this.props)
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
       this.setState({startDragAreaProgreesPosition:progress});
+      this.setState({cropFrom:new Date(audioTotalTime*progress*1000).toISOString().substr(11,8)})
       onClick(progress);
   };
 
@@ -63,8 +67,11 @@ export default class Progress extends Component {
   };
   shouldComponentUpdate(){return true;}
 
+  
    handleDrag = (e) =>
    {
+    const {audioTotalTime} = this.props;
+    const {progressWidth,startDragAreaProgreesPosition} = this.state;
     
      if(this.state.dragArea)
      {
@@ -72,58 +79,77 @@ export default class Progress extends Component {
       let elem = document.querySelector('#progress');
       let rect = elem.getBoundingClientRect();
       var offset = e.screenX - rect.x;
-   
-      this.setState({progressWidth:offset});
+    
+      if(offset > 3)
+      {
+        this.setState({progressWidth:offset});
+        this.setState({totalCropInsec:new Date(audioTotalTime*(progressWidth/492)*1000).toISOString().substr(11,8)});
+        this.setState({cropTo:new Date((audioTotalTime*startDragAreaProgreesPosition*1000)+(audioTotalTime*(progressWidth/492)*1000)).toISOString().substr(11,8)})
+      }
+        
      }
    };
    start = (e) =>{
-
+  
     this.setState({startDrag:e.screenX});
     this.setState({progressWidth:0});
+    this.setState({cropTo:'00:00:00'});
     this.setState({clickAppend:true});
     this.setState({dragArea:true});
     this.setState({progreesBarPosition:e.screenX});
 	} 
     
-  end = ()=>{this.setState({dragArea:false});}
+  end = ()=>{
+    console.log("end drag")
+    this.setState({dragArea:false});}
   
   componentWillReceiveProps()
   {
-    const {startDrag,progressWidth,startDragAreaProgreesPosition} = this.state;
+    
+    const {progressWidth,startDragAreaProgreesPosition} = this.state;
     var {clickAppend} = this.state;
-    const { percent } = this.props;
-    if(percent === 0)
-     this.setState({progressWidth:0});
-    
-     let elem = document.querySelector('#progress');
-     let rect = elem.getBoundingClientRect();
+    const { percent,audioTotalTime } = this.props;
 
-     if(rect.x > startDrag+progressWidth && rect.x < startDrag+progressWidth+1 && progressWidth > 0 )
-       this.props.sendProgressData(startDragAreaProgreesPosition);
-    
+    if(percent === 0)
+    {
+      this.setState({cropTo:'00:00:00'});
+      this.setState({cropFrom:'00:00:00'});
+      this.setState({progressWidth:0});
+    }
+     
+
+    var dispalyTimeInSec = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
+    var cropToInSec = new Date((audioTotalTime*startDragAreaProgreesPosition*1000)+(audioTotalTime*(progressWidth/500)*1000)).toISOString().substr(11,8);
+
+     if(dispalyTimeInSec === cropToInSec && progressWidth > 3)
+      this.props.sendProgressData(startDragAreaProgreesPosition);
+
      if(clickAppend)
      {
        this.setState({clickAppend:false});
        this.setState({progreesBarPosition:percent}); 
      }
   }
-  temp = () =>{
-    const {startDragAreaProgreesPosition} = this.state;
-    console.log(startDragAreaProgreesPosition)
-    this.props.sendProgressData(startDragAreaProgreesPosition);
-  }
+
+  
+	clickNHold = (e) =>{
+   
+    console.log('CLICK AND HOLD:');  
+    console.log(e);
+	} 
 
   render() {  
-  
-    const { percent, strokeWidth } = this.props;
+
+    const { percent, strokeWidth ,audioTotalTime} = this.props;
     var {progressWidth} = this.state;
- 
+    const displayTime = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
+
     return (
       <div>
   
       <ClickNHold
-    
-           time={2} // Time to keep pressing. Default is 2
+           onClickNHold={this.clickNHold} //Timeout callback
+           time={1} // Time to keep pressing. Default is 2
            onStart={this.start} // Start callback
            onEnd={this.end} >      
         <div>
@@ -141,9 +167,13 @@ export default class Progress extends Component {
               className="progress-inner" 
               style={{ left: `${this.state.progreesBarPosition*100}%`, backgroundColor: 'blue',position:'absolute' ,width:`${progressWidth}px`,opacity:0.2, cursor: 'ew-resize'}}/>
           </div>
+        
+          <div className="time" >{displayTime}</div>
+          
        </div>
+      
       </ClickNHold>
-
+      <div className="cropping">crop from: {this.state.cropFrom} to: {this.state.cropTo}</div>
  </div>
     );
   }

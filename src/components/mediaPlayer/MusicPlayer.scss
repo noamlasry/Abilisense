@@ -56,10 +56,14 @@ $player-cover-size: 240px !default;
       line-height: 2;
 
       .time-remaining {
-        width: $player-time-width;
-        margin-right: 10px;
-        text-align: left;
-        font-weight: $font-weight;
+        color: black;
+        position: absolute;
+        left: 25%;
+        font-size: 120%;
+        top: 21.5%;
+        size: 100%;
+   
+        
       }
 
       .volume-control {
