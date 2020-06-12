@@ -31,7 +31,8 @@ export default class Progress extends Component {
       cropTo:'00:00:00',
       totalCropInsec:'00:00:00',
       progreesBarPosition:0,
-      startDragAreaProgreesPosition:0
+      startDragAreaProgreesPosition:0,
+      endDragAreaPosition:0
    
     };
     this.progressContainer = React.createRef();
@@ -40,13 +41,14 @@ export default class Progress extends Component {
 
 
   onClick = ({ clientX }) => {
-  
+      console.log(clientX)
       const { onClick ,audioTotalTime} = this.props;    
       console.log(this.props)
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
       this.setState({startDragAreaProgreesPosition:progress});
       this.setState({cropFrom:new Date(audioTotalTime*progress*1000).toISOString().substr(11,8)})
+      
       onClick(progress);
   };
 
@@ -70,8 +72,9 @@ export default class Progress extends Component {
   
    handleDrag = (e) =>
    {
+    
     const {audioTotalTime} = this.props;
-    const {progressWidth,startDragAreaProgreesPosition} = this.state;
+    const {progressWidth} = this.state;
     
      if(this.state.dragArea)
      {
@@ -79,14 +82,17 @@ export default class Progress extends Component {
       let elem = document.querySelector('#progress');
       let rect = elem.getBoundingClientRect();
       var offset = e.screenX - rect.x;
-    
+      const progressRef = this.progressContainer.current;
+      const progress = (e.screenX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
+      this.setState({endDragAreaPosition:progress})
       if(offset > 3)
       {
         this.setState({progressWidth:offset});
-        this.setState({totalCropInsec:new Date(audioTotalTime*(progressWidth/492)*1000).toISOString().substr(11,8)});
-        this.setState({cropTo:new Date((audioTotalTime*startDragAreaProgreesPosition*1000)+(audioTotalTime*(progressWidth/492)*1000)).toISOString().substr(11,8)})
+        this.setState({totalCropInsec:new Date(audioTotalTime*(progressWidth/510)*1000).toISOString().substr(11,8)});
+        this.setState({cropTo:new Date(progress*audioTotalTime*1000).toISOString().substr(11,8)})
       }
-        
+      
+      console.log(progress)
      }
    };
    start = (e) =>{
@@ -106,7 +112,7 @@ export default class Progress extends Component {
   componentWillReceiveProps()
   {
     
-    const {progressWidth,startDragAreaProgreesPosition} = this.state;
+    const {progressWidth,startDragAreaProgreesPosition,endDragAreaPosition} = this.state;
     var {clickAppend} = this.state;
     const { percent,audioTotalTime } = this.props;
 
@@ -118,10 +124,12 @@ export default class Progress extends Component {
     }
      
 
-    var dispalyTimeInSec = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
-    var cropToInSec = new Date((audioTotalTime*startDragAreaProgreesPosition*1000)+(audioTotalTime*(progressWidth/500)*1000)).toISOString().substr(11,8);
+    var ccurrentProgress = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
+    var endDragProgress = new Date(audioTotalTime*endDragAreaPosition*1000).toISOString().substr(11,8);
 
-     if(dispalyTimeInSec === cropToInSec && progressWidth > 3)
+    console.log(ccurrentProgress)
+    console.log(endDragProgress)
+     if(ccurrentProgress === endDragProgress && progressWidth > 3)
       this.props.sendProgressData(startDragAreaProgreesPosition);
 
      if(clickAppend)
@@ -139,7 +147,7 @@ export default class Progress extends Component {
 	} 
 
   render() {  
-
+  
     const { percent, strokeWidth ,audioTotalTime} = this.props;
     var {progressWidth} = this.state;
     const displayTime = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
@@ -173,7 +181,11 @@ export default class Progress extends Component {
        </div>
       
       </ClickNHold>
-      <div className="cropping">crop from: {this.state.cropFrom} to: {this.state.cropTo}</div>
+      <div>
+       
+      </div>
+    <div className="cropping"><text style={{color:'red'}}>Crop From:</text>{"  "+this.state.cropFrom+"  "}
+    <text style={{color:'red'}}>To:</text>{"   "+this.state.cropTo}</div>
  </div>
     );
   }
