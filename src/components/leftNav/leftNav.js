@@ -14,6 +14,10 @@ class LeftNav extends Component {
         subPlayList:[{}],
         showComponent:false,
       }
+      
+
+
+
     render(){
       const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
         return(
