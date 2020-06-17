@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import './index.scss';
 import ClickNHold from 'react-click-n-hold';
 import { MDBBtnToolbar } from 'mdbreact';
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 982e4f02b0db7c7f14c1c30654b9f0469b4eeed3
 
 export default class Progress extends Component {
   static propTypes = {
@@ -171,10 +177,16 @@ export default class Progress extends Component {
       <div>
        
       </div>
+<<<<<<< HEAD
 
     <MDBBtnToolbar className="cropping"><div style={{color:'red'}}>Crop From:</div>{"  "+this.state.cropFrom+"  "}
     <div style={{color:'red'}}>To:</div>{"   "+this.state.cropTo}</MDBBtnToolbar>
      
+=======
+      <MDBBtnToolbar className="cropping"><div style={{color:'red'}}>Crop From:</div>{"  "+this.state.cropFrom+"  "}
+    <div style={{color:'red'}}>To:</div>{"   "+this.state.cropTo}</MDBBtnToolbar>
+
+>>>>>>> 982e4f02b0db7c7f14c1c30654b9f0469b4eeed3
  </div>
     );
   }

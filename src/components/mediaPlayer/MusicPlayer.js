@@ -172,6 +172,10 @@ export default class MusicPlayer extends Component {
     const { playMode, activeMusicIndex } = this.state;
     if(activeMusicIndex < playlist.length-1)
       this.props.updateIndex(activeMusicIndex+1);
+
+    else
+    this.props.updateIndex(0);  
+
     
     if (playMode === 'repeat') {
       this.playMusic(activeMusicIndex);
