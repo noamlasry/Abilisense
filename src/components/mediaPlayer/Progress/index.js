@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
 import ClickNHold from 'react-click-n-hold';
-<<<<<<< HEAD
 import { MDBBtnToolbar } from 'mdbreact';
-=======
-import {ButtonToolbar} from "react-bootstrap";
 
->>>>>>> 2f102b7a468c2a20478f4d3c8aece20beec290d5
+
 
 
 export default class Progress extends Component {
@@ -177,18 +174,9 @@ export default class Progress extends Component {
       <div>
        
       </div>
-<<<<<<< HEAD
-    <MDBBtnToolbar className="cropping"><div style={{color:'red'}}>Crop From:</div>{"  "+this.state.cropFrom+"  "}
+      <MDBBtnToolbar className="cropping"><div style={{color:'red'}}>Crop From:</div>{"  "+this.state.cropFrom+"  "}
     <div style={{color:'red'}}>To:</div>{"   "+this.state.cropTo}</MDBBtnToolbar>
-=======
-      <ButtonToolbar className="cropping">
-        <div style={{color:'red'}}>Crop From:</div>
-        <div>{"  "+this.state.cropFrom+"  "}</div>
-        <div style={{color:'red'}}>To:</div>
-        <div>{" "+this.state.cropTo}</div>
-      </ButtonToolbar>
 
->>>>>>> 2f102b7a468c2a20478f4d3c8aece20beec290d5
  </div>
     );
   }
