@@ -24,6 +24,7 @@ class MainPage extends Component {
         category: "baby",
         key: "something",
         lastCrop: false,
+        
       }  
     };
     

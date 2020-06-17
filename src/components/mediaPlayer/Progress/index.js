@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
 import ClickNHold from 'react-click-n-hold';
+<<<<<<< HEAD
 import { MDBBtnToolbar } from 'mdbreact';
+=======
+import {ButtonToolbar} from "react-bootstrap";
+
+>>>>>>> 2f102b7a468c2a20478f4d3c8aece20beec290d5
 
 
 export default class Progress extends Component {
@@ -41,9 +46,7 @@ export default class Progress extends Component {
 
 
   onClick = ({ clientX }) => {
-      console.log(clientX)
       const { onClick ,audioTotalTime} = this.props;    
-      console.log(this.props)
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
       this.setState({startDragAreaProgreesPosition:progress});
@@ -91,8 +94,7 @@ export default class Progress extends Component {
         this.setState({totalCropInsec:new Date(audioTotalTime*(progressWidth/510)*1000).toISOString().substr(11,8)});
         this.setState({cropTo:new Date(progress*audioTotalTime*1000).toISOString().substr(11,8)})
       }
-      
-      console.log(progress)
+
      }
    };
    start = (e) =>{
@@ -106,7 +108,6 @@ export default class Progress extends Component {
 	} 
     
   end = ()=>{
-    console.log("end drag")
     this.setState({dragArea:false});}
   
   componentWillReceiveProps()
@@ -127,8 +128,6 @@ export default class Progress extends Component {
     var ccurrentProgress = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
     var endDragProgress = new Date(audioTotalTime*endDragAreaPosition*1000).toISOString().substr(11,8);
 
-    console.log(ccurrentProgress)
-    console.log(endDragProgress)
      if(ccurrentProgress === endDragProgress && progressWidth > 3)
       this.props.sendProgressData(startDragAreaProgreesPosition);
 
@@ -139,12 +138,6 @@ export default class Progress extends Component {
      }
   }
 
-  
-	clickNHold = (e) =>{
-   
-    console.log('CLICK AND HOLD:');  
-    console.log(e);
-	} 
 
   render() {  
   
@@ -184,8 +177,18 @@ export default class Progress extends Component {
       <div>
        
       </div>
+<<<<<<< HEAD
     <MDBBtnToolbar className="cropping"><div style={{color:'red'}}>Crop From:</div>{"  "+this.state.cropFrom+"  "}
     <div style={{color:'red'}}>To:</div>{"   "+this.state.cropTo}</MDBBtnToolbar>
+=======
+      <ButtonToolbar className="cropping">
+        <div style={{color:'red'}}>Crop From:</div>
+        <div>{"  "+this.state.cropFrom+"  "}</div>
+        <div style={{color:'red'}}>To:</div>
+        <div>{" "+this.state.cropTo}</div>
+      </ButtonToolbar>
+
+>>>>>>> 2f102b7a468c2a20478f4d3c8aece20beec290d5
  </div>
     );
   }

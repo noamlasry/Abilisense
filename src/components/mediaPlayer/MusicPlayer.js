@@ -112,7 +112,7 @@ export default class MusicPlayer extends Component {
   handleAdjustProgress = (value,pauseOrPlay) => {
     const currentTime = this.audioContainer.current.duration * value;
     this.audioContainer.current.currentTime = currentTime;
-    console.log(this.state.activeMusicIndex)
+
     if(pauseOrPlay)
       this.setState({ play: false, progress: value }, () => this.audioContainer.current.pause());
     else
