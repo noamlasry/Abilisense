@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
 import ClickNHold from 'react-click-n-hold';
-
+import { MDBBtnToolbar } from 'mdbreact';
 
 
 export default class Progress extends Component {
@@ -184,8 +184,8 @@ export default class Progress extends Component {
       <div>
        
       </div>
-    <div className="cropping"><text style={{color:'red'}}>Crop From:</text>{"  "+this.state.cropFrom+"  "}
-    <text style={{color:'red'}}>To:</text>{"   "+this.state.cropTo}</div>
+    <MDBBtnToolbar className="cropping"><div style={{color:'red'}}>Crop From:</div>{"  "+this.state.cropFrom+"  "}
+    <div style={{color:'red'}}>To:</div>{"   "+this.state.cropTo}</MDBBtnToolbar>
  </div>
     );
   }
