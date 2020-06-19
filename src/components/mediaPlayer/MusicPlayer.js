@@ -54,6 +54,7 @@ export default class MusicPlayer extends Component {
     super(props);
   
     this.state = {
+     
       count:0,
       classNames: "",
       showAnimationStartLabel: false,
@@ -203,19 +204,23 @@ export default class MusicPlayer extends Component {
 
   playMusic = index => {
   
-    this.setState({ activeMusicIndex: index, leftTime: 0, play: true, progress: 0 }, () => {
-      this.audioContainer.current.currentTime = 0;
-      this.audioContainer.current.play();
-    });
+  //  this.setState({ activeMusicIndex: index, leftTime: 0, play: true, progress: 0 }, () => {
+  //    this.audioContainer.current.currentTime = 0;
+  //    this.audioContainer.current.play();
+ //   });
    
   };
   handleProgreesData = (e) =>{
     console.log(e);
     this.handleAdjustProgress(e,true);}
 
+    passCroppingParamater = (cropFrom,cropTo) =>{
+      this.props.passCroppingParamaterToMain(cropFrom,cropTo);
+    };
+
 
   render() {
-
+    
     const { playlist, mode, width, progressColor, btnColor, style } = this.props;
     const { play, progress, leftTime, volume, activeMusicIndex, playMode } = this.state;
     const activeMusic = playlist[activeMusicIndex];
@@ -229,7 +234,7 @@ export default class MusicPlayer extends Component {
       <div id="backdrop" className={classNames('player', { vertical: mode === 'vertical' })}style={{ ...style, width: typeof width === 'string' ? width : `${width}px` }}>
      
    
-         
+        
         <audio autoPlay={play} preload="auto" ref={this.audioContainer} src={activeMusic.url}>
           <track kind="captions" />
         </audio>
@@ -251,7 +256,11 @@ export default class MusicPlayer extends Component {
             </div>
           </div>
          {this.state.audioTotalTime > 0 &&
-          <Progress sendProgressData={this.handleProgreesData.bind(this)} percent={progress} strokeColor={progressColor} onClick={this.handleAdjustProgress}  audioTotalTime={this.state.audioTotalTime} />
+          <Progress sendProgressData={this.handleProgreesData.bind(this)} percent={progress} 
+          strokeColor={progressColor} onClick={this.handleAdjustProgress}  
+          audioTotalTime={this.state.audioTotalTime} 
+          passCroppingParamater={this.passCroppingParamater.bind(this)}
+          />
         }
          <div className="controls">
          

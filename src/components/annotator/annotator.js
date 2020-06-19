@@ -43,9 +43,7 @@ class Annotator extends React.PureComponent {
   componentWillMount() {
     this.setState({src:this.props.src});
     const context = getContext();
-    this.setState({
-      context
-    });
+    this.setState({ context });
     
   }
 
@@ -55,6 +53,7 @@ class Annotator extends React.PureComponent {
   };
   componentDidMount(){
     this.getFile(this.props.src);
+
   }
 
   handleFile = event => {

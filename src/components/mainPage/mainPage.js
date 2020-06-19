@@ -9,6 +9,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import playlist from '../mediaPlayer/playlist';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
+import { Storage } from "@aws-amplify/storage";
 
 class MainPage extends Component {
    
@@ -19,22 +20,17 @@ class MainPage extends Component {
       this.state = {
         index:0,
         src:'',
-        cropFrom: "00:10",
-        cropTo: "00:25",
+        cropFrom: "",
+        cropTo: "",
         category: "baby",
-        key: "something",
+        audioKey: [],
+        keys:[],
+        eTags:[],
         lastCrop: false,
+  
         
       }  
     };
-    
-  
-  
-    setMusicIndex = (newIndex) => {
-        this.setState({index:newIndex});
-      
-    }
-   
     
     audioTagHadler = () =>{
     const data = {
@@ -50,14 +46,57 @@ class MainPage extends Component {
       });
     }
 
-    getNextIndex = (nextIndex) => {
-    this.setState({index:nextIndex});
-  
-  };
+    setMusicIndex = (newIndex) => { this.setState({index:newIndex}); }
+   
+    getNextIndex = (nextIndex) => {this.setState({index:nextIndex});};
+    
+    componentWillMount(){ this.getS3Data();}
+
+    async getS3Data ()
+    {
+      const audioKey = await Storage.list('')
+      this.setState({ audioKey })
+      
+     let i;
+     var lists = [],eTags = [],keys =[];
+     for(i =0; i<audioKey.length; i++)
+     {
+       const audioUrl = await Storage.get(audioKey[i].key);
+       const objectKey = audioKey[i].key;
+       eTags.push(audioKey[i].eTag)
+       if(objectKey[objectKey.indexOf('/')+1])
+       {
+         lists.push({url:audioUrl,title:objectKey});
+         keys.push(objectKey);
+       }
+         
+       
+           
+     }
+       this.setState({lists});
+       this.setState({eTags});
+       this.setState({keys});
+       
+    }
+    passCroppingParamaterToMain = (cropFrom,cropTo) =>{
+       
+        this.setState({cropFrom})
+        this.setState({cropTo})
+
+        console.log(this.state.cropFrom,this.state.cropTo);
+    }
+    shouldComponentUpdate(nextProps, nextState) { 
  
+    if(this.state.index === nextState.index)
+      return false;
+    else
+      return true;  
+    }
+  
+
 
     render(){
-      
+   
     return(
       
         <div>
@@ -69,10 +108,13 @@ class MainPage extends Component {
             <div className="middlenav">
             <h2 className="label" >Audio Player</h2>
               
-            <MusicPlayer playlist={ playlist}   index={this.state.index} updateIndex={this.setMusicIndex.bind(this)}/>
-                          
+            <MusicPlayer playlist={ playlist}   index={this.state.index} 
+            updateIndex={this.setMusicIndex.bind(this)}
+            passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}
+            />
+       
             <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
-            
+          
 
               <ButtonToolbar className="btnTool">
               <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>

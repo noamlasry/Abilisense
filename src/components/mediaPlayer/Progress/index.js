@@ -5,8 +5,6 @@ import ClickNHold from 'react-click-n-hold';
 import { MDBBtnToolbar } from 'mdbreact';
 
 
-
-
 export default class Progress extends Component {
   static propTypes = {
     percent: PropTypes.number,
@@ -90,6 +88,7 @@ export default class Progress extends Component {
         this.setState({progressWidth:offset});
         this.setState({totalCropInsec:new Date(audioTotalTime*(progressWidth/510)*1000).toISOString().substr(11,8)});
         this.setState({cropTo:new Date(progress*audioTotalTime*1000).toISOString().substr(11,8)})
+      
       }
 
      }
@@ -105,7 +104,9 @@ export default class Progress extends Component {
 	} 
     
   end = ()=>{
-    this.setState({dragArea:false});}
+    this.setState({dragArea:false});
+    this.props.passCroppingParamater(this.state.cropFrom,this.state.cropTo);
+  }
   
   componentWillReceiveProps()
   {
