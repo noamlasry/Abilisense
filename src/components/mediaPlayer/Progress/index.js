@@ -46,7 +46,6 @@ export default class Progress extends Component {
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
       this.setState({startDragAreaProgreesPosition:progress});
       this.setState({cropFrom:new Date(audioTotalTime*progress*1000).toISOString().substr(11,8)})
-      
       onClick(progress);
   };
 

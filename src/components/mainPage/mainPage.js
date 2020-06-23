@@ -6,10 +6,10 @@ import Navigationbar from '../NavigationBar/NavigationBar'
 import {ButtonToolbar, Button} from "react-bootstrap";
 import MusicPlayer from "../mediaPlayer/MusicPlayer";
 import 'react-h5-audio-player/lib/styles.css';
-import playlist from '../mediaPlayer/playlist';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
 import { Storage } from "@aws-amplify/storage";
+
 
 class MainPage extends Component {
    
@@ -83,37 +83,43 @@ class MainPage extends Component {
         this.setState({cropFrom})
         this.setState({cropTo})
 
-        console.log(this.state.cropFrom,this.state.cropTo);
+       
     }
     shouldComponentUpdate(nextProps, nextState) { 
  
-    if(this.state.index === nextState.index)
+    if(this.state.index === nextState.index && this.state.lists)
       return false;
     else
       return true;  
     }
-  
+
+   
 
 
     render(){
-   
+    const {lists,audioKey} = this.state;
+
     return(
       
         <div>
-     
+         {lists &&
+       <div>
            <Navigationbar userName={this.props.userName} />
-        
-           <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} index={this.props.index}/>
+           
+           <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} 
+           index={this.props.index} 
+           playlist={ lists}
+           audiolist={audioKey}/>
 
             <div className="middlenav">
             <h2 className="label" >Audio Player</h2>
               
-            <MusicPlayer playlist={ playlist}   index={this.state.index} 
+            <MusicPlayer playlist={ lists}   index={this.state.index} 
             updateIndex={this.setMusicIndex.bind(this)}
             passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}
             />
        
-            <Annotator src={playlist[this.state.index].url}  index={this.state.index}/> 
+            <Annotator src={lists[this.state.index].url}  /> 
           
 
               <ButtonToolbar className="btnTool">
@@ -133,7 +139,9 @@ class MainPage extends Component {
               </ButtonToolbar>
             </div>
         </div>
-            <RightNav />
+            <RightNav audiolist={audioKey} index={this.state.index}/>
+            </div>
+    }
          </div>
     )
     }
