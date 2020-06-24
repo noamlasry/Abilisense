@@ -1,26 +1,38 @@
 import React, { Component } from "react";
 import './rightNav.css';
-import { MDBBtnToolbar } from 'mdbreact';
+
 
 
 
 class RightNav extends Component {
     render(){
-        const {audiolist,index} = this.props;
-      
-        var name = <div style={{color:'red'}}>{audiolist[index].key.slice(0,audiolist[index].key.length-1)} </div>
         
-
+        const {audiolist,index,audioObject} = this.props;
+        var sizeInMB = (audioObject[index].size / (1024*1024)).toFixed(2);
+        const file = <li style={{color:'red'}}>{audiolist[index].title.substr(0,audiolist[index].title.indexOf('/'))}</li>
+        const name = <li style={{color:'red'}}>{audiolist[index].title.substr(audiolist[index].title.indexOf('/')+1,audiolist[index].title.length-1)} </li>
+        const size = <li style={{color:'red'}}>{sizeInMB+" "}MB </li>
+        const lastModified = <li style={{color:'red'}}>{audioObject[index].lastModified.toString()}</li>
+       
+       
         return(
 
         <div className="rightnav">
            <h3 className="headline">File info</h3>
            <ul>
-               <MDBBtnToolbar>
-                <li >Name:</li>
+               
+                <li >Folder:</li>
+                {file}
+                <br></br>
+                <li >Audio Name:</li>
                 {name}
-               </MDBBtnToolbar>
-
+                <br></br>
+                <li >Size:</li>
+                {size}
+                <br></br>
+                <li >LastModified:</li>
+                {lastModified}
+             
                
                
               </ul>

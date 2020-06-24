@@ -26,6 +26,7 @@ class MainPage extends Component {
         audioKey: [],
         keys:[],
         eTags:[],
+        audioObject:[],
         lastCrop: false,
   
         
@@ -58,7 +59,7 @@ class MainPage extends Component {
       this.setState({ audioKey })
       
      let i;
-     var lists = [],eTags = [],keys =[];
+     var lists = [],eTags = [],keys =[],audioObject = [];
      for(i =0; i<audioKey.length; i++)
      {
        const audioUrl = await Storage.get(audioKey[i].key);
@@ -66,13 +67,12 @@ class MainPage extends Component {
        eTags.push(audioKey[i].eTag)
        if(objectKey[objectKey.indexOf('/')+1])
        {
+         audioObject.push(audioKey[i])
          lists.push({url:audioUrl,title:objectKey});
          keys.push(objectKey);
        }
-         
-       
-           
      }
+       this.setState({audioObject});
        this.setState({lists});
        this.setState({eTags});
        this.setState({keys});
@@ -97,8 +97,8 @@ class MainPage extends Component {
 
 
     render(){
-    const {lists,audioKey} = this.state;
-
+    const {lists,audioKey,audioObject} = this.state;
+    console.log(audioKey)
     return(
       
         <div>
@@ -139,7 +139,7 @@ class MainPage extends Component {
               </ButtonToolbar>
             </div>
         </div>
-            <RightNav audiolist={audioKey} index={this.state.index}/>
+            <RightNav audiolist={lists} index={this.state.index} audioObject={audioObject}/>
             </div>
     }
          </div>
