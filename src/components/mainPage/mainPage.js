@@ -98,6 +98,7 @@ class MainPage extends Component {
 
     render(){
     const {lists,audioKey,audioObject} = this.state;
+  
     return(
       
         <div>

@@ -211,7 +211,7 @@ export default class MusicPlayer extends Component {
    
   };
   handleProgreesData = (e) =>{
-    console.log(e);
+   
     this.handleAdjustProgress(e,true);}
 
     passCroppingParamater = (cropFrom,cropTo) =>{

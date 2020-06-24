@@ -19,6 +19,7 @@ class LeftNav extends Component {
         subCategory:[],
         textColor:'black',
         musicIndex:0,
+        subCategoryLength:[]
 
       }
 
@@ -29,7 +30,7 @@ class LeftNav extends Component {
  
       async findSubCategory() {
         var file = this.props.audiolist;
-        var i,folder = [],subCategory = [[]];
+        var i,folder = [],subCategory = [[]],subCategoryLength = [],conut = 0;
   
         for(i = 0; i<file.length; i++)
         {
@@ -40,12 +41,25 @@ class LeftNav extends Component {
             
         }
         this.setState({folder});
+        subCategoryLength.push(0)
         for(i = 0; i<folder.length; i++)
         {
           subCategory[i] = await Storage.list(folder[i]);  
-        
+          if(subCategory[i] && i !== 0)
+          {
+            for(var j = 0; j<i; j++)
+            {
+              conut += subCategory[j].length-1;
+               
+            }
+            subCategoryLength.push(conut);
+            conut = 0;
+          }
+          
+         
         }
         this.setState({subCategory});
+        this.setState({subCategoryLength})
       }
 
       getSubcategory(props)
@@ -64,10 +78,11 @@ class LeftNav extends Component {
            ++index   
            
           }
+         
       
             var divElement = newArray.map((f,i) => 
-            <Accordion.Collapse eventKey={props.index} className="li" key={++index} onClick={() => this.props.passMusicIndex(i)}>
-            <Card.Body>{f} </Card.Body>
+            <Accordion.Collapse style={{cursor:'pointer'}} eventKey={props.index} className="li" key={++index} onClick={() => this.props.passMusicIndex(i+this.state.subCategoryLength[props.index])}>
+            <Card.Body>{f+" "}{i+this.state.subCategoryLength[props.index]} </Card.Body>
             </Accordion.Collapse>);
 
           
@@ -84,6 +99,8 @@ class LeftNav extends Component {
       
 
     render(){
+     
+  
       const scrollContainerStyle = { width: "100%", maxHeight: "80vh" };
         return(
          <div className="leftnav">
