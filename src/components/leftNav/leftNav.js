@@ -19,12 +19,18 @@ class LeftNav extends Component {
         subCategory:[],
         textColor:'black',
         musicIndex:0,
-        subCategoryLength:[]
+        subCategoryLength:[],
+        audioName:''
 
       }
 
       componentDidMount() {
         this.findSubCategory();
+      }
+      passMusicIndex = (index,audioNamePram) =>{
+        var audioName = <div style={{color:'red'}}>{audioNamePram}</div>;
+        this.setState({audioName});
+        this.props.passMusicIndex(index);
       }
  
  
@@ -40,6 +46,7 @@ class LeftNav extends Component {
             folder.push(file[i].key);
             
         }
+        
         this.setState({folder});
         subCategoryLength.push(0)
         for(i = 0; i<folder.length; i++)
@@ -48,16 +55,15 @@ class LeftNav extends Component {
           if(subCategory[i] && i !== 0)
           {
             for(var j = 0; j<i; j++)
-            {
               conut += subCategory[j].length-1;
-               
-            }
+              
             subCategoryLength.push(conut);
             conut = 0;
           }
           
          
         }
+ 
         this.setState({subCategory});
         this.setState({subCategoryLength})
       }
@@ -78,12 +84,15 @@ class LeftNav extends Component {
            ++index   
            
           }
-         
+                  
       
             var divElement = newArray.map((f,i) => 
-            <Accordion.Collapse style={{cursor:'pointer'}} eventKey={props.index} className="li" key={++index} onClick={() => this.props.passMusicIndex(i+this.state.subCategoryLength[props.index])}>
-            <Card.Body>{f+" "}{i+this.state.subCategoryLength[props.index]} </Card.Body>
-            </Accordion.Collapse>);
+            <Accordion.Collapse style={{cursor:'pointer'}} eventKey={props.index} className="li" key={++index} 
+            onClick={() => this.passMusicIndex(i+this.state.subCategoryLength[props.index],f)}>
+            <Card.Body>{f}</Card.Body>
+            </Accordion.Collapse>
+            
+            );
 
           
          

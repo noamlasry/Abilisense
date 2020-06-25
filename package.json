@@ -39,6 +39,7 @@
     "react-resizer": "^0.2.0",
     "react-scripts": "3.4.1",
     "react-text": "^3.2.4",
+    "reactjs-popup": "^1.5.0",
     "service": "^0.1.4",
     "service-js": "0.0.1",
     "styled-components": "^5.0.0",
