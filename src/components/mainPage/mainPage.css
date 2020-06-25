@@ -23,19 +23,35 @@
 
 }
 .btn3{
-width: 50%;
-/* margin-top: 10%; */
-position: relative;
-margin-left: 25%;
-margin-right: 25%;
+width: 28.5%;
+left: 35.2%;
+top:65%;
+position: absolute;
+
 }
-.btn-small{
-    width: 20%;
-    margin-left: 1%;
+.formButtons{
+    position: absolute;
+    top: 85%;
+    left: 45%;
 }
-.btn4{
-    width: 40%;
-    margin-left: 5%;
+.qualityButtons{
+   position: absolute;
+   top: 75%;
+   left:45%;
+}
+.goodButton{
+    width: 200px;
+    position: absolute;
+    left:-140px;
+}
+.submitButton{
+    width: 200px;
+}
+.badButton{
+    width: 200px;
+    position: absolute;
+    left:70px;
+   
 }
 h5, h2{
     color: black;

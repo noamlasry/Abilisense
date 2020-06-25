@@ -112,13 +112,14 @@ export default class MusicPlayer extends Component {
 
   handleAdjustProgress = (value,pauseOrPlay) => {
     const currentTime = this.audioContainer.current.duration * value;
-    this.audioContainer.current.currentTime = currentTime;
-
-    if(pauseOrPlay)
-      this.setState({ play: false, progress: value }, () => this.audioContainer.current.pause());
-    else
+    console.log(currentTime)
+    if(currentTime)
+    {
+      this.audioContainer.current.currentTime = currentTime;
       this.setState({ play: true, progress: value }, () => this.audioContainer.current.play());
     
+    }
+   
     
   };
 
@@ -212,7 +213,8 @@ export default class MusicPlayer extends Component {
   };
   handleProgreesData = (e) =>{
    
-    this.handleAdjustProgress(e,true);}
+    //this.handleAdjustProgress(e,true);
+  }
 
     passCroppingParamater = (cropFrom,cropTo) =>{
       this.props.passCroppingParamaterToMain(cropFrom,cropTo);
@@ -255,13 +257,13 @@ export default class MusicPlayer extends Component {
               </div>
             </div>
           </div>
-         {this.state.audioTotalTime > 0 &&
+     
           <Progress sendProgressData={this.handleProgreesData.bind(this)} percent={progress} 
           strokeColor={progressColor} onClick={this.handleAdjustProgress}  
           audioTotalTime={this.state.audioTotalTime} 
           passCroppingParamater={this.passCroppingParamater.bind(this)}
           />
-        }
+        
          <div className="controls">
          
             <button

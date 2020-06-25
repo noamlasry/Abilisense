@@ -3,12 +3,13 @@ import './mainPage.css';
 import  LeftNav  from "../leftNav/leftNav";
 import RightNav from "../rightNav/rightNav";
 import Navigationbar from '../NavigationBar/NavigationBar'
-import {ButtonToolbar, Button} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import MusicPlayer from "../mediaPlayer/MusicPlayer";
 import 'react-h5-audio-player/lib/styles.css';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
 import { Storage } from "@aws-amplify/storage";
+import { MDBBtnToolbar } from 'mdbreact';
 
 
 class MainPage extends Component {
@@ -100,49 +101,42 @@ class MainPage extends Component {
     const {lists,audioKey,audioObject} = this.state;
   
     return(
-      
-        <div>
-         {lists &&
+     <div>
+       {lists &&
        <div>
            <Navigationbar userName={this.props.userName} />
            
            <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} 
-           index={this.props.index} 
-           playlist={ lists}
-           audiolist={audioKey}/>
+            index={this.props.index} 
+            playlist={ lists}
+            audiolist={audioKey}/>
 
-            <div className="middlenav">
-            <h2 className="label" >Audio Player</h2>
+           <div className="middlenav">
+              <h2 className="label" >Audio Player</h2>
               
-            <MusicPlayer playlist={ lists}   index={this.state.index} 
-            updateIndex={this.setMusicIndex.bind(this)}
-            passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}
-            />
+              <MusicPlayer playlist={ lists}   index={this.state.index} 
+                updateIndex={this.setMusicIndex.bind(this)}
+                passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}/>
        
-            <Annotator src={lists[this.state.index].url}  /> 
-          
-
-              <ButtonToolbar className="btnTool">
-              <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
-              </ButtonToolbar>
+              <Annotator src={lists[this.state.index].url}  /> 
+        
+             
+                <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
+                <MDBBtnToolbar className="qualityButtons">
+                  <Button className="goodButton" variant="outline-dark">Good</Button>
+                  <Button className="badButton" variant="outline-dark">Bad</Button>
+                </MDBBtnToolbar>
+                <MDBBtnToolbar className="formButtons">
+                  <Button className="goodButton" onClick={this.audioTagHadler} variant="outline-success">Submit</Button>
+                  <Button  className="badButton" variant="outline-danger" type="submit">Cancel</Button>
+                </MDBBtnToolbar>
+               
               
-            <div className="btnQuality">
-              <ButtonToolbar className="btnTool">
-              <h5>Quality:</h5> 
+           </div>
 
-                <Button className="btn-small" variant="outline-dark">Good</Button>
-                <Button className="btn-small" variant="outline-dark">Bad</Button>
-                </ButtonToolbar>
-                <ButtonToolbar className="btnTool">
-                <Button className="btn4" onClick={this.audioTagHadler} variant="outline-success">Submit</Button>
-                <Button className="btn4" variant="outline-danger" type="submit">cancel</Button>
-              </ButtonToolbar>
-            </div>
-        </div>
-            <RightNav audiolist={lists} index={this.state.index} audioObject={audioObject}/>
-            </div>
-    }
-         </div>
+              <RightNav audiolist={lists} index={this.state.index} audioObject={audioObject}/>
+        </div>}
+      </div>
     )
     }
 }
