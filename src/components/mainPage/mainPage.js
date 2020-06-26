@@ -112,7 +112,7 @@ class MainPage extends Component {
             audiolist={audioKey}/>
 
            <div className="middlenav">
-              <h2 className="label" >Audio Player</h2>
+              <h2  >Audio Player</h2>
               
               <MusicPlayer playlist={ lists}   index={this.state.index} 
                 updateIndex={this.setMusicIndex.bind(this)}
