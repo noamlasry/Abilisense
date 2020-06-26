@@ -29,6 +29,7 @@ class MainPage extends Component {
         eTags:[],
         audioObject:[],
         lastCrop: false,
+        audioLength:'click play to display time'
   
         
       }  
@@ -94,12 +95,17 @@ class MainPage extends Component {
       return true;  
     }
 
+    audioDuration = (duration) =>{
+      this.setState({audioLength:duration});
+      
+    };
+
    
 
 
     render(){
-    const {lists,audioKey,audioObject} = this.state;
-  
+    const {lists,audioKey,audioObject,audioLength} = this.state;
+
     return(
      <div>
        {lists &&
@@ -115,7 +121,7 @@ class MainPage extends Component {
               <h2  >Audio Player</h2>
               
               <MusicPlayer playlist={ lists}   index={this.state.index} 
-                updateIndex={this.setMusicIndex.bind(this)}
+                passAudioDuration={this.audioDuration.bind(this)} updateIndex={this.setMusicIndex.bind(this)}
                 passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}/>
        
               <Annotator src={lists[this.state.index].url}  /> 
@@ -134,7 +140,7 @@ class MainPage extends Component {
               
            </div>
 
-              <RightNav audiolist={lists} index={this.state.index} audioObject={audioObject}/>
+              <RightNav audioLength={audioLength} audiolist={lists} index={this.state.index} audioObject={audioObject}/>
         </div>}
       </div>
     )

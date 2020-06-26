@@ -7,7 +7,7 @@ import "./styles.css";
 import VolumeProgressBar from '../mediaPlayer/Progress/volumeProgressBar'
 
 const formatTime = time => {
-  
+
   if (isNaN(time) || time === 0) {
     return '';
   }
@@ -88,12 +88,15 @@ export default class MusicPlayer extends Component {
    
     this.audioContainer.current.addEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.addEventListener('ended', this.end);
+
+   
   }
  
   componentWillUnmount() {
    
     this.audioContainer.current.removeEventListener('timeupdate', this.updateProgress);
     this.audioContainer.current.removeEventListener('ended', this.end);
+  
   }
 
   updateProgress = () => {
@@ -101,7 +104,7 @@ export default class MusicPlayer extends Component {
     const { duration, currentTime } = this.audioContainer.current;
     const progress = currentTime / duration || 0;
     this.setState({ progress, leftTime: duration - currentTime ,audioTotalTime:duration});
-
+    this.props.passAudioDuration(duration);
      
   };
 
@@ -109,7 +112,7 @@ export default class MusicPlayer extends Component {
     this.handleNext();
   };
 
-  handleAdjustProgress = (value,pauseOrPlay) => {
+  handleAdjustProgress = (value) => {
     const currentTime = this.audioContainer.current.duration * value;
 
     if(currentTime)
@@ -203,10 +206,7 @@ export default class MusicPlayer extends Component {
   };
 
   playMusic = index => { };
-  handleProgreesData = (e) =>{
-   
-    //this.handleAdjustProgress(e,true);
-  }
+
 
     passCroppingParamater = (cropFrom,cropTo) =>{
       this.props.passCroppingParamaterToMain(cropFrom,cropTo);
@@ -221,6 +221,7 @@ export default class MusicPlayer extends Component {
     const playModeClass = getPlayModeClass(playMode);
     const btnStyle = { color: btnColor };
 
+
     return (
 
      <div>
@@ -234,7 +235,7 @@ export default class MusicPlayer extends Component {
         </audio>
         <div className="player-control">
           <div className="music-info">
-            <h2 className="title">{activeMusic.title}</h2>
+            <h2 className="title" style={{fontSize:'14px'}}>{activeMusic.title}</h2>
             
           </div>
           <div className="time-and-volume">
@@ -250,7 +251,7 @@ export default class MusicPlayer extends Component {
             </div>
           </div>
      
-          <Progress sendProgressData={this.handleProgreesData.bind(this)} percent={progress} 
+          <Progress percent={progress} 
           strokeColor={progressColor} onClick={this.handleAdjustProgress}  
           audioTotalTime={this.state.audioTotalTime} 
           passCroppingParamater={this.passCroppingParamater.bind(this)}

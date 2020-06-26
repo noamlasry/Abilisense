@@ -46,7 +46,7 @@ export default class Progress extends Component {
       const progressRef = this.progressContainer.current;
       const progress = (clientX - progressRef.getBoundingClientRect().left) / progressRef.clientWidth;
       this.setState({startDragAreaProgreesPosition:progress});
-      if(audioTotalTime)
+      if(audioTotalTime && progress)
        this.setState({cropFrom:new Date(audioTotalTime*progress*1000).toISOString().substr(11,8)})
       onClick(progress);
   };
@@ -66,7 +66,14 @@ export default class Progress extends Component {
         break;
     }
   };
-  shouldComponentUpdate(){return true;}
+  shouldComponentUpdate(){
+    const { percent} = this.props;
+    const {audioLength,cropTo,progressWidth} = this.state;
+    const displayTime = new Date(audioLength*percent*1000).toISOString().substr(11,8);
+    if(displayTime === cropTo && displayTime !== '00:00:00' && progressWidth > 10)
+       console.log("reach destination")
+    return true;
+  }
 
   
    handleDrag = (e) =>
@@ -115,17 +122,13 @@ export default class Progress extends Component {
   componentWillReceiveProps()
   {
     
-    const {progressWidth,startDragAreaProgreesPosition,endDragAreaPosition} = this.state;
     var {clickAppend} = this.state;
     const { percent,audioTotalTime } = this.props;
     if(audioTotalTime)
-    {
       this.setState({audioLength:audioTotalTime})
-      var ccurrentProgress = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
-      var endDragProgress = new Date(audioTotalTime*endDragAreaPosition*1000).toISOString().substr(11,8);
-    }
-      
-
+     
+    
+    
     if(percent === 0)
     {
       this.setState({cropTo:'00:00:00'});
@@ -134,11 +137,7 @@ export default class Progress extends Component {
     }
      
 
-   
-
-     if(ccurrentProgress === endDragProgress && progressWidth > 3)
-      this.props.sendProgressData(startDragAreaProgreesPosition);
-
+  
      if(clickAppend)
      {
        this.setState({clickAppend:false});

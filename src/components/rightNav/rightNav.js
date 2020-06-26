@@ -5,9 +5,17 @@ import './rightNav.css';
 
 
 class RightNav extends Component {
+
+
+
+
+
+
+
     render(){
-        
         const {audiolist,index,audioObject} = this.props;
+
+
         var sizeInMB = (audioObject[index].size / (1024*1024)).toFixed(2);
         const file = <li style={{color:'red'}}>{audiolist[index].title.substr(0,audiolist[index].title.indexOf('/'))}</li>
         const name = <li style={{color:'red'}}>{audiolist[index].title.substring(audiolist[index].title.indexOf('/')+1,(audiolist[index].title.length)-4)} </li>
