@@ -33,16 +33,31 @@ class MainPage extends Component {
     };
     
     audioTagHadler = () =>{
-    const data = {
-      cropFrom: this.state.cropFrom,
-      cropTo: this.state.cropTo,
-      category: this.state.category,
-      key: this.state.key,
-      lastCrop: this.state.lastCrop,
-    };
-      axios.post('https://x5jg5ka5ci.execute-api.eu-west-1.amazonaws.com/v1/postrequest',{data})
+      console.log(this.state.cropFrom+" "
+        +this.state.cropTo+" "
+        + this.state.category+" "
+        +this.state.audioKey[0].key+" "
+        + this.state.lastCrop);
+      axios({
+        method: 'POST',
+        url: 'https://mb8ew0clxb.execute-api.eu-west-1.amazonaws.com/v1',
+        data:{
+          cropFrom: this.state.cropFrom,
+          cropTo: this.state.cropTo,
+          category: this.state.category,
+          key: this.state.audioKey[0].key,
+          lastCrop: this.state.lastCrop
+        } 
+    })
       .then((response) => {
-        console.log(response)
+        console.log("aa");
+        console.log(response.data.body)
+        console.log("bb");
+    //     console.log(response.data);
+    // console.log(response.status);
+    // console.log(response.statusText);
+    // console.log(response.headers);
+    // console.log(response.config);
       });
     }
 
