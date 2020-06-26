@@ -100,10 +100,9 @@ export default class MusicPlayer extends Component {
 
     const { duration, currentTime } = this.audioContainer.current;
     const progress = currentTime / duration || 0;
-    this.setState({ progress, leftTime: duration - currentTime });
+    this.setState({ progress, leftTime: duration - currentTime ,audioTotalTime:duration});
 
-    if(progress > 0.00060 && progress < 0.001) 
-      this.setState({audioTotalTime:duration});
+     
   };
 
   end = () => {
@@ -112,7 +111,7 @@ export default class MusicPlayer extends Component {
 
   handleAdjustProgress = (value,pauseOrPlay) => {
     const currentTime = this.audioContainer.current.duration * value;
-    console.log(currentTime)
+
     if(currentTime)
     {
       this.audioContainer.current.currentTime = currentTime;
@@ -203,14 +202,7 @@ export default class MusicPlayer extends Component {
     this.setState({ playMode: this.modeList[index] });
   };
 
-  playMusic = index => {
-  
-  //  this.setState({ activeMusicIndex: index, leftTime: 0, play: true, progress: 0 }, () => {
-  //    this.audioContainer.current.currentTime = 0;
-  //    this.audioContainer.current.play();
- //   });
-   
-  };
+  playMusic = index => { };
   handleProgreesData = (e) =>{
    
     //this.handleAdjustProgress(e,true);
