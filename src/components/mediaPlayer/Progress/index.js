@@ -67,11 +67,23 @@ export default class Progress extends Component {
     }
   };
   shouldComponentUpdate(){
-    const { percent} = this.props;
-    const {audioLength,cropTo,progressWidth} = this.state;
-    const displayTime = new Date(audioLength*percent*1000).toISOString().substr(11,8);
-    if(displayTime === cropTo && displayTime !== '00:00:00' && progressWidth > 10)
-       console.log("reach destination")
+   
+    const { percent,audioTotalTime} = this.props;
+    const {cropTo,progressWidth,startDragAreaProgreesPosition} = this.state;
+    var displayTime;
+    if(audioTotalTime)
+    {
+      displayTime = new Date(audioTotalTime*percent*1000).toISOString().substr(11,8);
+
+      if(displayTime === cropTo && displayTime !== '00:00:00' && progressWidth > 2)
+        this.props.sendProgressParamater(startDragAreaProgreesPosition);
+      
+       
+     
+    }
+    
+
+   
     return true;
   }
 
@@ -118,15 +130,14 @@ export default class Progress extends Component {
     this.setState({dragArea:false});
     this.props.passCroppingParamater(this.state.cropFrom,this.state.cropTo);
   }
-  
+
+
   componentWillReceiveProps()
   {
     
     var {clickAppend} = this.state;
-    const { percent,audioTotalTime } = this.props;
-    if(audioTotalTime)
-      this.setState({audioLength:audioTotalTime})
-     
+    const { percent} = this.props;
+  
     
     
     if(percent === 0)
@@ -148,11 +159,9 @@ export default class Progress extends Component {
 
   render() {  
   
-    const { percent, strokeWidth } = this.props;
-    var {progressWidth,audioLength} = this.state;
-    
+    const { percent, strokeWidth ,audioTotalTime} = this.props;
+    var {progressWidth} = this.state;
   
-    const displayTime = new Date(audioLength*percent*1000).toISOString().substr(11,8);
 
     return (
       <div>
@@ -179,9 +188,9 @@ export default class Progress extends Component {
               className="progress-inner" 
               style={{ left: `${this.state.progreesBarPosition*100}%`, backgroundColor: 'blue',position:'absolute' ,width:`${progressWidth}px`,opacity:0.2, cursor: 'ew-resize'}}/>
           </div>
-        
-          <div className="time" >{displayTime}</div>
-          
+          { audioTotalTime && percent >= 0  ?
+          <div className="time" >{new Date(audioTotalTime*percent*1000).toISOString().substr(11,8)}</div>
+          : <div className="time" >00:00:00</div>}
        </div>
       
       </ClickNHold>

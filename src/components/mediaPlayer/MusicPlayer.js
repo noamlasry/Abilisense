@@ -113,17 +113,27 @@ export default class MusicPlayer extends Component {
   };
 
   handleAdjustProgress = (value) => {
+  
     const currentTime = this.audioContainer.current.duration * value;
-
+  
     if(currentTime)
     {
+      this.audioContainer.current.play();
       this.audioContainer.current.currentTime = currentTime;
-      this.setState({ play: true, progress: value }, () => this.audioContainer.current.play());
-    
+      this.setState({ play: true, progress: value }, () => this.audioContainer.current.play()); 
     }
    
     
   };
+  handleDragAreaPlayAudio = (value) =>{
+   
+    const currentTime = this.audioContainer.current.duration * value;
+    if(currentTime)
+    {
+      this.audioContainer.current.currentTime = currentTime;
+      this.audioContainer.current.pause()
+    }
+  }
 
   handleAdjustVolume = value => {
     const volume = value < 0 ? 0 : value;
@@ -252,6 +262,7 @@ export default class MusicPlayer extends Component {
           </div>
      
           <Progress percent={progress} 
+          sendProgressParamater={this.handleDragAreaPlayAudio.bind(this)}
           strokeColor={progressColor} onClick={this.handleAdjustProgress}  
           audioTotalTime={this.state.audioTotalTime} 
           passCroppingParamater={this.passCroppingParamater.bind(this)}
