@@ -68,7 +68,8 @@ class MainPage extends Component {
    
     getNextIndex = (nextIndex) => {this.setState({index:nextIndex});};
     
-    componentWillMount(){ this.getS3Data();}
+    componentWillMount(){ 
+      this.getS3Data();}
 
     async getS3Data ()
     {
@@ -103,6 +104,7 @@ class MainPage extends Component {
        
     }
     shouldComponentUpdate(nextProps, nextState) { 
+
  
     if(this.state.index === nextState.index && this.state.lists)
       return false;
@@ -114,17 +116,18 @@ class MainPage extends Component {
       this.setState({audioLength:duration});
       
     };
+    
 
    
 
 
     render(){
     const {lists,audioKey,audioObject,audioLength} = this.state;
-
+  
     return(
      <div>
        {lists &&
-       <div>
+       <div >
            <Navigationbar userName={this.props.userName} />
            
            <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} 
@@ -139,7 +142,7 @@ class MainPage extends Component {
                 passAudioDuration={this.audioDuration.bind(this)} updateIndex={this.setMusicIndex.bind(this)}
                 passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}/>
        
-              <Annotator src={lists[this.state.index].url}  /> 
+              <Annotator src={lists[this.state.index].url} /> 
         
              
                 <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>

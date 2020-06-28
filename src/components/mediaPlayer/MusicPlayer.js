@@ -231,6 +231,7 @@ export default class MusicPlayer extends Component {
     const playModeClass = getPlayModeClass(playMode);
     const btnStyle = { color: btnColor };
 
+     
 
     return (
 

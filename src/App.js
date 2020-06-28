@@ -18,9 +18,6 @@ class App extends Component{
   }
     componentDidMount() {this.authListener(); }
   
-    changeTheWorld = (newTitle) => {
-      this.setState({title:newTitle});
-  }
 
   authListener() 
   {
