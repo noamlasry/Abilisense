@@ -46,12 +46,13 @@ class LeftNav extends Component {
             folder.push(file[i].key);
             
         }
-        
+      
         this.setState({folder});
         subCategoryLength.push(0)
         for(i = 0; i<folder.length; i++)
         {
-          subCategory[i] = await Storage.list(folder[i]);  
+        
+          subCategory[i] = await Storage.list(folder[i]); 
           if(subCategory[i] && i !== 0)
           {
             for(var j = 0; j<i; j++)
@@ -63,15 +64,16 @@ class LeftNav extends Component {
           
          
         }
- 
+      
         this.setState({subCategory});
         this.setState({subCategoryLength})
       }
 
       getSubcategory(props)
       {
-
+       
         const array = this.state.subCategory[props.index];
+       
         var newArray = [], i = 0,index = 0;
       
         if(array != null)
