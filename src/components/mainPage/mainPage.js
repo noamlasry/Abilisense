@@ -1,15 +1,65 @@
-import React, { Component }  from "react";
+import React, { Component,useState  }  from "react";
 import './mainPage.css';
 import  LeftNav  from "../leftNav/leftNav";
 import RightNav from "../rightNav/rightNav";
 import Navigationbar from '../NavigationBar/NavigationBar'
-import {Button} from "react-bootstrap";
+import {Button,Dropdown,FormControl} from "react-bootstrap";
 import MusicPlayer from "../mediaPlayer/MusicPlayer";
 import 'react-h5-audio-player/lib/styles.css';
 import axios from 'axios';
 import Annotator from "../annotator/annotator";
 import { Storage } from "@aws-amplify/storage";
 import { MDBBtnToolbar } from 'mdbreact';
+
+ // ====== dropDown category area =====================================================================//
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  <Button style={{width:'40%',position:'absolute',left:'36%',top:'65%'}} variant="outline-primary"
+    href="" ref={ref}
+    onClick={(e) => {
+      
+      e.preventDefault();
+      onClick(e);
+  
+    }}
+  >
+    {children}
+    &#x25bc;
+  </Button>
+));
+
+// forwardRef again here!
+// Dropdown needs access to the DOM of the Menu to measure it
+const CustomMenu = React.forwardRef(
+  ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
+    const [value, setValue] = useState('');
+
+    return (
+      <div
+    
+        ref={ref}
+        style={style}
+        className={className}
+        aria-labelledby={labeledBy}
+      >
+        <FormControl
+          autoFocus
+          className="mx-3 my-2 w-auto"
+          placeholder="Type to filter..."
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+        />
+        <ul className="list-unstyled">
+          {React.Children.toArray(children).filter(
+            (child) =>
+              !value || child.props.children.toLowerCase().startsWith(value),
+          )}
+        </ul>
+      </div>
+    );
+  },
+);
+
+ // ==================================================================================================//
 
 
 class MainPage extends Component {
@@ -27,9 +77,11 @@ class MainPage extends Component {
         audioKey: [],
         keys:[],
         eTags:[],
+        fileCategory:[],
         audioObject:[],
         lastCrop: false,
-        audioLength:'click play to display time'
+        audioLength:'click play to display time',
+        clickedItem:'Unvalid'
   
         
       }  
@@ -70,27 +122,39 @@ class MainPage extends Component {
    
     getNextIndex = (nextIndex) => {this.setState({index:nextIndex});};
     
-    componentWillMount(){ this.getS3Data();}
+    componentWillMount(){ 
+      this.getS3Data();}
 
     async getS3Data ()
     {
       const audioKey = await Storage.list('')
       this.setState({ audioKey })
-      
+    
      let i;
-     var lists = [],eTags = [],keys =[],audioObject = [];
+     var lists = [],eTags = [],keys =[],audioObject = [],fileCategory =[];
      for(i =0; i<audioKey.length; i++)
      {
+      
        const audioUrl = await Storage.get(audioKey[i].key);
        const objectKey = audioKey[i].key;
        eTags.push(audioKey[i].eTag)
+     
        if(objectKey[objectKey.indexOf('/')+1])
        {
+        
          audioObject.push(audioKey[i])
          lists.push({url:audioUrl,title:objectKey});
          keys.push(objectKey);
        }
+       if(!objectKey[objectKey.indexOf('/')+1])
+       fileCategory.push(objectKey.substr(0,objectKey.indexOf('/')));
+    
+
+ 
+   
      }
+  
+       this.setState({fileCategory})
        this.setState({audioObject});
        this.setState({lists});
        this.setState({eTags});
@@ -105,11 +169,15 @@ class MainPage extends Component {
        
     }
     shouldComponentUpdate(nextProps, nextState) { 
- 
+
     if(this.state.index === nextState.index && this.state.lists)
       return false;
-    else
+    else 
+    {
+ 
       return true;  
+    }
+      
     }
 
     audioDuration = (duration) =>{
@@ -117,16 +185,21 @@ class MainPage extends Component {
       
     };
 
-   
+    f = (index,name) =>{
+      console.log(index,name)
+      this.setState({clickedItem:name})
+    }
+
 
 
     render(){
-    const {lists,audioKey,audioObject,audioLength} = this.state;
-
+    const {lists,audioKey,audioObject,audioLength,clickedItem} = this.state;
+    const scrollContainerStyle = { width: "100%", maxHeight: "40vh" };
+  
     return(
      <div>
        {lists &&
-       <div>
+       <div >
            <Navigationbar userName={this.props.userName} />
            
            <LeftNav passMusicIndex={ this.setMusicIndex.bind(this)} 
@@ -141,10 +214,30 @@ class MainPage extends Component {
                 passAudioDuration={this.audioDuration.bind(this)} updateIndex={this.setMusicIndex.bind(this)}
                 passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}/>
        
-              <Annotator src={lists[this.state.index].url}  /> 
+              <Annotator src={lists[this.state.index].url} /> 
         
-             
-                <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
+                 <Dropdown   style={{width:'39.6%',position:'absolute',left:'36.2%',top:'65%'}}>
+                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+                      {clickedItem}
+                    </Dropdown.Toggle>
+                      <Dropdown.Menu  as={CustomMenu} style={scrollContainerStyle} className="scrollbar scrollbar-primary">
+                        {this.state.fileCategory.map((f,i) =>
+                        
+                        <Dropdown.Item onClick={()=>this.f(i,f)}  key={i} eventKey={i}>
+                          <div >
+                          {f}
+                          </div>
+                        </Dropdown.Item>
+                        
+                        )}
+                        
+                     </Dropdown.Menu>
+                  </Dropdown>,
+     
+                  
+                  <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
+               
+                
                 <MDBBtnToolbar className="qualityButtons">
                   <Button className="goodButton" variant="outline-dark">Good</Button>
                   <Button className="badButton" variant="outline-dark">Bad</Button>

@@ -52,6 +52,7 @@
                   type="email"
                   value={this.state.email}
                   onChange={this.handleChange}
+                  style={{width:'100%'}}
                   placeholder="Enter Email"
                   id="email"
                 />
@@ -63,6 +64,7 @@
                   onChange={this.handleChange}
                   type="password"
                   id="password"
+                  style={{width:'100%'}}
                   placeholder="Enter password"
                 />
               </Form.Group><p />

@@ -23,11 +23,16 @@
 
 }
 .btn3{
-width: 32.3%;
+width: 15.7%;
 left: 34%;
 top:65%;
 position: absolute;
-
+}
+.dropDownButton{
+    width: 40%;
+    left: 50%;
+    top:45%;
+    position: absolute;
 }
 .formButtons{
     position: absolute;

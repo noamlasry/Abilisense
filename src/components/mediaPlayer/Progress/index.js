@@ -138,7 +138,7 @@ export default class Progress extends Component {
     var {clickAppend} = this.state;
     const { percent} = this.props;
   
-    
+  
     
     if(percent === 0)
     {
@@ -161,7 +161,7 @@ export default class Progress extends Component {
   
     const { percent, strokeWidth ,audioTotalTime} = this.props;
     var {progressWidth} = this.state;
-  
+   
 
     return (
       <div>
