@@ -36,10 +36,12 @@ class MainPage extends Component {
     };
     
     audioTagHadler = () =>{
-      console.log(this.state.cropFrom+" "
-        +this.state.cropTo+" "
-        + this.state.category+" "
-        +this.state.audioKey[0].key+" "
+      console.log(this.state.cropFrom+" 1"
+        +this.state.cropTo+"2 "
+        + this.state.category+" 3"
+        +this.state.audioKey[0].key+"4 "
+        
+        +this.state.audioObject[0].key+"4 "
         + this.state.lastCrop);
       axios({
         method: 'POST',
@@ -48,7 +50,7 @@ class MainPage extends Component {
           cropFrom: this.state.cropFrom,
           cropTo: this.state.cropTo,
           category: this.state.category,
-          key: this.state.audioKey[0].key,
+          key: this.state.audioObject[0].key,
           lastCrop: this.state.lastCrop
         } 
     })
