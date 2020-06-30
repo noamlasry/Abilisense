@@ -22,6 +22,25 @@
     margin-top: 10%;
 
 }
+.selectedCategory{
+    position: absolute;
+    color: black;
+    top: 64%;
+    font-size: large;
+    left: 27%;
+}
+.dropDownCategory{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+}
+.selectedQuality{
+    position: absolute;
+    color: black;
+    top: 75%;
+    font-size: large;
+    left: 27%;
+}
 .btn3{
 width: 15.7%;
 left: 34%;
@@ -37,17 +56,24 @@ position: absolute;
 .formButtons{
     position: absolute;
     top: 85%;
-    left: 45%;
+    left: 52%;
 }
 .qualityButtons{
    position: absolute;
    top: 75%;
-   left:45%;
+   left:52%;
 }
 .goodButton{
     width: 200px;
     position: absolute;
     left:-140px;
+}
+.cropButton{
+    position: absolute;
+    color: black;
+    top: 85%;
+    font-size: large;
+    left: 27%;
 }
 .submitButton{
     width: 200px;
