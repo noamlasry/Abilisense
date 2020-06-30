@@ -6,6 +6,7 @@ import './MusicPlayer.scss';
 import "./styles.css";
 import VolumeProgressBar from '../mediaPlayer/Progress/volumeProgressBar'
 
+
 const formatTime = time => {
 
   if (isNaN(time) || time === 0) {
@@ -54,12 +55,7 @@ export default class MusicPlayer extends Component {
     super(props);
   
     this.state = {
-     
-      count:0,
       classNames: "",
-      showAnimationStartLabel: false,
-      x:0,
-      myVar:'',
       audioTotalTime:0,
       activeMusicIndex: 0,
       leftTime: 0,
@@ -131,8 +127,10 @@ export default class MusicPlayer extends Component {
     if(currentTime)
     {
       this.audioContainer.current.currentTime = currentTime;
-      this.audioContainer.current.pause()
+      this.audioContainer.current.pause();
+    
     }
+  
   }
 
   handleAdjustVolume = value => {

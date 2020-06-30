@@ -12,14 +12,16 @@ import { Storage } from "@aws-amplify/storage";
 import { MDBBtnToolbar } from 'mdbreact';
 
  // ====== dropDown category area =====================================================================//
+// The forwardRef is important!!
+// Dropdown needs access to the DOM node in order to position the Menu
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-  <Button style={{width:'40%',position:'absolute',left:'36%',top:'65%'}} variant="outline-primary"
-    href="" ref={ref}
+  <Button
+  style={{position:'absolute',top:'64%',left:'26.2%',width:'56.9%'}}
+    href=""
+    ref={ref}
     onClick={(e) => {
-      
       e.preventDefault();
       onClick(e);
-  
     }}
   >
     {children}
@@ -35,7 +37,6 @@ const CustomMenu = React.forwardRef(
 
     return (
       <div
-    
         ref={ref}
         style={style}
         className={className}
@@ -60,6 +61,7 @@ const CustomMenu = React.forwardRef(
 );
 
  // ==================================================================================================//
+
 
 
 class MainPage extends Component {
@@ -166,16 +168,15 @@ class MainPage extends Component {
 
        
     }
-    shouldComponentUpdate(nextProps, nextState) { 
-
-    if(this.state.index === nextState.index && this.state.lists)
-      return false;
-    else 
-    {
- 
-      return true;  
-    }
-      
+    shouldComponentUpdate(nextProps, nextState) 
+    { 
+     
+       if(this.state.clickedItem !== nextState.clickedItem)
+         return true;
+       else if(this.state.index === nextState.index && this.state.lists)
+         return false;
+       else
+        return true;  
     }
 
     audioDuration = (duration) =>{
@@ -183,8 +184,8 @@ class MainPage extends Component {
       
     };
 
-    f = (index,name) =>{
-      console.log(index,name)
+    selectedCategoryName = (index,name) =>{
+      console.log(name)
       this.setState({clickedItem:name})
     }
 
@@ -213,33 +214,27 @@ class MainPage extends Component {
                 passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}/>
        
               <Annotator src={lists[this.state.index].url} /> 
-        
-                 <Dropdown   style={{width:'39.6%',position:'absolute',left:'36.2%',top:'65%'}}>
-                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                      {clickedItem}
-                    </Dropdown.Toggle>
-                      <Dropdown.Menu  as={CustomMenu} style={scrollContainerStyle} className="scrollbar scrollbar-primary">
-                        {this.state.fileCategory.map((f,i) =>
-                        
-                        <Dropdown.Item onClick={()=>this.f(i,f)}  key={i} eventKey={i}>
-                          <div >
-                          {f}
-                          </div>
-                        </Dropdown.Item>
-                        
-                        )}
-                        
-                     </Dropdown.Menu>
-                  </Dropdown>,
-     
-                  
-                  <Button className="btn3" onClick={this.audioTagHadler}  variant="outline-primary">Audio tag</Button>
-               
-                
+              <h6 className="selectedCategory">Selected Category: </h6>
+              <Dropdown   style={{position:'absolute',top:'64%',left:'26.2%',width:'56.9%'}}>
+                  <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+                    {clickedItem}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu as={CustomMenu} style={scrollContainerStyle} className="scrollbar scrollbar-primary">
+                    {this.state.fileCategory.map((f,i) =>   
+                    <Dropdown.Item onClick={()=>this.selectedCategoryName(i,f)}  key={i} eventKey={i}>
+                    {f}
+                    </Dropdown.Item>)}
+ 
+                  </Dropdown.Menu>
+              </Dropdown>,
+              
+                <h6 className="selectedQuality">Quality: </h6>
                 <MDBBtnToolbar className="qualityButtons">
                   <Button className="goodButton" variant="outline-dark">Good</Button>
                   <Button className="badButton" variant="outline-dark">Bad</Button>
                 </MDBBtnToolbar>
+                <h6 className="cropButton">Crop: </h6>
                 <MDBBtnToolbar className="formButtons">
                   <Button className="goodButton" onClick={this.audioTagHadler} variant="outline-success">Submit</Button>
                   <Button  className="badButton" variant="outline-danger" type="submit">Cancel</Button>
