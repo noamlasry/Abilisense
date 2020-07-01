@@ -75,7 +75,7 @@ class MainPage extends Component {
         src:'',
         cropFrom: "",
         cropTo: "",
-        category: "baby",
+        category: 'Unvalid',
         audioKey: [],
         keys:[],
         eTags:[],
@@ -83,7 +83,9 @@ class MainPage extends Component {
         audioObject:[],
         lastCrop: false,
         audioLength:'click play to display time',
-        clickedItem:'Unvalid'
+        responceAnnotator:true,
+       
+    
   
         
       }  
@@ -118,7 +120,10 @@ class MainPage extends Component {
       });
     }
 
-    setMusicIndex = (newIndex) => { this.setState({index:newIndex}); }
+    setMusicIndex = (newIndex) => { 
+   
+      this.setState({responceAnnotator:true,index:newIndex}); 
+    }
    
     getNextIndex = (nextIndex) => {this.setState({index:nextIndex});};
     
@@ -168,15 +173,20 @@ class MainPage extends Component {
 
        
     }
+    
     shouldComponentUpdate(nextProps, nextState) 
     { 
-     
-       if(this.state.clickedItem !== nextState.clickedItem)
-         return true;
+   
+       if(this.state.category !== nextState.category)
+        return true;
+          
        else if(this.state.index === nextState.index && this.state.lists)
          return false;
        else
-        return true;  
+       {
+         return true;  
+       }
+        
     }
 
     audioDuration = (duration) =>{
@@ -184,20 +194,20 @@ class MainPage extends Component {
       
     };
 
-    selectedCategoryName = (index,name) =>{
-      console.log(name)
-      this.setState({clickedItem:name})
+    selectedCategoryName = (name) =>{
+      this.setState({category:name,responceAnnotator:false})
+   
     }
 
 
 
     render(){
-    const {lists,audioKey,audioObject,audioLength,clickedItem} = this.state;
+    const {lists,audioKey,audioObject,audioLength,category,responceAnnotator,index} = this.state;
     const scrollContainerStyle = { width: "100%", maxHeight: "40vh" };
-  
+
     return(
      <div>
-       {lists &&
+       {lists && 
        <div >
            <Navigationbar userName={this.props.userName} />
            
@@ -212,17 +222,18 @@ class MainPage extends Component {
               <MusicPlayer playlist={ lists}   index={this.state.index} 
                 passAudioDuration={this.audioDuration.bind(this)} updateIndex={this.setMusicIndex.bind(this)}
                 passCroppingParamaterToMain={this.passCroppingParamaterToMain.bind(this)}/>
-       
-              <Annotator src={lists[this.state.index].url} /> 
+             
+              <Annotator src={lists[this.state.index].url} activeAnnotator={responceAnnotator} index={index}/> 
+              
               <h6 className="selectedCategory">Selected Category: </h6>
               <Dropdown   style={{position:'absolute',top:'64%',left:'26.2%',width:'56.9%'}}>
                   <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                    {clickedItem}
+                    {category}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu as={CustomMenu} style={scrollContainerStyle} className="scrollbar scrollbar-primary">
                     {this.state.fileCategory.map((f,i) =>   
-                    <Dropdown.Item onClick={()=>this.selectedCategoryName(i,f)}  key={i} eventKey={i}>
+                    <Dropdown.Item onClick={()=>this.selectedCategoryName(f)}  key={i} eventKey={i}>
                     {f}
                     </Dropdown.Item>)}
  

@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { Component }  from "react";
 import styled from 'styled-components';
 import Waveform from './Waveform';
 import { getAudioBuffer, getContext } from './utils';
@@ -10,10 +11,10 @@ const WaveformWrapper = styled.div`
   width: 100%;
 `;
 
-class Annotator extends React.PureComponent {
+class Annotator extends Component {
   state = {
     src:'',
-   
+    index:0,
     buffer: null,
     context: null,
     height: 150,
@@ -35,6 +36,7 @@ class Annotator extends React.PureComponent {
 
 
   componentWillReceiveProps(nextProps){
+    this.setState({index:this.props.index})
     this.setState({src:nextProps.src});
     this.getFile(nextProps.src);
 
@@ -73,19 +75,26 @@ class Annotator extends React.PureComponent {
       this.setState({ [prop]: val });
     }
   };
+  shouldComponentUpdate(nextProps, nextState) 
+  { 
+     if(nextProps.activeAnnotator && this.props.index === nextProps.index)
+       return true;
+     else
+      return false;  
+  }
 
 
   render() {
   
     return (
    
-    <div   >
+    <div>
   
-        <WaveformWrapper >
+        <WaveformWrapper>
      
        
           <Waveform
-         
+           
             buffer={this.state.buffer}
             height={this.state.height}
             markerStyle={this.state.markerStyle}
