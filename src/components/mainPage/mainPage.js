@@ -90,16 +90,17 @@ class MainPage extends Component {
     };
     
     audioTagHadler = () =>{
-      console.log(this.state.cropFrom+" 1"
-        +this.state.cropTo+"2 "
-        + this.state.category+" 3"
-        +this.state.audioKey[0].key+"4 "
+      console.log(this.state.cropFrom+'\n'
+        +this.state.cropTo+'\n'
+        + this.state.category+'\n'
+        +this.state.audioKey[0].key+'\n'
         
-        +this.state.audioObject[0].key+"4 "
+        +this.state.audioObject[0].key+'\n'
         + this.state.lastCrop);
       axios({
         method: 'POST',
-        url: 'https://mb8ew0clxb.execute-api.eu-west-1.amazonaws.com/v1',
+        url: 'https://4qlc7vkez2.execute-api.eu-west-1.amazonaws.com/Stage/ec2Api',
+        // headers:{"Access-Control-Allow-Origin":"*"},
         data:{
           cropFrom: this.state.cropFrom,
           cropTo: this.state.cropTo,
@@ -110,7 +111,7 @@ class MainPage extends Component {
     })
       .then((response) => {
         console.log("aa");
-        console.log(response.data.body)
+        console.log(response.data)
         console.log("bb");
     //     console.log(response.data);
     // console.log(response.status);
