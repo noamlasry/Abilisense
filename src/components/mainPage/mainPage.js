@@ -92,25 +92,28 @@ class MainPage extends Component {
     };
     
     audioTagHadler = () =>{
-      console.log(this.state.cropFrom+" "
-        +this.state.cropTo+" "
-        + this.state.category+" "
-        +this.state.audioKey[0].key+" "
+      console.log(this.state.cropFrom+'\n'
+        +this.state.cropTo+'\n'
+        + this.state.category+'\n'
+        +this.state.audioKey[0].key+'\n'
+        
+        +this.state.audioObject[0].key+'\n'
         + this.state.lastCrop);
       axios({
         method: 'POST',
-        url: 'https://mb8ew0clxb.execute-api.eu-west-1.amazonaws.com/v1',
+        url: 'https://4qlc7vkez2.execute-api.eu-west-1.amazonaws.com/Stage/ec2Api',
+        // headers:{"Access-Control-Allow-Origin":"*"},
         data:{
           cropFrom: this.state.cropFrom,
           cropTo: this.state.cropTo,
           category: this.state.category,
-          key: this.state.audioKey[0].key,
+          key: this.state.audioObject[0].key,
           lastCrop: this.state.lastCrop
         } 
     })
       .then((response) => {
         console.log("aa");
-        console.log(response.data.body)
+        console.log(response.data)
         console.log("bb");
     //     console.log(response.data);
     // console.log(response.status);
