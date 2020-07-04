@@ -164,20 +164,20 @@ export default class Progress extends Component {
    
 
     return (
-      <div>
+      <div >
   
       <ClickNHold
-          
+         
            onClickNHold={this.clickNHold} //Timeout callback
            time={1000} // Time to keep pressing. Default is 2
            onStart={this.start} // Start callback
            onEnd={this.end} >      
         <div>
           <div
-          
+           
             onPointerMove={this.handleDrag}
             ref={this.progressContainer} role="progressbar" tabIndex="-1" className="progress"
-            style={{ height: `${strokeWidth}%` }} onMouseDown ={this.onClick} onKeyDown={this.onKeyDown} >
+            style={{ height: `${strokeWidth}%`,position:'absolute' ,left:'25%',top:'30.5%' }} onMouseDown ={this.onClick} onKeyDown={this.onKeyDown} >
         
             <div 
               className="progress-inner" 
@@ -197,8 +197,8 @@ export default class Progress extends Component {
       <div>
        
       </div>
-      <MDBBtnToolbar className="cropping"><div style={{color:'red'}}>Crop From:</div>{"  "+this.state.cropFrom+"  "}
-    <div style={{color:'red'}}>To:</div>{"   "+this.state.cropTo}</MDBBtnToolbar>
+      <MDBBtnToolbar className="cropping"><div style={{color:'red', fontWeight:'bold'}}>Crop From:</div><div style={{fontWeight:'bold'}}>{"  "+this.state.cropFrom+"  "}</div>
+    <div style={{color:'red', fontWeight:'bold'}}>To:</div><div style={{fontWeight:'bold'}}>{"   "+this.state.cropTo}</div></MDBBtnToolbar>
 
  </div>
     );

@@ -248,7 +248,7 @@ export default class MusicPlayer extends Component {
             
           </div>
           <div className="time-and-volume">
-            <div className="time-remaining">-{formatTime(leftTime)}</div>
+            <div className="time-remaining" style={{fontWeight:'bold'}}>-{formatTime(leftTime)+" "}</div>
             <div className="volume-continer">
               <div className="volume-icon">
               <i className="volume-icon fa fa-volume-up" />
@@ -259,14 +259,14 @@ export default class MusicPlayer extends Component {
               </div>
             </div>
           </div>
-     
+          <div >
           <Progress percent={progress} 
           sendProgressParamater={this.handleDragAreaPlayAudio.bind(this)}
           strokeColor={progressColor} onClick={this.handleAdjustProgress}  
           audioTotalTime={this.state.audioTotalTime} 
           passCroppingParamater={this.passCroppingParamater.bind(this)}
           />
-        
+         </div>
          <div className="controls">
          
             <button

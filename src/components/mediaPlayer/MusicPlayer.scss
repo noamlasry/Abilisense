@@ -71,7 +71,8 @@ $player-cover-size: 240px !default;
         align-items: center;
 
         .volume-icon {
-          margin-right: 4px;
+       
+          margin-right: 8px;
           color: $player-time-color;
           cursor: pointer;
         }
@@ -173,9 +174,9 @@ $player-cover-size: 240px !default;
 
 .progress-volume{
   position: absolute;
-  top:-25%;
+  top:-24.2%;
   height: 10%;
-  left: -20%;
+  left: -17%;
   width: 40%;
 }
 
@@ -183,6 +184,6 @@ $player-cover-size: 240px !default;
   position: absolute;
   top:-17%;
   height: 30%;
-  left: -22%;
+  left: -20%;
   width: 40%;
 }
