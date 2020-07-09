@@ -1,8 +1,7 @@
 .progress{
   width: 50%;
 
-  position: absolute;
-  top:30.5%;
+  display: flex;
   opacity: 0.6;
   outline: none;
   cursor: ew-resize;
@@ -13,6 +12,11 @@
     opacity: 0.4;
   
   }
+}
+.canvas{
+  position: absolute;
+  left:'25%';
+  top:'40.5%';
 }
 
 .time{
