@@ -101,12 +101,14 @@ class MainPage extends Component {
         + this.state.lastCrop);
       axios({
         method: 'POST',
-        url: 'https://4qlc7vkez2.execute-api.eu-west-1.amazonaws.com/Stage/ec2Api',
-        // headers:{"Access-Control-Allow-Origin":"*"},
+        //url: 'https://4qlc7vkez2.execute-api.eu-west-1.amazonaws.com/Stage/ec2Api',
+        url:'http://ec2-52-209-244-23.eu-west-1.compute.amazonaws.com/',
+         headers:{"Access-Control-Allow-Origin":"*"},
         data:{
           cropFrom: this.state.cropFrom,
           cropTo: this.state.cropTo,
           category: this.state.category,
+          path: this.state.audioKey[0].key,
           key: this.state.audioObject[0].key,
           lastCrop: this.state.lastCrop
         } 

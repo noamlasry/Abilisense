@@ -177,7 +177,7 @@ export default class Progress extends Component {
          
             onPointerMove={this.handleDrag}
             ref={this.progressContainer} role="progressbar" tabIndex="-1" className="progress"
-            style={{ height: `${strokeWidth}%`,position:'absolute' ,left:'25%',top:'30.5%' }} onMouseDown ={this.onClick} onKeyDown={this.onKeyDown} >
+            style={{ height: `${strokeWidth}%`,position:'absolute' ,left:'25%',top:'26%' }} onMouseDown ={this.onClick} onKeyDown={this.onKeyDown} >
         
             <div 
               className="progress-inner" 
